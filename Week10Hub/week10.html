@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10213d">
+  <meta name="description" content="A self-paced Week 10 learning hub for Centennial High School computer science students.">
+  <title>Week 10 Learning Hub | Centennial Knights CS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to learning content</a>
+  <header class="topbar">
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <a class="brand" href="#home" aria-label="Week 10 Learning Hub home">
+      <img class="brand-logo" src="logo.png" alt="" aria-hidden="true">
+      <span><strong>Centennial Knights</strong><small>Computer Science · Week 10</small></span>
+    </a>
+    <div class="save-controls">
+      <span id="save-status" class="save-status" role="status" aria-live="polite">🟢 Progress Saved</span>
+      <button id="save-button" class="button button-light" type="button">Save progress</button>
+      <button id="reset-button" class="button button-outline" type="button">Reset</button>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-label">Learning hub</div>
+      <nav id="primary-nav" aria-label="Course navigation">
+        <a class="nav-link active" href="#home" aria-current="page"><span aria-hidden="true">⌂</span> Choose your course</a>
+      </nav>
+      <p class="sidebar-note">Each course has its own progress and saved work.</p>
+    </aside>
+
+    <main id="main" tabindex="-1">
+      <div class="content-wrap">
+        <section id="home-page" class="page" data-page="home"></section>
+        <section id="ap-csa-page" class="page" data-page="ap-csa" hidden></section>
+        <section id="ap-csp-page" class="page" data-page="ap-csp" hidden></section>
+        <section id="ist-csp-page" class="page" data-page="ist-csp" hidden></section>
+        <section id="game-design-page" class="page" data-page="game-design" hidden></section>
+        <footer class="site-footer">
+          <span>Mr. Torres · Centennial High School</span>
+          <span>Keep practicing. Keep debugging. Keep learning.</span>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="scirpt.js"></script>
+</body>
+</html>
