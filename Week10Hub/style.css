@@ -260,3 +260,70 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   .scale label { background: #1d2756; }
   .site-footer { color: #9aa6d6; }
 }
+
+.frq-part { margin: 1.2rem 0; padding: 1rem; border: 1px solid var(--line); border-radius: 10px; }
+.frq-part h3 { margin: 0 0 .3rem; }
+.frq-workspace { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: .8rem; margin: .7rem 0; }
+.frq-workspace [hidden] { display: none; }
+.frq-pane { min-width: 0; }
+.frq-label { display: block; margin-bottom: .3rem; font-size: .8rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+.code-editor { display: block; width: 100%; padding: .8rem; border: 1px solid #3a4890; border-radius: 8px; color: #e8f1ff; background: #080c1d; font: .85rem/1.55 ui-monospace, SFMono-Regular, Consolas, monospace; tab-size: 4; white-space: pre; overflow: auto; resize: vertical; }
+.code-editor:focus { outline: 3px solid #38bdf8aa; border-color: #38bdf8; }
+.frq-solution pre { margin: 0; overflow-x: auto; padding: .8rem; border: 1px solid #a3e635; border-radius: 8px; color: #e8f1ff; background: #0d1a22; font: .85rem/1.55 ui-monospace, SFMono-Regular, Consolas, monospace; }
+.frq-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.button-primary { color: #080c1d; background: #22d3ee; }
+.button-secondary { color: inherit; border-color: var(--line); background: transparent; }
+.frq-message { color: #fbbf24; font-size: .84rem; font-weight: 700; }
+.frq-rubric { margin-top: .7rem; }
+.frq-rubric summary { cursor: pointer; font-weight: 800; }
+
+.example-panel { border-top-color: #fbbf24; }
+.example-panel .table-wrap { max-height: 420px; }
+.example-panel table { font-size: .74rem; }
+.example-panel th, .example-panel td { min-width: 88px; padding: .45rem; }
+
+.example-panel .table-wrap { max-height: none; overflow: visible; }
+.example-panel table { width: 100%; table-layout: fixed; font-size: clamp(.62rem, .8vw, .74rem); }
+.example-panel th, .example-panel td { min-width: 0; padding: .3rem .35rem; overflow-wrap: anywhere; hyphens: auto; }
+
+@media (min-width: 981px) {
+  .course-layout .course-aside { position: sticky; top: 92px; max-height: calc(100vh - 110px); overflow-y: auto; }
+}
+@media (max-width: 980px) {
+  .example-panel[hidden] { display: block; }
+}
+
+@media (min-width: 981px) {
+  .course-layout .course-aside { overflow: visible; max-height: none; }
+  .course-aside.has-example .resource-note { display: none; }
+  .course-aside.has-example .resource-list { display: flex; flex-wrap: wrap; gap: .3rem; }
+  .course-aside.has-example .resource-link { padding: .25rem .45rem; font-size: .66rem; }
+  .course-aside.has-example .panel { margin: .45rem 0; padding: .55rem .65rem; }
+  .course-aside.has-example .panel h2 { margin-bottom: .35rem; font-size: .85rem; }
+  .course-aside.has-example .panel p { margin: .3rem 0 0; font-size: .7rem; }
+  .course-aside.has-example .resource-link:after { content: none; }
+}
+.example-panel h2 { font-size: .8rem; }
+.example-panel table { font-size: clamp(.5rem, .62vw, .6rem); line-height: 1.25; }
+.example-panel th, .example-panel td { padding: .2rem .25rem; }
+.example-panel .resource-note { font-size: .56rem; line-height: 1.25; }
+
+.career-example { border-top-color: #5eb3a6; background: linear-gradient(160deg, #12303a, #10242f); border-color: #2c5a63; }
+.career-example h2 { color: #a9dcd3; }
+.career-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .35rem; }
+.career-card { min-width: 0; padding: .35rem .45rem; border: 1px solid #2f6a70; border-left: 3px solid #d9a66b; border-radius: 6px; background: #0e2029; }
+.career-card h3 { margin: 0 0 .2rem; color: #e8c391; font-size: .62rem; line-height: 1.2; }
+.career-card dl { margin: 0; }
+.career-card dt { margin-top: .15rem; color: #7fc8bc; font-size: .5rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+.career-card dd { margin: 0; color: #d6e6ea; font-size: .55rem; line-height: 1.25; overflow-wrap: anywhere; }
+
+.journey-example { border-top-color: #b08ac4; background: linear-gradient(160deg, #2a2142, #211b38); border-color: #4e4377; }
+.journey-example h2 { color: #d2bfe3; }
+.journey-example .career-card { border-color: #5a4d86; border-left-color: #e0a8b8; background: #1c1730; }
+.journey-example .career-card h3 { color: #efc4d0; }
+.journey-example .career-card dt { color: #b9a2d6; }
+.journey-example .career-card dd { color: #e4dff0; }
+
+.career-card figure { margin: .3rem 0 0; }
+.career-card figure img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.career-card figcaption { margin-top: .15rem; color: #bdb3d6; font-size: .48rem; line-height: 1.25; font-style: italic; overflow-wrap: anywhere; }

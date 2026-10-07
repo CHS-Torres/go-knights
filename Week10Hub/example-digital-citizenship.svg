@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 140" role="img" aria-label="Shield with a check mark beside a globe">
+  <rect width="240" height="140" fill="#1b2a5a"/>
+  <circle cx="165" cy="70" r="42" fill="#2c5a9b" stroke="#8fc2ff" stroke-width="3"/>
+  <ellipse cx="165" cy="70" rx="18" ry="42" fill="none" stroke="#8fc2ff" stroke-width="2"/>
+  <path d="M123 70h84M130 48h70M130 92h70" stroke="#8fc2ff" stroke-width="2" fill="none"/>
+  <path d="M75 25l45 15v35c0 28-20 44-45 55-25-11-45-27-45-55V40z" fill="#5eb3a6" stroke="#e9f6f3" stroke-width="3"/>
+  <path d="M55 78l14 14 28-32" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -51,6 +51,31 @@ const pythonExercises = {
   rotate_left3: ['p173401', 'Processes and returns a reordered list.']
 };
 
+const istExamples = {
+  journey: {
+    headers: ['Week', 'Topic', 'Description', 'Example Image'],
+    rows: [
+      ['1', 'Digital Citizenship', 'I learned how to act responsibly online, protect my digital footprint, and credit the work of others.', 'Photo of my Canvas lesson notes. Source: my own screenshot, Oct 2026'],
+      ['2', 'Cyber Hygiene', 'I practiced strong passwords, two-step sign-in, and spotting phishing messages.', 'Diagram of a phishing email. Source: cited site, date']
+    ],
+    images: [
+      { src: 'example-digital-citizenship.svg', alt: 'Shield with a check mark beside a globe', cite: 'Torres, M. Digital citizenship shield and globe [illustration]. Centennial High School Computer Science. Created 2026. Accessed October 7, 2026.' },
+      { src: 'example-cyber-hygiene.svg', alt: 'Padlock next to a password field with dots', cite: 'Torres, M. Padlock and password field [illustration]. Centennial High School Computer Science. Created 2026. Accessed October 7, 2026.' }
+    ],
+    note: 'Your table needs at least 8 rows. Every image needs alt text and an AMA citation (creator, title, site, date, URL if online, access date).'
+  },
+  careers: {
+    headers: ['Career', 'Description', 'Average salary', 'Technical skills', 'Soft skills'],
+    rows: [
+      ['Electronic Engineer', 'Designs, tests, and improves circuits and electronic devices.', '$__ to $__ per year (source, date)', 'Circuit design, schematics, soldering, testing equipment', 'Problem solving, attention to detail, teamwork'],
+      ['Data Network Engineer', 'Plans, builds, and maintains the networks that move data between computers.', '$__ to $__ per year (source, date)', 'Routers and switches, IP addressing, network security', 'Communication, patience, troubleshooting'],
+      ['SMSC Systems Engineer', 'Designs and integrates hardware and software systems for products and customers.', '$__ to $__ per year (source, date)', 'Systems design, hardware and software integration, documentation', 'Collaboration, planning, clear writing'],
+      ['Test Automation Engineer', 'Writes programs that automatically test software and hardware to find bugs early.', '$__ to $__ per year (source, date)', 'Programming, test frameworks, debugging, version control', 'Curiosity, persistence, teamwork']
+    ],
+    note: 'Careers from Mr. Torres. Replace the $__ with a real range you research and cite with the source and date. Choose your own three or more careers.'
+  }
+};
+
 function section(title, description, options = {}) {
   return { title, description, ...options };
 }
@@ -137,6 +162,7 @@ const courses = [
   },
   {
     id: 'ist-csp',
+    asideExamples: true,
     code: 'Intro to Software Technology / CSP',
     short: 'IST / CSP',
     subtitle: 'Canvas Short-Term Project · Build a Portfolio',
@@ -156,10 +182,10 @@ const courses = [
         { code: '<h1>My first 8 weeks in Computer Science</h1>\n<h2>About Me</h2>\n<p>In this portfolio, I will share what I learned.</p>\n\n<style>\n  body { font-family: Arial, sans-serif; background-color: #eef5ff; }\n  h1 { color: #245a9b; }\n</style>', walkthrough: 'Use h1 for the page title and h2 for a section heading. Put text in p elements. CSS rules select an element and set properties such as color and background-color.', tasks: ['Add the title, student name, course name, school name, school year, and project description.', 'Use semantic headings and readable paragraphs.', 'Apply intentional fonts, colors, background styling, and CSS formatting.'] }),
       section('HTML and CSS Syntax Quick Reference',
         'Use these examples as reminders while building each portfolio section. Keep HTML structure in the page and use CSS rules to control its presentation.',
-        { code: '<!-- Image with alternative text -->\n<img src=\"images/project.png\" alt=\"Screenshot of my project\">\n\n<!-- Link and list -->\n<a href=\"https://example.com\">View my source</a>\n<ul><li>What I learned</li><li>What I can build</li></ul>\n\n<!-- Table structure -->\n<table>\n  <tr><th>Week</th><th>Learning</th></tr>\n  <tr><td>1</td><td>Digital citizenship</td></tr>\n</table>\n\n<style>\n  body { font-family: Arial, sans-serif; }\n  img { max-width: 100%; }\n  table { border-collapse: collapse; }\n  th, td { border: 1px solid #334; padding: 8px; }\n</style>', walkthrough: 'Use descriptive alt text for images, meaningful link text, list items for lists, and th/td cells in tables. CSS selectors (such as img or th, td) apply the declarations inside their braces.', tasks: ['Use the HTML examples as you build the heading, image, link, list, and table checklist items.', 'Use the CSS examples to style fonts, images, and table borders.'] }),
+        { code: '<!-- Image with alternative text -->\n<img src=\"images/project.png\" alt=\"Screenshot of my project\">\n\n<!-- Link, unordered list (order does not matter), ordered list (order matters) -->\n<a href=\"https://example.com\">View my source</a>\n<ul><li>What I learned</li><li>What I can build</li></ul>\n<ol><li>First choice career</li><li>Second choice career</li></ol>\n\n<!-- Table structure -->\n<table>\n  <tr><th>Week</th><th>Learning</th></tr>\n  <tr><td>1</td><td>Digital citizenship</td></tr>\n</table>\n\n<style>\n  body { font-family: Arial, sans-serif; }\n  img { max-width: 100%; }\n  table { border-collapse: collapse; }\n  th, td { border: 1px solid #334; padding: 8px; }\n</style>', walkthrough: 'Use descriptive alt text for images, meaningful link text, list items for lists, and th/td cells in tables. CSS selectors (such as img or th, td) apply the declarations inside their braces.', tasks: ['Use the HTML examples as you build the heading, image, link, list, and table checklist items.', 'Use the CSS examples to style fonts, images, and table borders.'] }),
       section('Learning Journey Table',
         'Create a table with at least eight rows. Each row documents a week or topic and includes a description and an example image. Suggested topics: Digital Citizenship, Cyber Hygiene, Hardware, Software, Operating Systems, HTML, CSS, and Current Learning.',
-        { table: {
+        { example: 'journey', table: {
           headers: ['Week', 'Topic', 'Description', 'Example Image'],
           rows: [
             ['1', 'Digital Citizenship', 'Add a summary of your learning.', 'Add a cited image'],
@@ -174,14 +200,14 @@ const courses = [
         }, tasks: ['Create columns for Week, Topic, Description, and Example Image.', 'Customize at least eight meaningful rows.', 'Cite every image in AMA format: include creator/organization, image title or description, site, publication/update date when available, URL, and access date. Follow your teacher’s citation example.'] }),
       section('Career Exploration',
         'Research at least three technology careers. Use current, credible sources for salary and education information; salaries vary by location, experience, and source. Do not copy a number without recording where and when you found it.',
-        { table: {
+        { example: 'careers', code: '<h2>Career Exploration</h2>\n<p>Careers I researched, ranked from most to least interesting:</p>\n<ol>\n  <li>Test Automation Engineer</li>\n  <li>Data Network Engineer</li>\n  <li>Electronic Engineer</li>\n</ol>\n\n<h3>Test Automation Engineer</h3>\n<img src=\"images/test-automation.jpg\" alt=\"Engineer reviewing automated test results\">\n<p>Creator. Image title. Website name. Date. URL. Accessed date.</p>\n<p>Technical skills:</p>\n<ul>\n  <li>Programming</li>\n  <li>Test frameworks</li>\n</ul>\n<p>Source: <a href=\"https://www.bls.gov/ooh/\">U.S. Bureau of Labor Statistics</a></p>', walkthrough: 'Use an ordered list (ol) when order matters, such as ranking careers from most to least interesting. Use an unordered list (ul) when order does not matter, such as skills. Every career needs an image with alt text and an AMA citation, and a link (a href) to the source you used.', table: {
           headers: ['Career', 'Description', 'Average salary', 'Technical skills', 'Soft skills'],
           rows: [
             ['Web Developer', 'Research and summarize.', 'Research and cite.', 'Research.', 'Research.'],
             ['Front-End Developer', 'Research and summarize.', 'Research and cite.', 'Research.', 'Research.'],
             ['Software Developer or UI/UX Designer', 'Research and summarize.', 'Research and cite.', 'Research.', 'Research.']
           ]
-        }, tasks: ['Research at least three careers (for example, Web Developer, Front-End Developer, Software Developer, or UI/UX Designer).', 'Complete the table with career, description, average salary, technical skills, and soft skills.', 'Use credible sources such as the U.S. Bureau of Labor Statistics and O*NET; record citation details.', 'Answer: Which career interests you most and why?'] }),
+        }, tasks: ['Add a Career Exploration section to your portfolio page; it is required, not optional.', 'Research at least three careers (for example, Web Developer, Front-End Developer, Software Developer, or UI/UX Designer).', 'Complete the table with career, description, average salary, technical skills, and soft skills.', 'Use an ordered list (ol) to rank your careers from most to least interesting.', 'Use an unordered list (ul) for each career’s technical skills and soft skills.', 'Include one image per career with alt text and an AMA citation.', 'Add a working link (a href) to the source of each career and salary; use credible sources such as the U.S. Bureau of Labor Statistics and O*NET and record citation details.', 'Answer: Which career interests you most and why?'] }),
       section('References and Build Workflow',
         'Cite images, career sources, salary sources, and other research sources. Use the citation format required by your teacher and make each reference traceable.',
         { tasks: ['Review previous learning and gather notes and resources.', 'Gather suitable images and record citations before adding them.', 'Plan the layout, build the HTML structure, then apply CSS styling.', 'Complete the career section and references section.', 'Test every link, image, table, and page section before submitting.'] }),
@@ -189,7 +215,7 @@ const courses = [
         'After the Build a Portfolio assignment is complete, properly styled, and includes the required tables, images, references, and career exploration content, you may begin CodeHS Unit 10: JavaScript and Graphics.',
         { tasks: ['Portfolio completion check: title and required header are present.', 'Portfolio completion check: CSS styling and the eight-row learning table are complete.', 'Portfolio completion check: images are cited, career exploration is complete, and references are included.', 'Preview: variables store values; user input gathers information; events respond to actions; graphics draw visual elements; interactive programming combines these ideas.'] })
     ],
-    checklist: ['Portfolio title: My first 8 weeks in Computer Science', 'Student name, course, school, year, and project description', 'HTML headings and readable paragraphs', 'CSS fonts, colors, and background styling', 'Learning table with at least eight rows', 'Images with descriptive alt text and AMA citations', 'Career table with at least three careers', 'References and Canvas submission']
+    checklist: ['Portfolio title: My first 8 weeks in Computer Science', 'Student name, course, school, year, and project description', 'HTML headings and readable paragraphs', 'CSS fonts, colors, and background styling', 'Learning table with at least eight rows', 'Images with descriptive alt text and AMA citations', 'Career Exploration section included in the portfolio page with at least three careers', 'Career table: description, salary, technical skills, and soft skills', 'Ordered list (ol) ranking careers and unordered lists (ul) for skills', 'Each career has an image with alt text and an AMA citation', 'Each career has a working link to its source', 'References and Canvas submission']
   },
   {
     id: 'game-design',
@@ -371,7 +397,7 @@ function sectionMarkup(course, item, sectionIndex) {
   const code = item.code ? `<h4>Teacher example</h4><pre><code>${escapeHTML(item.code)}</code></pre>` : '';
   const walkthrough = item.walkthrough ? `<h4>Code walkthrough</h4><p>${escapeHTML(item.walkthrough)}</p>` : '';
   const table = item.table ? `<div class="table-wrap"><table><thead><tr>${item.table.headers.map(header => `<th scope="col">${escapeHTML(header)}</th>`).join('')}</tr></thead><tbody>${item.table.rows.map(row => `<tr>${row.map(cell => `<td>${escapeHTML(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>` : '';
-  return `<details class="${lessonClasses}" data-open="${sectionId}"${open ? ' open' : ''}>
+  return `<details class="${lessonClasses}"${item.example ? ` data-example="${item.example}"` : ''} data-open="${sectionId}"${open ? ' open' : ''}>
     <summary>${escapeHTML(item.title)}</summary>
     <div class="lesson-body"><p>${escapeHTML(item.description)}</p>${code}${walkthrough}${table}${exercises}${quickCheck}${challenge}${reflection}${prompts}
       ${item.exercises ? '<h4>Practice tasks</h4>' : ''}
@@ -421,20 +447,100 @@ function courseMarkup(course) {
     <aside class="course-aside">
       <section class="panel"><h2>Required learning resources</h2><div class="resource-list">${resourceLinks}</div><p class="resource-note">${escapeHTML(course.resourceNote)}</p></section>
       <section class="panel"><h2>Your course progress</h2><div class="progress-track"><span data-course-bar="${course.id}"></span></div><p class="percent"><strong data-course-percent="${course.id}">0%</strong> of checklist items complete</p><p class="resource-note">Check items as you finish activities. Your progress is saved automatically in this browser.</p></section>
+      ${course.asideExamples ? istExamplesMarkup() : ''}
     </aside>
   </div>`;
 }
 
+const frqParts = [
+  {
+    title: 'Part (a) · Total oxygen used',
+    prompt: 'Write the method totalUsed, which uses a loop to add every value in usage and returns the total oxygen used.',
+    starter: 'public static int totalUsed(int[] usage) {\n    // write your loop here\n\n}',
+    solution: 'public static int totalUsed(int[] usage) {\n    int total = 0;\n    for (int amount : usage) {\n        total += amount;\n    }\n    return total;\n}',
+    rubric: ['Initializes an accumulator before the loop', 'Visits every element of usage', 'Adds each value to the accumulator', 'Returns the total after the loop']
+  },
+  {
+    title: 'Part (b) · Low-oxygen Boolean expression',
+    prompt: 'Write the method isLow, which returns true when remaining is at or below threshold. Return the Boolean expression directly.',
+    starter: 'public static boolean isLow(int remaining, int threshold) {\n    // write your code here\n\n}',
+    solution: 'public static boolean isLow(int remaining, int threshold) {\n    return remaining <= threshold;\n}',
+    rubric: ['Uses <= (at or below), not <', 'Returns a boolean value']
+  },
+  {
+    title: 'Part (c) · Warning message with if/else',
+    prompt: 'Write the method warning, which returns "LOW OXYGEN" when remaining is at or below threshold and "Oxygen OK" otherwise.',
+    starter: 'public static String warning(int remaining, int threshold) {\n    // use if / else here\n\n}',
+    solution: 'public static String warning(int remaining, int threshold) {\n    if (remaining <= threshold) {\n        return "LOW OXYGEN";\n    } else {\n        return "Oxygen OK";\n    }\n}',
+    rubric: ['Tests the condition with remaining and threshold', 'Returns "LOW OXYGEN" in the true branch', 'Returns "Oxygen OK" in the other branch']
+  },
+  {
+    title: 'Part (d) · Reserve oxygen with a nested if',
+    prompt: 'Write the method reserveStatus. If oxygen is low, check reserveAvailable: return "Reserve activated" when true, otherwise "Reserve unavailable". If oxygen is not low, return "No reserve needed".',
+    starter: 'public static String reserveStatus(int remaining, int threshold, boolean reserveAvailable) {\n    // use a nested if here\n\n}',
+    solution: 'public static String reserveStatus(int remaining, int threshold, boolean reserveAvailable) {\n    if (remaining <= threshold) {\n        if (reserveAvailable) {\n            return "Reserve activated";\n        } else {\n            return "Reserve unavailable";\n        }\n    }\n    return "No reserve needed";\n}',
+    rubric: ['Checks low oxygen first', 'Checks reserveAvailable inside the low-oxygen branch', 'Handles all three outcomes with the correct messages']
+  },
+  {
+    title: 'Part (e) · Trace two test cases',
+    prompt: 'Trace reserveStatus(8, 10, true) and reserveStatus(8, 10, false). Write each step: which conditions are evaluated, whether each is true or false, and the value returned.',
+    starter: 'Test 1: reserveStatus(8, 10, true)\n\n\nTest 2: reserveStatus(8, 10, false)\n\n',
+    solution: 'Test 1: reserveStatus(8, 10, true)\n  8 <= 10 is true, so enter the outer if.\n  reserveAvailable is true, so return "Reserve activated".\n\nTest 2: reserveStatus(8, 10, false)\n  8 <= 10 is true, so enter the outer if.\n  reserveAvailable is false, so the else runs: return "Reserve unavailable".',
+    rubric: ['Evaluates the outer condition for both tests', 'Shows the reserveAvailable condition for each test', 'States both returned values correctly']
+  }
+];
+
+function exampleTable(example) {
+  return `<div class="table-wrap"><table><thead><tr>${example.headers.map(h => `<th scope="col">${escapeHTML(h)}</th>`).join('')}</tr></thead><tbody>${example.rows.map(row => `<tr>${row.map(cell => `<td>${escapeHTML(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table></div><p class="resource-note">${escapeHTML(example.note)}</p>`;
+}
+
+function careerCards(example) {
+  const labels = example.headers.slice(1);
+  const cards = example.rows.map(row => `<article class="career-card"><h3>${escapeHTML(row[0])}</h3><dl>${labels.map((label, i) => `<dt>${escapeHTML(label)}</dt><dd>${escapeHTML(row[i + 1])}</dd>`).join('')}</dl></article>`).join('');
+  return `<div class="career-grid">${cards}</div><p class="resource-note">${escapeHTML(example.note)}</p>`;
+}
+
+function journeyCards(example) {
+  const cards = example.rows.map((row, i) => {
+    const image = example.images[i];
+    return `<article class="career-card"><h3>Week ${escapeHTML(row[0])} · ${escapeHTML(row[1])}</h3><dl><dt>Description</dt><dd>${escapeHTML(row[2])}</dd></dl><figure><img src="${escapeHTML(image.src)}" alt="${escapeHTML(image.alt)}"><figcaption>${escapeHTML(image.cite)}</figcaption></figure></article>`;
+  }).join('');
+  return `<div class="career-grid">${cards}</div><p class="resource-note">${escapeHTML(example.note)}</p>`;
+}
+
+function istExamplesMarkup() {
+  return `<section class="panel example-panel journey-example" data-example-panel="journey" hidden><h2>Example: My first 8 weeks in Computer Science</h2>${journeyCards(istExamples.journey)}</section>
+  <section class="panel example-panel career-example" data-example-panel="careers" hidden><h2>Example: Career exploration</h2>${careerCards(istExamples.careers)}</section>`;
+}
+
+function frqPartMarkup(part, index) {
+  const base = `ap-csa-frq-${index}`;
+  const code = state.notes[`${base}-code`];
+  const revealed = state.open[`${base}-reveal`] === true;
+  const rubric = part.rubric.map((item, i) => checkRow(`${base}-rubric-${i}`, item)).join('');
+  return `<div class="frq-part" data-frq="${base}">
+    <h3>${escapeHTML(part.title)}</h3>
+    <p>${escapeHTML(part.prompt)}</p>
+    <div class="frq-workspace">
+      <div class="frq-pane"><label class="frq-label" for="${base}-code">Your code</label>
+        <textarea id="${base}-code" class="code-editor" data-note="${base}-code" data-starter="${escapeHTML(part.starter)}" spellcheck="false" autocapitalize="off" autocomplete="off" wrap="off" rows="${Math.max(8, part.solution.split('\n').length + 2)}">${escapeHTML(code === undefined ? part.starter : code)}</textarea></div>
+      <div class="frq-pane frq-solution" data-frq-solution${revealed ? '' : ' hidden'}><span class="frq-label">Sample answer (compare, then fix your own)</span>
+        <pre><code>${escapeHTML(part.solution)}</code></pre></div>
+    </div>
+    <div class="frq-actions">
+      <button type="button" class="button button-primary" data-frq-action="reveal">${revealed ? 'Hide sample answer' : 'Check my work: show sample answer'}</button>
+      <button type="button" class="button button-secondary" data-frq-action="starter">Reset to starter code</button>
+      <span class="frq-message" role="status" aria-live="polite"></span>
+    </div>
+    <details class="frq-rubric"><summary>Self-check rubric</summary><ul class="activity-checks">${rubric}</ul></details>
+  </div>`;
+}
+
 function frqMarkup() {
-  return `<section class="panel"><h2>AP-style practice FRQ · Space Station Supply System</h2>
-    <p>A space station tracks its oxygen supply while a crew completes tasks. The station begins with an oxygen level and a reserve flag. Each task consumes oxygen. The system must warn the crew when oxygen becomes low, and it may use reserve oxygen only when the reserve is available.</p>
-    <h3>Student tasks</h3><ol>
-      <li>Write a method that uses a loop to process an array of oxygen-use values and returns the total used.</li>
-      <li>Write a Boolean expression that is true when the remaining oxygen is at or below a warning threshold.</li>
-      <li>Use if/else selection to determine whether to display a low-oxygen warning.</li>
-      <li>Use a nested if statement to activate the reserve only when oxygen is low and the reserve is available; otherwise report the appropriate status.</li>
-      <li>Trace your algorithm with at least two test cases, including a case where the reserve is unavailable.</li>
-    </ol>
+  return `<section class="panel frq-panel"><h2>AP-style practice FRQ · Space Station Supply System</h2>
+    <p>A space station tracks its oxygen supply while a crew completes tasks. Each task consumes oxygen. The system must warn the crew when oxygen becomes low, and it may use reserve oxygen only when the reserve is available.</p>
+    <p class="inline-note"><strong>How it works:</strong> type your Java directly in each box (the Tab key indents; your code saves automatically). Try each part on your own first, then open the sample answer to compare. Fix your code and tick the rubric items you earned. This editor does not run Java; test your final code in CodeHS or another Java IDE.</p>
+    ${frqParts.map(frqPartMarkup).join('')}
     <h3>Reflection questions</h3><ul><li>Which parts of your solution use selection and which use repetition?</li><li>How did a Boolean expression help make the decision?</li><li>What edge case did you test, and what did it reveal?</li></ul>
     <ul class="activity-checks">${checkRow('ap-csa-frq-complete', 'Complete the FRQ algorithm and trace at least two test cases.')}</ul>
   </section>`;
@@ -487,7 +593,8 @@ function restoreFields() {
     input.checked = Boolean(state.checks[input.dataset.check]);
   });
   document.querySelectorAll('[data-note]').forEach(field => {
-    const value = state.notes[field.dataset.note] || '';
+    const saved = state.notes[field.dataset.note];
+    const value = saved === undefined && field.dataset.starter !== undefined ? field.dataset.starter : saved || '';
     if (field.type === 'radio') field.checked = field.value === value;
     else field.value = value;
   });
@@ -514,6 +621,25 @@ function init() {
   }
   restoreFields();
   updateProgress();
+
+  const exampleSections = document.querySelectorAll('details[data-example]');
+  if (exampleSections.length && 'IntersectionObserver' in window) {
+    const visible = new Set();
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const key = entry.target.dataset.example;
+        if (entry.isIntersecting) visible.add(key); else visible.delete(key);
+      });
+      document.querySelectorAll('[data-example-panel]').forEach(panel => {
+        panel.hidden = !visible.has(panel.dataset.examplePanel);
+      });
+      const aside = document.querySelector('.course-aside');
+      if (aside) aside.classList.toggle('has-example', visible.size > 0);
+    }, { rootMargin: '-80px 0px -35% 0px' });
+    exampleSections.forEach(el => observer.observe(el));
+  } else {
+    document.querySelectorAll('[data-example-panel]').forEach(panel => { panel.hidden = false; });
+  }
 
   document.addEventListener('change', event => {
     const target = event.target;
@@ -542,6 +668,40 @@ function init() {
       saveState();
     }
   });
+  document.addEventListener('click', event => {
+    const button = event.target.closest('[data-frq-action]');
+    if (!button) return;
+    const part = button.closest('.frq-part');
+    const editor = part.querySelector('.code-editor');
+    const message = part.querySelector('.frq-message');
+    if (button.dataset.frqAction === 'reveal') {
+      const solution = part.querySelector('[data-frq-solution]');
+      const revealKey = `${part.dataset.frq}-reveal`;
+      const attempted = editor.value.trim() !== editor.dataset.starter.trim() && editor.value.trim().length > 20;
+      if (solution.hidden && !attempted) {
+        message.textContent = 'Write your own attempt first, then compare.';
+        return;
+      }
+      solution.hidden = !solution.hidden;
+      state.open[revealKey] = !solution.hidden;
+      button.textContent = solution.hidden ? 'Check my work: show sample answer' : 'Hide sample answer';
+      message.textContent = '';
+      saveState();
+    } else if (button.dataset.frqAction === 'starter' && window.confirm('Replace your code in this part with the starter code?')) {
+      editor.value = editor.dataset.starter;
+      state.notes[editor.dataset.note] = editor.value;
+      saveState();
+    }
+  });
+  document.addEventListener('keydown', event => {
+    const target = event.target;
+    if (!target.matches || !target.matches('.code-editor') || event.key !== 'Tab' || event.shiftKey) return;
+    event.preventDefault();
+    const { selectionStart: start, selectionEnd: end } = target;
+    target.setRangeText('    ', start, end, 'end');
+    state.notes[target.dataset.note] = target.value;
+    saveState();
+  });
   document.addEventListener('toggle', event => {
     if (event.target.matches('details[data-open]')) {
       state.open[event.target.dataset.open] = event.target.open;
@@ -558,7 +718,11 @@ function init() {
       document.querySelectorAll('input[type="checkbox"][data-check]').forEach(input => { input.checked = false; });
       document.querySelectorAll('[data-note]').forEach(field => {
         if (field.type === 'radio') field.checked = false;
-        else field.value = '';
+        else field.value = field.dataset.starter !== undefined ? field.dataset.starter : '';
+      });
+      document.querySelectorAll('[data-frq-solution]').forEach(box => {
+        box.hidden = true;
+        box.closest('.frq-part').querySelector('[data-frq-action="reveal"]').textContent = 'Check my work: show sample answer';
       });
       document.querySelectorAll('input[type="radio"][data-answer]').forEach(input => { input.checked = false; });
       document.querySelectorAll('[data-answer-feedback]').forEach(feedback => {
