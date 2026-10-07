@@ -68,92 +68,95 @@ const courses = [
     sections: [
       section('Unit 2.1 · Algorithms with Selection and Repetition',
         'An algorithm is a finite, ordered set of steps for solving a problem. Selection chooses a path (for example, if/else); repetition runs steps again (for example, a loop). Algorithms matter because a clear plan makes a solution understandable, testable, and repeatable.',
-        { code: 'int total = 0;\nfor (int score : scores) {\n    if (score >= 70) {\n        total += score;\n    }\n}', walkthrough: 'The loop visits each score. The if statement selects only passing scores, and total accumulates those values. Together, selection and repetition express an algorithm.', tasks: ['Review the example and trace total after each loop iteration.', 'Complete CodeHS Unit 2.1.', 'Complete the listed CodingBat exercises.', 'Update your journal and reflect on a challenge.'], exercises: ['sleepIn', 'monkeyTrouble', 'sumDouble', 'parrotTrouble'] }),
+        { code: 'int total = 0;\nfor (int score : scores) {\n    if (score >= 70) {\n        total += score;\n    }\n}', walkthrough: 'The loop visits each score. The if statement selects only passing scores, and total accumulates those values. Together, selection and repetition express an algorithm.', tasks: ['Review the example and trace total after each loop iteration.', 'Complete CodeHS Unit 2.1.', 'Log in to AP Classroom, find the Unit 2.1 MCQ, and complete it.', 'Complete the listed CodingBat exercises.', 'Update your journal and reflect on a challenge.'], exercises: ['sleepIn', 'monkeyTrouble', 'sumDouble', 'parrotTrouble'] }),
       section('Unit 2.2 · Boolean Expressions',
         'A Boolean expression evaluates to exactly true or false. Comparison operators include ==, !=, <, >, <=, and >=. Logical operators &&, ||, and ! combine or reverse Boolean values; use parentheses to make complex reasoning easier to read.',
-        { code: 'int temperature = 24;\nboolean isWarm = temperature >= 20;\nboolean canSwim = isWarm && !isRaining;', walkthrough: 'The comparison assigns true to isWarm when the temperature is at least 20. The final expression is true only when it is warm and it is not raining.', tasks: ['Predict each expression before evaluating it.', 'Complete CodeHS Unit 2.2.', 'Practice the listed CodingBat Boolean exercises.', 'Record one example of a Boolean expression in your journal.'], exercises: ['posNeg', 'in1020', 'loneTeen'] }),
+        { code: 'int temperature = 24;\nboolean isWarm = temperature >= 20;\nboolean canSwim = isWarm && !isRaining;', walkthrough: 'The comparison assigns true to isWarm when the temperature is at least 20. The final expression is true only when it is warm and it is not raining.', tasks: ['Predict each expression before evaluating it.', 'Complete CodeHS Unit 2.2.', 'Log in to AP Classroom, find the Unit 2.2 MCQ, and complete it.', 'Practice the listed CodingBat Boolean exercises.', 'Record one example of a Boolean expression in your journal.'], exercises: ['posNeg', 'in1020', 'loneTeen'] }),
       section('Unit 2.3 · If Statements',
         'An if statement runs a block only when its condition is true. Add else for the alternative path. Conditional execution lets a program respond differently to data or events.',
-        { code: 'if (lives > 0) {\n    System.out.println(\"Keep playing!\");\n} else {\n    System.out.println(\"Game over\");\n}', walkthrough: 'Java evaluates lives > 0 first. Exactly one branch runs: the if branch when the condition is true, otherwise the else branch.', tasks: ['Review the lesson and trace both possible outcomes.', 'Complete CodeHS Unit 2.3.', 'Try the listed CodingBat exercises and explain one decision in your journal.'], exercises: ['mixStart', 'intMax', 'close10'], challenge: 'Write an if/else statement that prints \"Even\" or \"Odd\" based on an integer.' }),
+        { code: 'if (lives > 0) {\n    System.out.println(\"Keep playing!\");\n} else {\n    System.out.println(\"Game over\");\n}', walkthrough: 'Java evaluates lives > 0 first. Exactly one branch runs: the if branch when the condition is true, otherwise the else branch.', tasks: ['Review the lesson and trace both possible outcomes.', 'Complete CodeHS Unit 2.3.', 'Log in to AP Classroom, find the Unit 2.3 MCQ, and complete it.', 'Try the listed CodingBat exercises and explain one decision in your journal.'], exercises: ['mixStart', 'intMax', 'close10'], challenge: 'Write an if/else statement that prints \"Even\" or \"Odd\" based on an integer.' }),
       section('Unit 2.4 · Nested If Statements',
-        'A nested decision places an if statement inside another if or else block. It is useful when the second question should only be asked after the first condition is met. Keep indentation consistent and consider whether conditions can be combined clearly.',
-        { code: 'if (hasTicket) {\n    if (age >= 13) {\n        System.out.println(\"Enter the event\");\n    } else {\n        System.out.println(\"Ask an adult\");\n    }\n} else {\n    System.out.println(\"Get a ticket first\");\n}', walkthrough: 'The program checks for a ticket first. Only ticket holders reach the age decision, so the second condition is nested inside the first branch.', tasks: ['Trace the result for all combinations of ticket status and age.', 'Complete CodeHS Unit 2.4.', 'Complete the exercises and reflect on when a nested decision is useful.'], exercises: ['dateFashion', 'squirrelPlay', 'caughtSpeeding', 'sortaSum', 'alarmClock'], challenge: 'Design a decision tree for unlocking a game level: the player needs enough experience and a key.' })
+        'A nested decision places an if statement inside another if or else block. It is useful when the second question should only be asked after the first condition is met. Keep indentation consistent and consider whether conditions can be combined clearly. Unit 2.4 may be extended into next week if the class completes only three units this week; focus on understanding rather than rushing.',
+        { code: 'if (hasTicket) {\n    if (age >= 13) {\n        System.out.println(\"Enter the event\");\n    } else {\n        System.out.println(\"Ask an adult\");\n    }\n} else {\n    System.out.println(\"Get a ticket first\");\n}', walkthrough: 'The program checks for a ticket first. Only ticket holders reach the age decision, so the second condition is nested inside the first branch.', tasks: ['Trace the result for all combinations of ticket status and age.', 'Complete CodeHS Unit 2.4 when ready; this unit may continue next week if needed.', 'Log in to AP Classroom, find the Unit 2.4 MCQ, and complete it.', 'Complete the exercises and reflect on when a nested decision is useful.'], exercises: ['dateFashion', 'squirrelPlay', 'caughtSpeeding', 'sortaSum', 'alarmClock'], challenge: 'Design a decision tree for unlocking a game level: the player needs enough experience and a key.' })
     ],
-    checklist: ['CodeHS lessons completed', 'CodingBat practice completed', 'Journal updated', 'Vocabulary recorded', 'Weekly reflection completed'],
+    checklist: ['AP Classroom MCQ completed for each finished Unit 2 lesson; complete Unit 2.4 MCQ when that lesson is finished', 'CodeHS lessons completed', 'CodingBat practice completed', 'Journal updated', 'Vocabulary recorded', 'Weekly reflection completed'],
     extra: 'frq'
   },
   {
     id: 'ap-csp',
     code: 'AP Computer Science Principles',
     short: 'AP CSP',
-    subtitle: 'Coding Bootcamp Survival Guide · Unit 5 and Big Idea 2',
+    subtitle: 'CodeHS Unit 5: Functions and Parameters (due Week 10) · Big Idea 2: Digital Information (MCQs due November 6)',
     theme: 'Practice makes progress',
     resources: ['canvas', 'codehs', 'apClassroom', 'codingbatPython'],
     resourceNote: 'Use your Coding Bootcamp Survival Journal, previous notes, and previous assignments. AP Classroom may be used when your teacher assigns an assessment.',
     practice: 'Programming is learned through repetition, experimentation, debugging, and reflection. Aim to practice Python for 20–30 minutes per day: review a lesson, complete the matching CodeHS work, practice, and then update your journal.',
     sections: [
-      section('Functions',
-        'A function is a named, reusable group of instructions. In Python, def starts a function definition. Defining a function does not run it; calling its name followed by parentheses runs its body.',
-        { code: 'def greet():\n    print(\"Welcome to AP CSP\")\n\ngreet()\ngreet()\ngreet()', walkthrough: 'The definition stores the instructions under the name greet. Each call runs the print statement once.', tasks: ['Review the example and call greet three times.', 'Complete the corresponding CodeHS lesson.', 'Complete the listed CodingBat Python practice.', 'Update your journal and reflection.'], exercises: ['make_abba'], challenge: 'Modify the greeting so it welcomes students to your course and gives them an encouraging message.' }),
-      section('Functions with Parameters',
+      section('Functions · CodeHS Unit 5 (due Week 10)',
+        'A function is a named, reusable group of instructions. In Python, def starts a function definition. Defining a function does not run it; calling its name followed by parentheses runs its body. Finish all assigned CodeHS Unit 5 Functions and Parameters work by the end of Week 10.',
+        { code: 'def print_hello():\n    print(\"Hello\")\n\ndef print_hello_twice():\n    for i in range(2):\n        print(\"Hello\")\n\ndef print_hello_three_times():\n    for i in range(3):\n        print(\"Hello\")', walkthrough: 'Each definition names reusable instructions. Calling print_hello_twice() runs its loop twice; calling print_hello_three_times() runs it three times. Notice that each function still contains repeated print instructions: a parameter can make one function reusable for any count.', tasks: ['Review the examples and call each function.', 'Complete CodeHS Unit 5: Functions and Parameters by the end of Week 10.', 'Complete the listed CodingBat Python practice.', 'Update your journal and reflection.'], exercises: ['make_abba'], challenge: 'How could one function print Hello any number of times? Try replacing the separate functions with a parameter.' }),
+      section('Functions with Parameters · CodeHS Unit 5',
         'A parameter is a named input in a function definition. An argument is the actual value passed when the function is called. Parameters make one function useful with different data.',
-        { code: 'def greet(name):\n    print(\"Hello\", name)\n\ngreet(\"Jordan\")\ngreet(\"Avery\")\n\ndef introduce(name, grade):\n    print(name, \"is in grade\", grade)', walkthrough: 'name and grade are parameters. \"Jordan\", \"Avery\", and 10 are arguments supplied by a caller.', tasks: ['Call greet with at least two names.', 'Write and call introduce(name, grade) using school-related information.', 'Complete the matching CodeHS lesson and journal entry.'], exercises: ['rotate_left3'] }),
-      section('Functions with Return Values',
+        { code: 'def greet(name):\n    print(\"Hello\", name)\n\ngreet(\"Jordan\")\ngreet(\"Avery\")\n\ndef introduce(name, grade):\n    print(name, \"is in grade\", grade)\n\n# Repeated version: identify the repeated setup.\nx = 30\ny = 50\nradius = 40\ncirc = Circle(radius)\ncirc.set_position(x, y)\ncirc.set_color(Color.red)\nadd(circ)\n\nx = 100\ny = 100\nradius = 60\ncirc = Circle(radius)\ncirc.set_position(x, y)\ncirc.set_color(Color.green)\nadd(circ)\n\n# Refactored version: one function, different arguments.\ndef draw_circle(radius, color, x, y):\n    circ = Circle(radius)\n    circ.set_position(x, y)\n    circ.set_color(color)\n    add(circ)\n\ndraw_circle(40, Color.red, 30, 50)\ndraw_circle(60, Color.green, 100, 100)', walkthrough: 'name, grade, radius, color, x, and y are parameters. Values such as \"Jordan\", 10, 40, and Color.red are arguments. draw_circle replaces the repeated setup code while still creating two different circles.', tasks: ['Before reading the refactored code, identify the repeated circle setup steps. Then explain how the parameters change each circle.', 'Call greet with at least two names and write your own two-parameter function.', 'Complete CodeHS Unit 5: Functions and Parameters by the end of Week 10.', 'Complete the matching journal entry.'], quickCheck: { prompt: 'In draw_circle(40, Color.red, 30, 50), which value is passed to the color parameter?', options: ['40', 'Color.red', '30'], correct: 1, explanation: 'Arguments are matched to parameters from left to right, so Color.red is the second argument for color.' }, exercises: ['rotate_left3'] }),
+      section('Functions with Return Values · CodeHS Unit 5',
         'A return statement sends a result back to the caller. Functions can return a String, integer, float, or Boolean. A returned result can be stored, displayed, compared, or passed to another function.',
-        { code: 'def welcome(name):\n    return \"Welcome, \" + name\n\ndef add_points(score, points):\n    return score + points\n\ndef is_passing(score):\n    return score >= 70', walkthrough: 'welcome returns a String, add_points returns an integer, and is_passing returns a Boolean. The caller decides what to do with each result.', tasks: ['Write one function that returns a String, integer, float, and Boolean.', 'Complete the corresponding CodeHS lesson.', 'Practice returning values and note how each result is used.'], exercises: ['rotate_left3'] }),
-      section('Returning a Float',
+        { code: 'def double(x):\n    return 2 * x\n\nnumber = int(input(\"Enter a number: \"))\ntwice = double(number)\nfor i in range(twice):\n    print(\"hello\")', walkthrough: 'double returns a value; it does not just print one. The caller stores that returned value in twice, then range(twice) controls how many times the loop prints hello.', tasks: ['Write one function that returns a String, integer, float, and Boolean.', 'Run double with several inputs and predict how many times hello prints.', 'Complete CodeHS Unit 5: Functions and Parameters by the end of Week 10.', 'Explain the difference between print and return in your journal.'], quickCheck: { prompt: 'What is stored in twice when the user enters 4?', options: ['The text \"8\"', 'The integer 8', 'Nothing, because double only prints'], correct: 1, explanation: 'double returns the integer 8, and the assignment stores that return value in twice.' }, exercises: ['rotate_left3'] }),
+      section('Returning a Float · CodeHS Unit 5',
         'A function can return a decimal value when the calculation produces one. In Python, the / operator returns a float, even when the division is even.',
         { code: 'def average(total, count):\n    return total / count\n\nclass_average = average(85, 2)\nprint(class_average)', walkthrough: 'average returns 42.5, and the assignment stores that float in class_average for later use.', tasks: ['Call average with different totals and counts.', 'Store the returned value, then use it in a print statement.', 'Explain why the returned value is a float.'] }),
-      section('Saving Return Values',
+      section('Saving Return Values · CodeHS Unit 5',
         'Store a function result with an assignment such as variable = function_name(). The function runs first; then its returned value is assigned to the variable. You can use the saved value later.',
         { code: 'def greet():\n    return \"Welcome to AP CSP\"\n\nmessage = greet()\nprint(message)', walkthrough: 'greet() returns a String. The assignment saves that String in message, and print uses the saved value.', tasks: ['Store a function result in a variable.', 'Use that variable in a later print statement.', 'Explain the difference between print and return in your journal.'] }),
-      section('Global and Local Variables',
+      section('Global and Local Variables · CodeHS Unit 5',
         'A local variable is created inside a function and is available only in that function. A global variable is created outside functions and can be read throughout the program. Prefer parameters and return values for sharing data because they make dependencies explicit.',
-        { code: 'score = 0\nelapsed_seconds = 0\nrunning = True\n\ndef award_points(points):\n    updated_score = score + points  # local variable\n    return updated_score', walkthrough: 'score, elapsed_seconds, and running are global names. updated_score is local to award_points. The function returns the changed value rather than silently changing global state.', tasks: ['Identify each local and global variable in the example.', 'Create a teacher-style example that uses score, elapsed_seconds, and running.', 'Compare scope and reflect on why local variables are useful.'], challenge: 'Change the example to accept score as a parameter and return the updated score. Explain how this reduces reliance on global state.' }),
+        { code: 'elapsed_seconds = 0\nrunning = True\n\ndef update_clock(should_run):\n    global elapsed_seconds, running\n    running = should_run\n    if running:\n        elapsed_seconds += 1\n    display_time = f\"{elapsed_seconds // 60:02}:{elapsed_seconds % 60:02}\"\n    return display_time\n\ncurrent_time = update_clock(True)', walkthrough: 'elapsed_seconds and running are global variables; global lets the function update them. should_run is a parameter local to the function, and display_time is a local variable created inside it. update_clock returns a formatted clock value.', tasks: ['Identify the global variables and the local parameter/variable in the clock example.', 'Call update_clock(True) and update_clock(False); describe how elapsed time changes.', 'Complete CodeHS Unit 5: Functions and Parameters by the end of Week 10.', 'Compare local and global scope in your journal.'], quickCheck: { prompt: 'Which name is local to update_clock?', options: ['elapsed_seconds', 'running', 'display_time'], correct: 2, explanation: 'display_time is assigned inside update_clock and is not declared global or passed in as a parameter.' }, challenge: 'Modify the clock so it accepts a number of seconds as an argument and returns the updated display.' }),
       section('Try and Except',
         'try runs statements that might fail. except handles a matching error so the program can respond instead of stopping unexpectedly. Keep the try block focused, and give users a clear recovery path.',
         { code: '# Without handling: invalid text causes ValueError\nage = int(input(\"Enter your age: \"))\n\n# With handling:\ntry:\n    age = int(input(\"Enter your age: \"))\n    print(\"Next year you will be\", age + 1)\nexcept ValueError:\n    print(\"Please enter a whole number, such as 15.\")', walkthrough: 'If the input can be converted to an integer, the program prints the next age. If conversion raises ValueError, the except block explains how to try again.', tasks: ['Compare the handled and unhandled programs.', 'Write a safe numeric-input activity.', 'Test valid and invalid input and record what happened.'], challenge: 'Modify the program to ask again after invalid input and explain how the user can recover.' }),
       section('Big Idea 2 · Data and Information',
         'Data is information represented in a form a computer can store and process. Big Idea 2 connects the way data is represented, compressed, extracted, and used to make decisions.',
-        { tasks: ['Review the visual roadmap: binary representation → compression → extracting patterns → using programs with data → decisions and impact.', 'Complete the CodeHS Big Idea 2 activities assigned for your class.', 'Record key vocabulary and a weekly reflection.'] }),
+        { bigIdea: true, tasks: ['For each indented topic below, watch its assigned short video and complete the related AP Classroom MCQ by November 6.', 'Complete the related CodeHS Unit 8: Digital Information work.', 'Record key vocabulary and a weekly reflection.'] }),
       section('Binary Numbers Activity',
         'Binary is a base-2 number system that uses the digits 0 and 1. Each place represents a power of 2. To convert a decimal value, decompose it into powers of 2 and mark the corresponding places with 1.',
-        { code: 'Decimal 13 = 8 + 4 + 1\nPlace values: 8  4  2  1\nBinary:      1  1  0  1  = 1101', walkthrough: '13 contains 8, 4, and 1 but not 2, so its four-bit representation is 1101.', tasks: ['Convert at least five decimal values to binary: 6, 10, 19, 25, and 42.', 'Show place values or repeated division for each answer.', 'Check each conversion by converting back to decimal.'] }),
+        { subtopic: true, code: 'Decimal 13 = 8 + 4 + 1\nPlace values: 8  4  2  1\nBinary:      1  1  0  1  = 1101', walkthrough: '13 contains 8, 4, and 1 but not 2, so its four-bit representation is 1101.', tasks: ['Watch the assigned short video, then complete the Binary Numbers MCQ in AP Classroom by November 6.', 'Complete the related CodeHS Unit 8: Digital Information lesson.', 'Convert at least five decimal values to binary: 6, 10, 19, 25, and 42; show place values and check by converting back.'], quickCheck: { prompt: 'What is decimal 13 in binary?', options: ['1011', '1101', '1110'], correct: 1, explanation: '13 = 8 + 4 + 1, so the 8, 4, 2, 1 place values are 1, 1, 0, 1.' } }),
       section('Data Compression',
         'Compression represents data using fewer bits. Lossless compression preserves every original detail; lossy compression removes some detail to reduce file size. The appropriate choice depends on the data and how it will be used.',
-        { tasks: ['Compare a compressed file with its uncompressed version using file size and what information is preserved.', 'Describe one suitable use for lossless compression and one for lossy compression.', 'Reflect: Why is compression important when storing or sending data?'] }),
+        { subtopic: true, tasks: ['Watch the assigned short video, then complete the Data Compression MCQ in AP Classroom by November 6.', 'Complete the related CodeHS Unit 8: Digital Information lesson.', 'Compare a compressed file with its uncompressed version and describe a suitable use for lossless and lossy compression.'], quickCheck: { prompt: 'Which type of compression preserves all original data?', options: ['Lossless', 'Lossy', 'Both always remove details'], correct: 0, explanation: 'Lossless compression reduces file size while preserving all original information.' } }),
       section('Extracting Information from Data',
         'A dataset is a collection of related observations. Organize or visualize its values, look for patterns and trends, and support conclusions with evidence. A pattern does not automatically prove what caused it.',
-        { tasks: ['Choose a small, teacher-approved dataset.', 'Identify at least one pattern and one trend.', 'Write a conclusion supported by specific data and note one limitation.'] }),
+        { subtopic: true, tasks: ['Watch the assigned short video, then complete the Extracting Information from Data MCQ in AP Classroom by November 6.', 'Complete the related CodeHS Unit 8: Digital Information lesson.', 'Use a small, teacher-approved dataset to identify a pattern and support one conclusion with evidence and a limitation.'], quickCheck: { prompt: 'What should support a conclusion drawn from a dataset?', options: ['Specific evidence from the data', 'A guess based on one unusual value', 'An unrelated opinion'], correct: 0, explanation: 'A sound conclusion should be supported by relevant data evidence, while noting limitations.' } }),
       section('Using Programs with Data',
         'Programs can use data to personalize recommendations, organize information, and support decisions. Services such as Spotify, Netflix, and YouTube use data to help recommend content; school information systems organize academic and operational records.',
-        { tasks: ['Research how Spotify, Netflix, YouTube, or a school information system uses data.', 'Describe the input data, how a program might use it, and the possible output or decision.', 'Reflect: How does data influence decisions? Include one benefit and one concern.'] }),
+        { subtopic: true, tasks: ['Watch the assigned short video, then complete the Using Programs with Data MCQ in AP Classroom by November 6.', 'Complete the related CodeHS Unit 8: Digital Information lesson.', 'Describe an input dataset, how a program uses it, and a resulting output or decision; include one benefit and one concern.'], quickCheck: { prompt: 'A recommendation program uses listening history to suggest songs. What is the listening history?', options: ['Input data', 'The program output', 'A compression method'], correct: 0, explanation: 'The listening history is data provided to the program; suggested songs are a possible output.' } }),
       section('Why Data Matters',
         'Data can help people notice patterns, make informed decisions, and improve services. It can also be incomplete, inaccurate, biased, or sensitive. Responsible computing considers who collected the data, who benefits, who may be harmed, and how privacy is protected.',
-        { tasks: ['Give an example of a useful decision supported by data.', 'Identify one limitation, privacy concern, or risk of bias.', 'Explain how a person could check whether a data-based conclusion is fair and well supported.'] })
+        { subtopic: true, tasks: ['Complete the related CodeHS Unit 8: Digital Information work.', 'Give an example of a data-supported decision and identify a limitation, privacy concern, or risk of bias.', 'Explain how to check whether a data-based conclusion is fair and well supported.'] })
     ],
-    checklist: ['CodeHS lesson completed', 'CodingBat Python practice completed', 'Functions practice completed', 'Parameters practice completed', 'Return values practice completed', 'Global variables practice completed', 'Try and except practice completed', 'Big Idea 2 activities completed', 'Vocabulary recorded', 'Weekly reflection completed'],
+    checklist: ['Complete Unit 5 in CodeHS lesson and journal entry: Functions', 'Complete Unit 5 in CodeHS lesson and journal entry: Parameters', 'Complete Unit 5 in CodeHS lesson and journal entry: Return Values', 'Complete Unit 5 in CodeHS lesson and journal entry: Local and Global Scope', 'Big Idea 2 short videos watched and related AP Classroom MCQs completed by November 6', 'CodeHS Unit 8: Digital Information completed', 'Vocabulary recorded', 'Weekly reflection completed'],
     journalName: 'Coding Bootcamp Survival Journal'
   },
   {
     id: 'ist-csp',
     code: 'Intro to Software Technology / CSP',
     short: 'IST / CSP',
-    subtitle: 'CodeHS Unit 9.1 · Create Your Own CodeHS.me Website',
+    subtitle: 'Canvas Short-Term Project · Build a Portfolio',
     theme: 'Build a portfolio of your first eight weeks',
     resources: ['canvas', 'codehs'],
     resourceNote: 'Also revisit previous CodeHS units, notes, assignments, focus notes, and completed projects. Use your Student Learning Journal to plan and reflect.',
-    practice: 'Students with an approved personal website idea may build it. Freshmen and students without an approved idea should complete the default project: My First 8 Weeks in Computer Science.',
+    practice: 'Create a portfolio titled My first 8 weeks in Computer Science. Use your work from the first eight weeks to show what you learned, practice basic HTML and CSS, and submit the finished portfolio to the Canvas Short-Term Project assignment: Build a Portfolio.',
     sections: [
       section('Project Overview and Prior Learning',
         'Build a CodeHS.me website that demonstrates your learning and basic web design skills. Revisit Digital Citizenship, Cyber Hygiene, Hardware, Software, Operating Systems, HTML, and CSS. Use your prior lessons, notes, assignments, and projects as references.',
-        { tasks: ['Confirm with your teacher whether your personal website idea is approved; otherwise use the default project.', 'Gather your previous learning resources and notes.', 'Plan the website layout before building it.'] }),
+        { tasks: ['Open the Canvas Short-Term Project assignment named Build a Portfolio.', 'Gather your learning resources, notes, and examples from the first eight weeks.', 'Plan the portfolio layout before building it.'] }),
       section('CodeHS Sandbox Setup',
         'Build the project in the CodeHS Sandbox. Select HTML > WebDev, then name your program before you begin.',
         { tasks: ['Open the CodeHS Sandbox.', 'Select HTML > WebDev.', 'Give your program a clear name.'] }),
-      section('Default Website · Required Header and Styling',
-        'The default project is titled My First 8 Weeks in Computer Science. Its header must include the project title, student name, course name, school name, school year, and a project description. Demonstrate headings, paragraphs, fonts, colors, background styling, and CSS formatting.',
-        { tasks: ['Add all six required header details.', 'Use semantic headings and readable paragraphs.', 'Apply intentional fonts, colors, background styling, and CSS formatting.'] }),
+      section('My first 8 weeks in Computer Science · Required Header and Styling',
+        'Build a portfolio titled My first 8 weeks in Computer Science. Its header must include the project title, student name, course name, school name, school year, and a project description. Demonstrate headings, paragraphs, fonts, colors, background styling, and CSS formatting.',
+        { code: '<h1>My first 8 weeks in Computer Science</h1>\n<h2>About Me</h2>\n<p>In this portfolio, I will share what I learned.</p>\n\n<style>\n  body { font-family: Arial, sans-serif; background-color: #eef5ff; }\n  h1 { color: #245a9b; }\n</style>', walkthrough: 'Use h1 for the page title and h2 for a section heading. Put text in p elements. CSS rules select an element and set properties such as color and background-color.', tasks: ['Add the title, student name, course name, school name, school year, and project description.', 'Use semantic headings and readable paragraphs.', 'Apply intentional fonts, colors, background styling, and CSS formatting.'] }),
+      section('HTML and CSS Syntax Quick Reference',
+        'Use these examples as reminders while building each portfolio section. Keep HTML structure in the page and use CSS rules to control its presentation.',
+        { code: '<!-- Image with alternative text -->\n<img src=\"images/project.png\" alt=\"Screenshot of my project\">\n\n<!-- Link and list -->\n<a href=\"https://example.com\">View my source</a>\n<ul><li>What I learned</li><li>What I can build</li></ul>\n\n<!-- Table structure -->\n<table>\n  <tr><th>Week</th><th>Learning</th></tr>\n  <tr><td>1</td><td>Digital citizenship</td></tr>\n</table>\n\n<style>\n  body { font-family: Arial, sans-serif; }\n  img { max-width: 100%; }\n  table { border-collapse: collapse; }\n  th, td { border: 1px solid #334; padding: 8px; }\n</style>', walkthrough: 'Use descriptive alt text for images, meaningful link text, list items for lists, and th/td cells in tables. CSS selectors (such as img or th, td) apply the declarations inside their braces.', tasks: ['Use the HTML examples as you build the heading, image, link, list, and table checklist items.', 'Use the CSS examples to style fonts, images, and table borders.'] }),
       section('Learning Journey Table',
         'Create a table with at least eight rows. Each row documents a week or topic and includes a description and an example image. Suggested topics: Digital Citizenship, Cyber Hygiene, Hardware, Software, Operating Systems, HTML, CSS, and Current Learning.',
         { table: {
@@ -183,10 +186,10 @@ const courses = [
         'Cite images, career sources, salary sources, and other research sources. Use the citation format required by your teacher and make each reference traceable.',
         { tasks: ['Review previous learning and gather notes and resources.', 'Gather suitable images and record citations before adding them.', 'Plan the layout, build the HTML structure, then apply CSS styling.', 'Complete the career section and references section.', 'Test every link, image, table, and page section before submitting.'] }),
       section('Ready for the Next Step? · CodeHS Unit 10',
-        'If Unit 9.1 is complete, properly styled, and includes all required tables, images, references, and career exploration content, you may begin CodeHS Unit 10: JavaScript and Graphics.',
-        { tasks: ['Unit 9 completion check: title and required header are present.', 'Unit 9 completion check: CSS styling and the eight-row learning table are complete.', 'Unit 9 completion check: images are cited, career exploration is complete, and references are included.', 'Preview: variables store values; user input gathers information; events respond to actions; graphics draw visual elements; interactive programming combines these ideas.'] })
+        'After the Build a Portfolio assignment is complete, properly styled, and includes the required tables, images, references, and career exploration content, you may begin CodeHS Unit 10: JavaScript and Graphics.',
+        { tasks: ['Portfolio completion check: title and required header are present.', 'Portfolio completion check: CSS styling and the eight-row learning table are complete.', 'Portfolio completion check: images are cited, career exploration is complete, and references are included.', 'Preview: variables store values; user input gathers information; events respond to actions; graphics draw visual elements; interactive programming combines these ideas.'] })
     ],
-    checklist: ['Title', 'Student name', 'Project description', 'CSS styling', 'Learning table with at least eight rows', 'Images with AMA citations', 'Career table with at least three careers', 'References']
+    checklist: ['Portfolio title: My first 8 weeks in Computer Science', 'Student name, course, school, year, and project description', 'HTML headings and readable paragraphs', 'CSS fonts, colors, and background styling', 'Learning table with at least eight rows', 'Images with descriptive alt text and AMA citations', 'Career table with at least three careers', 'References and Canvas submission']
   },
   {
     id: 'game-design',
@@ -234,7 +237,7 @@ const courses = [
   }
 ];
 
-let state = { checks: {}, notes: {}, open: {} };
+let state = { checks: {}, notes: {}, open: {}, answers: {} };
 const coursePageId = document.body.dataset.coursePage || null;
 
 const escapeHTML = value => String(value).replace(/[&<>"']/g, char => ({
@@ -246,7 +249,7 @@ const resourceAnchor = key => {
 };
 
 function emptyState() {
-  return { checks: {}, notes: {}, open: {} };
+  return { checks: {}, notes: {}, open: {}, answers: {} };
 }
 
 function parseState(saved) {
@@ -256,7 +259,8 @@ function parseState(saved) {
   return {
     checks: parsed.checks && typeof parsed.checks === 'object' ? parsed.checks : {},
     notes: parsed.notes && typeof parsed.notes === 'object' ? parsed.notes : {},
-    open: parsed.open && typeof parsed.open === 'object' ? parsed.open : {}
+    open: parsed.open && typeof parsed.open === 'object' ? parsed.open : {},
+    answers: parsed.answers && typeof parsed.answers === 'object' ? parsed.answers : {}
   };
 }
 
@@ -265,7 +269,8 @@ function legacyCourseState(courseId, legacy) {
   const checks = Object.fromEntries(Object.entries(legacy.checks).filter(([id]) => id.startsWith(prefix) || (courseId === 'ap-csa' && id === 'ap-csa-frq-complete')));
   const notes = Object.fromEntries(Object.entries(legacy.notes).filter(([id]) => id.startsWith(prefix)));
   const open = Object.fromEntries(Object.entries(legacy.open).filter(([id]) => id.startsWith(prefix)));
-  return { checks, notes, open };
+  const answers = Object.fromEntries(Object.entries(legacy.answers).filter(([id]) => id.startsWith(prefix)));
+  return { checks, notes, open, answers };
 }
 
 function loadCourseState(courseId) {
@@ -297,6 +302,7 @@ function loadState() {
     Object.assign(state.checks, courseState.checks);
     Object.assign(state.notes, courseState.notes);
     Object.assign(state.open, courseState.open);
+    Object.assign(state.answers, courseState.answers);
   });
 }
 
@@ -331,11 +337,32 @@ function exerciseList(exercises, catalog) {
   }).join('')}</div>`;
 }
 
+function quickCheckMarkup(item, questionId) {
+  const quiz = item.quickCheck;
+  const selected = state.answers[questionId];
+  const hasAnswer = Number.isInteger(selected) && selected >= 0 && selected < quiz.options.length;
+  const isCorrect = hasAnswer && selected === quiz.correct;
+  const feedback = hasAnswer
+    ? `${isCorrect ? 'Correct. ' : 'Not quite. '}${quiz.explanation}`
+    : '';
+  const options = quiz.options.map((option, index) =>
+    `<label><input type="radio" name="${questionId}" data-answer="${questionId}" value="${index}"${selected === index ? ' checked' : ''}> ${escapeHTML(option)}</label>`
+  ).join('');
+  return `<fieldset class="quick-check" data-correct="${quiz.correct}" data-correct-feedback="Correct. ${escapeHTML(quiz.explanation)}" data-incorrect-feedback="Not quite. ${escapeHTML(quiz.explanation)}">
+    <legend>Check your understanding</legend>
+    <p>${escapeHTML(quiz.prompt)}</p>
+    <div class="quick-check-options">${options}</div>
+    <p class="quick-check-feedback${hasAnswer ? (isCorrect ? ' correct' : ' incorrect') : ''}" data-answer-feedback="${questionId}" aria-live="polite">${escapeHTML(feedback)}</p>
+  </fieldset>`;
+}
+
 function sectionMarkup(course, item, sectionIndex) {
   const sectionId = `${course.id}-section-${sectionIndex}`;
   const open = state.open[sectionId] === true;
+  const lessonClasses = `lesson${item.bigIdea ? ' big-idea' : ''}${item.subtopic ? ' subtopic' : ''}`;
   const catalog = course.id === 'ap-csa' ? javaExercises : pythonExercises;
   const exercises = item.exercises ? exerciseList(item.exercises, catalog) : '';
+  const quickCheck = item.quickCheck ? quickCheckMarkup(item, `${sectionId}-quick-check`) : '';
   const tasks = (item.tasks || []).map((task, taskIndex) =>
     checkRow(`${sectionId}-task-${taskIndex}`, task)).join('');
   const prompts = item.prompts ? `<h4>Journal prompts</h4><ul>${item.prompts.map(prompt => `<li>${escapeHTML(prompt)}</li>`).join('')}</ul>` : '';
@@ -344,9 +371,9 @@ function sectionMarkup(course, item, sectionIndex) {
   const code = item.code ? `<h4>Teacher example</h4><pre><code>${escapeHTML(item.code)}</code></pre>` : '';
   const walkthrough = item.walkthrough ? `<h4>Code walkthrough</h4><p>${escapeHTML(item.walkthrough)}</p>` : '';
   const table = item.table ? `<div class="table-wrap"><table><thead><tr>${item.table.headers.map(header => `<th scope="col">${escapeHTML(header)}</th>`).join('')}</tr></thead><tbody>${item.table.rows.map(row => `<tr>${row.map(cell => `<td>${escapeHTML(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>` : '';
-  return `<details class="lesson" data-open="${sectionId}"${open ? ' open' : ''}>
+  return `<details class="${lessonClasses}" data-open="${sectionId}"${open ? ' open' : ''}>
     <summary>${escapeHTML(item.title)}</summary>
-    <div class="lesson-body"><p>${escapeHTML(item.description)}</p>${code}${walkthrough}${table}${exercises}${challenge}${reflection}${prompts}
+    <div class="lesson-body"><p>${escapeHTML(item.description)}</p>${code}${walkthrough}${table}${exercises}${quickCheck}${challenge}${reflection}${prompts}
       ${item.exercises ? '<h4>Practice tasks</h4>' : ''}
       <ul class="activity-checks">${tasks}</ul>
     </div>
@@ -494,6 +521,15 @@ function init() {
       state.checks[target.dataset.check] = target.checked;
       updateProgress();
       saveState();
+    } else if (target.matches('input[type="radio"][data-answer]')) {
+      const question = target.closest('.quick-check');
+      const feedback = question.querySelector(`[data-answer-feedback="${target.dataset.answer}"]`);
+      const isCorrect = Number(target.value) === Number(question.dataset.correct);
+      state.answers[target.dataset.answer] = Number(target.value);
+      feedback.textContent = isCorrect ? question.dataset.correctFeedback : question.dataset.incorrectFeedback;
+      feedback.classList.toggle('correct', isCorrect);
+      feedback.classList.toggle('incorrect', !isCorrect);
+      saveState();
     } else if (target.matches('[data-note]')) {
       state.notes[target.dataset.note] = target.value;
       saveState();
@@ -523,6 +559,11 @@ function init() {
       document.querySelectorAll('[data-note]').forEach(field => {
         if (field.type === 'radio') field.checked = false;
         else field.value = '';
+      });
+      document.querySelectorAll('input[type="radio"][data-answer]').forEach(input => { input.checked = false; });
+      document.querySelectorAll('[data-answer-feedback]').forEach(feedback => {
+        feedback.textContent = '';
+        feedback.classList.remove('correct', 'incorrect');
       });
       document.querySelectorAll('details[data-open]').forEach(details => { details.open = false;       });
       updateProgress();
