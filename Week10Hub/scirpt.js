@@ -16,7 +16,13 @@ const resources = {
   codingbatPython: ['CodingBat Python', 'https://codingbat.com/python'],
   unity: ['Unity Learn', 'https://learn.unity.com/'],
   bls: ['U.S. Bureau of Labor Statistics', 'https://www.bls.gov/ooh/'],
-  onet: ['O*NET OnLine', 'https://www.onetonline.org/']
+  onet: ['O*NET OnLine', 'https://www.onetonline.org/'],
+  w3schools: ['W3Schools', 'https://www.w3schools.com/'],
+  cssTricks: ['CSS-Tricks', 'https://css-tricks.com/'],
+  codepen: ['CodePen', 'https://codepen.io/'],
+  googleFonts: ['Google Fonts', 'https://fonts.google.com/'],
+  coolors: ['Coolors', 'https://coolors.co/'],
+  colorHunt: ['Color Hunt', 'https://colorhunt.co/']
 };
 
 const routine = [
@@ -109,113 +115,154 @@ const courses = [
   },
   {
     id: 'ap-csp',
+    progressVersion: 2,
     code: 'AP Computer Science Principles',
     short: 'AP CSP',
-    subtitle: 'CodeHS Unit 5: Functions and Parameters (due Week 10) · Big Idea 2: Digital Information (MCQs due November 6)',
-    theme: 'Practice makes progress',
-    resources: ['canvas', 'codehs', 'apClassroom', 'codingbatPython'],
-    resourceNote: 'Use your Coding Bootcamp Survival Journal, previous notes, and previous assignments. AP Classroom may be used when your teacher assigns an assessment.',
-    practice: 'Programming is learned through repetition, experimentation, debugging, and reflection. Aim to practice Python for 20–30 minutes per day: review a lesson, complete the matching CodeHS work, practice, and then update your journal.',
+    subtitle: 'CodeHS Unit 5: Functions & Parameters due 10/24 · Data Technology Research Symposium',
+    theme: 'Big Idea 2 Data Technology Research Symposium',
+    resources: ['canvas', 'codehs', 'apClassroom'],
+    resourceNote: 'Use your assigned symposium topic, class notes, and credible research sources. Complete the assigned Big Idea 2 MCQs in AP Classroom.',
+    practice: 'Complete CodeHS Unit 5: Functions and Parameters by 10/24. Also work with your assigned team to research a data technology, explain how it developed and works, identify contributors, and evaluate its impact on people and industry. Build a professional presentation with AMA citations, speaker notes, and an audience activity; update your journal as you work.',
     sections: [
-      section('Functions · CodeHS Unit 5 (due Week 10)',
-        'A function is a named, reusable group of instructions. In Python, def starts a function definition. Defining a function does not run it; calling its name followed by parentheses runs its body. Finish all assigned CodeHS Unit 5 Functions and Parameters work by the end of Week 10.',
-        { code: 'def print_hello():\n    print(\"Hello\")\n\ndef print_hello_twice():\n    for i in range(2):\n        print(\"Hello\")\n\ndef print_hello_three_times():\n    for i in range(3):\n        print(\"Hello\")', walkthrough: 'Each definition names reusable instructions. Calling print_hello_twice() runs its loop twice; calling print_hello_three_times() runs it three times. Notice that each function still contains repeated print instructions: a parameter can make one function reusable for any count.', tasks: ['Review the examples and call each function.', 'Complete CodeHS Unit 5: Functions and Parameters by the end of Week 10.', 'Complete the listed CodingBat Python practice.', 'Update your journal and reflection.'], exercises: ['make_abba'], challenge: 'How could one function print Hello any number of times? Try replacing the separate functions with a parameter.' }),
-      section('Functions with Parameters · CodeHS Unit 5',
-        'A parameter is a named input in a function definition. An argument is the actual value passed when the function is called. Parameters make one function useful with different data.',
-        { code: 'def greet(name):\n    print(\"Hello\", name)\n\ngreet(\"Jordan\")\ngreet(\"Avery\")\n\ndef introduce(name, grade):\n    print(name, \"is in grade\", grade)\n\n# Repeated version: identify the repeated setup.\nx = 30\ny = 50\nradius = 40\ncirc = Circle(radius)\ncirc.set_position(x, y)\ncirc.set_color(Color.red)\nadd(circ)\n\nx = 100\ny = 100\nradius = 60\ncirc = Circle(radius)\ncirc.set_position(x, y)\ncirc.set_color(Color.green)\nadd(circ)\n\n# Refactored version: one function, different arguments.\ndef draw_circle(radius, color, x, y):\n    circ = Circle(radius)\n    circ.set_position(x, y)\n    circ.set_color(color)\n    add(circ)\n\ndraw_circle(40, Color.red, 30, 50)\ndraw_circle(60, Color.green, 100, 100)', walkthrough: 'name, grade, radius, color, x, and y are parameters. Values such as \"Jordan\", 10, 40, and Color.red are arguments. draw_circle replaces the repeated setup code while still creating two different circles.', tasks: ['Before reading the refactored code, identify the repeated circle setup steps. Then explain how the parameters change each circle.', 'Call greet with at least two names and write your own two-parameter function.', 'Complete CodeHS Unit 5: Functions and Parameters by the end of Week 10.', 'Complete the matching journal entry.'], quickCheck: { prompt: 'In draw_circle(40, Color.red, 30, 50), which value is passed to the color parameter?', options: ['40', 'Color.red', '30'], correct: 1, explanation: 'Arguments are matched to parameters from left to right, so Color.red is the second argument for color.' }, exercises: ['rotate_left3'] }),
-      section('Functions with Return Values · CodeHS Unit 5',
-        'A return statement sends a result back to the caller. Functions can return a String, integer, float, or Boolean. A returned result can be stored, displayed, compared, or passed to another function.',
-        { code: 'def double(x):\n    return 2 * x\n\nnumber = int(input(\"Enter a number: \"))\ntwice = double(number)\nfor i in range(twice):\n    print(\"hello\")', walkthrough: 'double returns a value; it does not just print one. The caller stores that returned value in twice, then range(twice) controls how many times the loop prints hello.', tasks: ['Write one function that returns a String, integer, float, and Boolean.', 'Run double with several inputs and predict how many times hello prints.', 'Complete CodeHS Unit 5: Functions and Parameters by the end of Week 10.', 'Explain the difference between print and return in your journal.'], quickCheck: { prompt: 'What is stored in twice when the user enters 4?', options: ['The text \"8\"', 'The integer 8', 'Nothing, because double only prints'], correct: 1, explanation: 'double returns the integer 8, and the assignment stores that return value in twice.' }, exercises: ['rotate_left3'] }),
-      section('Returning a Float · CodeHS Unit 5',
-        'A function can return a decimal value when the calculation produces one. In Python, the / operator returns a float, even when the division is even.',
-        { code: 'def average(total, count):\n    return total / count\n\nclass_average = average(85, 2)\nprint(class_average)', walkthrough: 'average returns 42.5, and the assignment stores that float in class_average for later use.', tasks: ['Call average with different totals and counts.', 'Store the returned value, then use it in a print statement.', 'Explain why the returned value is a float.'] }),
-      section('Saving Return Values · CodeHS Unit 5',
-        'Store a function result with an assignment such as variable = function_name(). The function runs first; then its returned value is assigned to the variable. You can use the saved value later.',
-        { code: 'def greet():\n    return \"Welcome to AP CSP\"\n\nmessage = greet()\nprint(message)', walkthrough: 'greet() returns a String. The assignment saves that String in message, and print uses the saved value.', tasks: ['Store a function result in a variable.', 'Use that variable in a later print statement.', 'Explain the difference between print and return in your journal.'] }),
-      section('Global and Local Variables · CodeHS Unit 5',
-        'A local variable is created inside a function and is available only in that function. A global variable is created outside functions and can be read throughout the program. Prefer parameters and return values for sharing data because they make dependencies explicit.',
-        { code: 'elapsed_seconds = 0\nrunning = True\n\ndef update_clock(should_run):\n    global elapsed_seconds, running\n    running = should_run\n    if running:\n        elapsed_seconds += 1\n    display_time = f\"{elapsed_seconds // 60:02}:{elapsed_seconds % 60:02}\"\n    return display_time\n\ncurrent_time = update_clock(True)', walkthrough: 'elapsed_seconds and running are global variables; global lets the function update them. should_run is a parameter local to the function, and display_time is a local variable created inside it. update_clock returns a formatted clock value.', tasks: ['Identify the global variables and the local parameter/variable in the clock example.', 'Call update_clock(True) and update_clock(False); describe how elapsed time changes.', 'Complete CodeHS Unit 5: Functions and Parameters by the end of Week 10.', 'Compare local and global scope in your journal.'], quickCheck: { prompt: 'Which name is local to update_clock?', options: ['elapsed_seconds', 'running', 'display_time'], correct: 2, explanation: 'display_time is assigned inside update_clock and is not declared global or passed in as a parameter.' }, challenge: 'Modify the clock so it accepts a number of seconds as an argument and returns the updated display.' }),
-      section('Try and Except',
-        'try runs statements that might fail. except handles a matching error so the program can respond instead of stopping unexpectedly. Keep the try block focused, and give users a clear recovery path.',
-        { code: '# Without handling: invalid text causes ValueError\nage = int(input(\"Enter your age: \"))\n\n# With handling:\ntry:\n    age = int(input(\"Enter your age: \"))\n    print(\"Next year you will be\", age + 1)\nexcept ValueError:\n    print(\"Please enter a whole number, such as 15.\")', walkthrough: 'If the input can be converted to an integer, the program prints the next age. If conversion raises ValueError, the except block explains how to try again.', tasks: ['Compare the handled and unhandled programs.', 'Write a safe numeric-input activity.', 'Test valid and invalid input and record what happened.'], challenge: 'Modify the program to ask again after invalid input and explain how the user can recover.' }),
-      section('Big Idea 2 · Data and Information',
-        'Data is information represented in a form a computer can store and process. Big Idea 2 connects the way data is represented, compressed, extracted, and used to make decisions.',
-        { bigIdea: true, tasks: ['For each indented topic below, watch its assigned short video and complete the related AP Classroom MCQ by November 6.', 'Complete the related CodeHS Unit 8: Digital Information work.', 'Record key vocabulary and a weekly reflection.'] }),
-      section('Binary Numbers Activity',
-        'Binary is a base-2 number system that uses the digits 0 and 1. Each place represents a power of 2. To convert a decimal value, decompose it into powers of 2 and mark the corresponding places with 1.',
-        { subtopic: true, code: 'Decimal 13 = 8 + 4 + 1\nPlace values: 8  4  2  1\nBinary:      1  1  0  1  = 1101', walkthrough: '13 contains 8, 4, and 1 but not 2, so its four-bit representation is 1101.', tasks: ['Watch the assigned short video, then complete the Binary Numbers MCQ in AP Classroom by November 6.', 'Complete the related CodeHS Unit 8: Digital Information lesson.', 'Convert at least five decimal values to binary: 6, 10, 19, 25, and 42; show place values and check by converting back.'], quickCheck: { prompt: 'What is decimal 13 in binary?', options: ['1011', '1101', '1110'], correct: 1, explanation: '13 = 8 + 4 + 1, so the 8, 4, 2, 1 place values are 1, 1, 0, 1.' } }),
+      section('Big Idea 2 · Data Technology Research Symposium',
+        'Data is information represented in a form a computer can store and process. In this symposium, teams research an assigned data technology, its history and contributors, how it works, and its impact on people and industry.',
+        { bigIdea: true,
+          tasks: ['Work with your assigned team and confirm the topic below.', 'Tuesday: assign team roles, gather sources, and create a research outline.', 'Wednesday: research history, inventors, algorithms, applications, and careers; aim for a presentation that is 50% complete.', 'Thursday: develop visuals and speaker notes; add references and an audience activity.', 'Friday: review accuracy, AMA citations, timing, and professional expectations; rehearse.', 'Use credible sources and record AMA citation details as you research.', 'Update your Data Technology Research Journal and weekly reflection.'],
+          prompts: ['What problem or need led to this technology?', 'Who contributed to its development, and what did they contribute?', 'How does the technology work, and what algorithms or technical processes does it use?', 'How has it affected society, careers, or industry? What ethical concerns or future trends should people consider?'],
+          table: {
+            headers: ['Team', 'Project topic', 'Students'],
+            rows: [
+              ['1', 'Binary Number Systems', 'Elijah, Lyric'],
+              ['2', 'Bits, Bytes & Data Storage', 'Nadav, Caiden'],
+              ['3', 'Text Encoding', 'Nathan, Owen'],
+              ['4', 'Images as Data', 'Itay, Diego'],
+              ['5', 'Data Compression Algorithms', 'Julian, Santiago'],
+              ['6', 'Audio Data & Sampling', 'Aiyan, Geo'],
+              ['7', 'Video Compression & Streaming', 'CJ, Kaiden'],
+              ['8', 'Data Visualization', 'Robert, JP'],
+              ['9', 'Big Data & Analytics', 'Maddy'],
+              ['10', 'Data Privacy', 'Jimmy, Derick'],
+              ['11', 'Data Security & Encryption', 'Grey, Jude, Leo'],
+              ['12', 'Artificial Intelligence & Data', 'Caleb, Preston']
+            ]
+          }
+        }),
+      section('Binary Numbers · Digital Representation',
+        'Binary is a base-2 number system that uses 0 and 1. Each place represents a power of 2; computers use binary patterns to represent many kinds of information.',
+        { subtopic: true,
+          code: 'Decimal 13 = 8 + 4 + 1\nPlace values: 8  4  2  1\nBinary:      1  1  0  1  = 1101',
+          walkthrough: '13 contains 8, 4, and 1 but not 2, so its four-bit representation is 1101.',
+          tasks: ['Explain how binary represents data in your assigned technology.', 'Complete the Binary Numbers MCQ in AP Classroom by November 6.', 'Complete the related CodeHS Unit 8: Digital Information lesson.', 'Convert 6, 10, 19, 25, and 42 to binary; show place values and check each answer by converting back.'],
+          quickCheck: { prompt: 'What is decimal 13 in binary?', options: ['1011', '1101', '1110'], correct: 1, explanation: '13 = 8 + 4 + 1, so the 8, 4, 2, 1 place values are 1, 1, 0, 1.' }
+        }),
       section('Data Compression',
-        'Compression represents data using fewer bits. Lossless compression preserves every original detail; lossy compression removes some detail to reduce file size. The appropriate choice depends on the data and how it will be used.',
-        { subtopic: true, tasks: ['Watch the assigned short video, then complete the Data Compression MCQ in AP Classroom by November 6.', 'Complete the related CodeHS Unit 8: Digital Information lesson.', 'Compare a compressed file with its uncompressed version and describe a suitable use for lossless and lossy compression.'], quickCheck: { prompt: 'Which type of compression preserves all original data?', options: ['Lossless', 'Lossy', 'Both always remove details'], correct: 0, explanation: 'Lossless compression reduces file size while preserving all original information.' } }),
+        'Compression represents data using fewer bits. Lossless compression preserves all original information; lossy compression removes some detail to reduce file size. The right method depends on the data and its use.',
+        { subtopic: true,
+          tasks: ['Investigate how compression supports your assigned technology and whether it uses lossless or lossy methods.', 'Complete the Data Compression MCQ in AP Classroom by November 6.', 'Complete the related CodeHS Unit 8: Digital Information lesson.', 'Compare lossless and lossy compression and give an appropriate use for each.'],
+          quickCheck: { prompt: 'Which type of compression preserves all original data?', options: ['Lossless', 'Lossy', 'Both always remove details'], correct: 0, explanation: 'Lossless compression reduces file size while preserving all original information.' }
+        }),
       section('Extracting Information from Data',
-        'A dataset is a collection of related observations. Organize or visualize its values, look for patterns and trends, and support conclusions with evidence. A pattern does not automatically prove what caused it.',
-        { subtopic: true, tasks: ['Watch the assigned short video, then complete the Extracting Information from Data MCQ in AP Classroom by November 6.', 'Complete the related CodeHS Unit 8: Digital Information lesson.', 'Use a small, teacher-approved dataset to identify a pattern and support one conclusion with evidence and a limitation.'], quickCheck: { prompt: 'What should support a conclusion drawn from a dataset?', options: ['Specific evidence from the data', 'A guess based on one unusual value', 'An unrelated opinion'], correct: 0, explanation: 'A sound conclusion should be supported by relevant data evidence, while noting limitations.' } }),
+        'A dataset is a collection of related observations. Organize or visualize its values, look for patterns and trends, and support conclusions with evidence. A pattern alone does not prove what caused it.',
+        { subtopic: true,
+          tasks: ['Find an example of how your assigned technology extracts or presents useful information from data.', 'Complete the Extracting Information from Data MCQ in AP Classroom by November 6.', 'Complete the related CodeHS Unit 8: Digital Information lesson.', 'Use a small, teacher-approved dataset to identify a pattern and support one conclusion with evidence and a limitation.'],
+          quickCheck: { prompt: 'What should support a conclusion drawn from a dataset?', options: ['Specific evidence from the data', 'A guess based on one unusual value', 'An unrelated opinion'], correct: 0, explanation: 'A sound conclusion should be supported by relevant data evidence, while noting limitations.' }
+        }),
       section('Using Programs with Data',
-        'Programs can use data to personalize recommendations, organize information, and support decisions. Services such as Spotify, Netflix, and YouTube use data to help recommend content; school information systems organize academic and operational records.',
-        { subtopic: true, tasks: ['Watch the assigned short video, then complete the Using Programs with Data MCQ in AP Classroom by November 6.', 'Complete the related CodeHS Unit 8: Digital Information lesson.', 'Describe an input dataset, how a program uses it, and a resulting output or decision; include one benefit and one concern.'], quickCheck: { prompt: 'A recommendation program uses listening history to suggest songs. What is the listening history?', options: ['Input data', 'The program output', 'A compression method'], correct: 0, explanation: 'The listening history is data provided to the program; suggested songs are a possible output.' } }),
-      section('Why Data Matters',
-        'Data can help people notice patterns, make informed decisions, and improve services. It can also be incomplete, inaccurate, biased, or sensitive. Responsible computing considers who collected the data, who benefits, who may be harmed, and how privacy is protected.',
-        { subtopic: true, tasks: ['Complete the related CodeHS Unit 8: Digital Information work.', 'Give an example of a data-supported decision and identify a limitation, privacy concern, or risk of bias.', 'Explain how to check whether a data-based conclusion is fair and well supported.'] })
+        'Programs use data to personalize recommendations, organize information, and support decisions. Consider what data goes into a program, how it is processed, and what output or decision results.',
+        { subtopic: true,
+          tasks: ['Explain how a program uses data in your assigned technology and identify its outputs or decisions.', 'Complete the Using Programs with Data MCQ in AP Classroom by November 6.', 'Complete the related CodeHS Unit 8: Digital Information lesson.', 'Discuss one benefit and one concern or ethical impact of using data in this technology.'],
+          quickCheck: { prompt: 'A recommendation program uses listening history to suggest songs. What is the listening history?', options: ['Input data', 'The program output', 'A compression method'], correct: 0, explanation: 'The listening history is data provided to the program; suggested songs are a possible output.' }
+        }),
+      section('CodeHS Unit 5 · Functions (Due 10/24)',
+        'A function is a named, reusable group of instructions. In Python, def creates a function definition. Defining a function does not run it; calling its name followed by parentheses runs its instructions.',
+        { subtopic: true,
+          code: 'def print_hello():\n    print("Hello")\n\ndef print_hello_twice():\n    for i in range(2):\n        print("Hello")\n\nprint_hello()\nprint_hello_twice()',
+          walkthrough: 'The two function definitions describe reusable instructions. The calls at the bottom run those instructions; print_hello_twice uses a loop to print two times.',
+          tasks: ['Trace what each function call displays.', 'Complete the CodeHS Unit 5 Functions lesson by 10/24.', 'Record a function definition and a function call in your journal.'],
+          challenge: 'Create one function that prints a short message three times.' }),
+      section('CodeHS Unit 5 · Parameters (Due 10/24)',
+        'A parameter is a named input in a function definition. An argument is the value supplied when the function is called. Parameters let one function work with different inputs.',
+        { subtopic: true,
+          code: 'def greet(name):\n    print("Hello", name)\n\ngreet("Jordan")\ngreet("Avery")\n\ndef introduce(name, grade):\n    print(name, "is in grade", grade)\n\nintroduce("Jordan", 10)',
+          walkthrough: 'name and grade are parameters. "Jordan", "Avery", and 10 are arguments. Arguments match parameters in order.',
+          tasks: ['Identify each parameter and argument in the example.', 'Complete the CodeHS Unit 5 Parameters lesson by 10/24.', 'Write and call a function that accepts two parameters.'],
+          quickCheck: { prompt: 'In greet("Jordan"), what is "Jordan"?', options: ['A parameter', 'An argument', 'A function definition'], correct: 1, explanation: 'The function definition names name as the parameter; "Jordan" is the argument supplied in the call.' } }),
+      section('CodeHS Unit 5 · Return Values (Due 10/24)',
+        'A return statement sends a result back to the code that called a function. Printing displays information; returning makes a value available for later calculations or decisions.',
+        { subtopic: true,
+          code: 'def double(number):\n    return number * 2\n\nresult = double(4)\nprint(result)',
+          walkthrough: 'double(4) returns the integer 8. The assignment stores that returned value in result, and print displays it.',
+          tasks: ['Predict the value returned by double(7).', 'Complete the CodeHS Unit 5 Return Values lesson by 10/24.', 'Explain the difference between print and return in your journal.'],
+          quickCheck: { prompt: 'What value is stored in result after double(4)?', options: ['4', '8', 'The text "double"'], correct: 1, explanation: 'double returns 4 * 2, so result stores 8.' } }),
+      section('CodeHS Unit 5 · Local and Global Scope (Due 10/24)',
+        'A local variable is created inside a function and is available there. A global variable is created outside functions. Prefer parameters and return values to share information when possible because they make a function’s inputs and outputs clear.',
+        { subtopic: true,
+          code: 'school = "Centennial"  # global variable\n\ndef welcome(student):\n    message = "Welcome to " + school + ", " + student\n    return message\n\nprint(welcome("Jordan"))',
+          walkthrough: 'school is defined outside welcome, so it is global. student and message are local to the function. The function returns its result instead of changing the global variable.',
+          tasks: ['Identify the global variable, parameter, and local variable.', 'Complete the CodeHS Unit 5 Local and Global Scope lesson by 10/24.', 'Finish all assigned CodeHS Unit 5 Functions and Parameters work by 10/24 and update your journal.'],
+          quickCheck: { prompt: 'Which name is local to welcome?', options: ['school', 'student', 'Centennial'], correct: 1, explanation: 'student is a parameter of welcome, so it is local to that function.' } })
     ],
-    checklist: ['Complete Unit 5 in CodeHS lesson and journal entry: Functions', 'Complete Unit 5 in CodeHS lesson and journal entry: Parameters', 'Complete Unit 5 in CodeHS lesson and journal entry: Return Values', 'Complete Unit 5 in CodeHS lesson and journal entry: Local and Global Scope', 'Big Idea 2 short videos watched and related AP Classroom MCQs completed by November 6', 'CodeHS Unit 8: Digital Information completed', 'Vocabulary recorded', 'Weekly reflection completed'],
-    journalName: 'Coding Bootcamp Survival Journal'
+    checklist: ['Team roles, research outline, and source list completed', 'Assigned topic explained, including its history and key contributors', 'Technical processes, applications, and career connections explained', 'Presentation is at least 50% complete after Wednesday research and development', 'Visuals, speaker notes, references, and audience activity completed', 'AMA citations included and presentation accuracy checked', 'Big Idea 2 AP Classroom MCQs completed by November 6', 'CodeHS Unit 8: Digital Information completed', 'Team rehearsal and professional expectations completed', 'Data Technology Research Journal and weekly reflection updated', 'CodeHS Unit 5 Functions lesson completed by 10/24', 'CodeHS Unit 5 Parameters lesson completed by 10/24', 'CodeHS Unit 5 Return Values lesson completed by 10/24', 'CodeHS Unit 5 Local and Global Scope lesson completed by 10/24'],
+    journalName: 'Data Technology Research Journal'
   },
   {
     id: 'ist-csp',
-    asideExamples: true,
+    progressVersion: 2,
     code: 'Intro to Software Technology / CSP',
     short: 'IST / CSP',
-    subtitle: 'Canvas Short-Term Project · Build a Portfolio',
-    theme: 'Build a portfolio of your first eight weeks',
-    resources: ['canvas', 'codehs'],
-    resourceNote: 'Also revisit previous CodeHS units, notes, assignments, focus notes, and completed projects. Use your Student Learning Journal to plan and reflect.',
-    practice: 'Create a portfolio titled My first 8 weeks in Computer Science. Use your work from the first eight weeks to show what you learned, practice basic HTML and CSS, and submit the finished portfolio to the Canvas Short-Term Project assignment: Build a Portfolio.',
+    subtitle: 'Career Exploration Website · CodeHS Sandbox',
+    theme: 'Build a professional career exploration website',
+    resources: ['canvas', 'codehs', 'bls', 'onet', 'w3schools', 'cssTricks', 'codepen', 'googleFonts', 'coolors', 'colorHunt'],
+    resourceNote: 'Research technology careers with credible, current sources. Cite salary and other research and record when the information was accessed.',
+    practice: 'Choose a technology career and build a professional website in CodeHS Sandbox using HTML and CSS. Explain the career’s history, responsibilities, skills, education, salary, outlook, related careers, and sources.',
     sections: [
-      section('Project Overview and Prior Learning',
-        'Build a CodeHS.me website that demonstrates your learning and basic web design skills. Revisit Digital Citizenship, Cyber Hygiene, Hardware, Software, Operating Systems, HTML, and CSS. Use your prior lessons, notes, assignments, and projects as references.',
-        { tasks: ['Open the Canvas Short-Term Project assignment named Build a Portfolio.', 'Gather your learning resources, notes, and examples from the first eight weeks.', 'Plan the portfolio layout before building it.'] }),
-      section('CodeHS Sandbox Setup',
-        'Build the project in the CodeHS Sandbox. Select HTML > WebDev, then name your program before you begin.',
-        { tasks: ['Open the CodeHS Sandbox.', 'Select HTML > WebDev.', 'Give your program a clear name.'] }),
-      section('My first 8 weeks in Computer Science · Required Header and Styling',
-        'Build a portfolio titled My first 8 weeks in Computer Science. Its header must include the project title, student name, course name, school name, school year, and a project description. Demonstrate headings, paragraphs, fonts, colors, background styling, and CSS formatting.',
-        { code: '<h1>My first 8 weeks in Computer Science</h1>\n<h2>About Me</h2>\n<p>In this portfolio, I will share what I learned.</p>\n\n<style>\n  body { font-family: Arial, sans-serif; background-color: #eef5ff; }\n  h1 { color: #245a9b; }\n</style>', walkthrough: 'Use h1 for the page title and h2 for a section heading. Put text in p elements. CSS rules select an element and set properties such as color and background-color.', tasks: ['Add the title, student name, course name, school name, school year, and project description.', 'Use semantic headings and readable paragraphs.', 'Apply intentional fonts, colors, background styling, and CSS formatting.'] }),
-      section('HTML and CSS Syntax Quick Reference',
-        'Use these examples as reminders while building each portfolio section. Keep HTML structure in the page and use CSS rules to control its presentation.',
-        { code: '<!-- Image with alternative text -->\n<img src=\"images/project.png\" alt=\"Screenshot of my project\">\n\n<!-- Link, unordered list (order does not matter), ordered list (order matters) -->\n<a href=\"https://example.com\">View my source</a>\n<ul><li>What I learned</li><li>What I can build</li></ul>\n<ol><li>First choice career</li><li>Second choice career</li></ol>\n\n<!-- Table structure -->\n<table>\n  <tr><th>Week</th><th>Learning</th></tr>\n  <tr><td>1</td><td>Digital citizenship</td></tr>\n</table>\n\n<style>\n  body { font-family: Arial, sans-serif; }\n  img { max-width: 100%; }\n  table { border-collapse: collapse; }\n  th, td { border: 1px solid #334; padding: 8px; }\n</style>', walkthrough: 'Use descriptive alt text for images, meaningful link text, list items for lists, and th/td cells in tables. CSS selectors (such as img or th, td) apply the declarations inside their braces.', tasks: ['Use the HTML examples as you build the heading, image, link, list, and table checklist items.', 'Use the CSS examples to style fonts, images, and table borders.'] }),
-      section('Learning Journey Table',
-        'Create a table with at least eight rows. Each row documents a week or topic and includes a description and an example image. Suggested topics: Digital Citizenship, Cyber Hygiene, Hardware, Software, Operating Systems, HTML, CSS, and Current Learning.',
-        { example: 'journey', table: {
-          headers: ['Week', 'Topic', 'Description', 'Example Image'],
+      section('Career Exploration Website · Project Brief',
+        'Choose one technology career and create a website that informs an audience about that career. Possible areas include software, cybersecurity, data and AI, networking and cloud, and game development. Research carefully, take notes in your own words, and cite your sources.',
+        { tasks: ['Choose one technology career and identify your intended audience.', 'Create a project in CodeHS Sandbox using HTML > WebDev.', 'Plan a clear homepage and navigation for the required information.', 'Use credible, current sources for career details, education, salary, and outlook.'] }),
+      section('Research the Career',
+        'Investigate what people in this career do, how the field developed, who leads or influences it, and what skills, education, and certifications are useful. Salary depends on location and experience; include the source and date for any figures.',
+        { tasks: ['Research the career overview and history.', 'Identify industry leaders or notable contributors and explain their relevance.', 'Find required skills, education options, and certifications.', 'Research salary information and future outlook; cite each source.', 'Identify related careers and explain how they connect.', 'Record each source title, organization, URL, and access date as you work.'] }),
+      section('Build the Website · HTML Structure',
+        'Use semantic HTML headings and sections to organize your research. Make the page easy to scan, with a clear title and navigation between the required career sections.',
+        { code: '<header>\n  <h1>Explore a Technology Career</h1>\n  <p>Career name and a short introduction</p>\n</header>\n<nav aria-label="Career information">\n  <a href="#overview">Overview</a>\n  <a href="#skills">Skills and education</a>\n  <a href="#outlook">Salary and outlook</a>\n</nav>\n<main>\n  <section id="overview"><h2>Career Overview</h2></section>\n  <section id="skills"><h2>Skills and Education</h2></section>\n  <section id="outlook"><h2>Salary and Future Outlook</h2></section>\n</main>',
+          walkthrough: 'Use one h1 for the page title, h2 elements for major sections, and section elements to group related information. Navigation links with matching fragment IDs let visitors move through the page.',
+          tasks: ['Create a homepage with a clear career title and introduction.', 'Use semantic headings and sections to organize information.', 'Add working navigation links for the main sections.', 'Write in your own words and check spelling and readability.'] }),
+      section('Required Website Sections · CSS Design',
+        'Every website must include all nine required sections. Use consistent colors, fonts, spacing, and layout so visitors can find information quickly. Use responsive styles so the page remains readable on different screens.',
+        { table: {
+          headers: ['Required section', 'What to include'],
           rows: [
-            ['1', 'Digital Citizenship', 'Add a summary of your learning.', 'Add a cited image'],
-            ['2', 'Cyber Hygiene', 'Add a summary of your learning.', 'Add a cited image'],
-            ['3', 'Hardware', 'Add a summary of your learning.', 'Add a cited image'],
-            ['4', 'Software', 'Add a summary of your learning.', 'Add a cited image'],
-            ['5', 'Operating Systems', 'Add a summary of your learning.', 'Add a cited image'],
-            ['6', 'HTML', 'Add a summary of your learning.', 'Add a cited image'],
-            ['7', 'CSS', 'Add a summary of your learning.', 'Add a cited image'],
-            ['8', 'Current Learning', 'Add a summary of your learning.', 'Add a cited image']
+            ['Career Overview', 'What the career is and its main purpose.'],
+            ['Career History', 'How the career or field developed.'],
+            ['Industry Leaders', 'People or organizations shaping the field.'],
+            ['Skills Needed', 'Technical and professional skills used in the job.'],
+            ['Education & Certifications', 'Relevant post-secondary pathways, credentials, or certifications.'],
+            ['Salary Information', 'Current figures with a credible source, location/context, and date.'],
+            ['Future Outlook', 'Demand, trends, and how the role may change.'],
+            ['Related Careers', 'Other roles connected to this career.'],
+            ['Sources', 'Working source links and complete citation details.']
           ]
-        }, tasks: ['Create columns for Week, Topic, Description, and Example Image.', 'Customize at least eight meaningful rows.', 'Cite every image in AMA format: include creator/organization, image title or description, site, publication/update date when available, URL, and access date. Follow your teacher’s citation example.'] }),
-      section('Career Exploration',
-        'Research at least three technology careers. Use current, credible sources for salary and education information; salaries vary by location, experience, and source. Do not copy a number without recording where and when you found it.',
-        { example: 'careers', code: '<h2>Career Exploration</h2>\n<p>Careers I researched, ranked from most to least interesting:</p>\n<ol>\n  <li>Test Automation Engineer</li>\n  <li>Data Network Engineer</li>\n  <li>Electronic Engineer</li>\n</ol>\n\n<h3>Test Automation Engineer</h3>\n<img src=\"images/test-automation.jpg\" alt=\"Engineer reviewing automated test results\">\n<p>Creator. Image title. Website name. Date. URL. Accessed date.</p>\n<p>Technical skills:</p>\n<ul>\n  <li>Programming</li>\n  <li>Test frameworks</li>\n</ul>\n<p>Source: <a href=\"https://www.bls.gov/ooh/\">U.S. Bureau of Labor Statistics</a></p>', walkthrough: 'Use an ordered list (ol) when order matters, such as ranking careers from most to least interesting. Use an unordered list (ul) when order does not matter, such as skills. Every career needs an image with alt text and an AMA citation, and a link (a href) to the source you used.', table: {
-          headers: ['Career', 'Description', 'Average salary', 'Technical skills', 'Soft skills'],
+        },
+          code: '<style>\n  body { font-family: Arial, sans-serif; line-height: 1.6; }\n  main { max-width: 900px; margin: auto; padding: 1rem; }\n  section { margin: 1rem 0; padding: 1rem; border-radius: 8px; }\n  img { max-width: 100%; height: auto; }\n</style>',
+          walkthrough: 'CSS selectors target HTML elements; declarations set properties such as font-family, margin, and color. Keep sufficient contrast and make images responsive.',
+          tasks: ['Include Career Overview, Career History, Industry Leaders, Skills Needed, Education & Certifications, Salary Information, Future Outlook, Related Careers, and Sources.', 'Apply consistent CSS styling with readable text, clear contrast, and a responsive layout.', 'Add relevant images with descriptive alt text and source citations.', 'Cite research and salary sources in the Sources section.'] }),
+      section('Daily Build Plan · Review and Submit',
+        'Follow the weekly milestones to build the page in manageable steps. Save and preview your work as you go, and ask for help if you cannot access CodeHS Sandbox.',
+        { table: {
+          headers: ['Day', 'Milestones'],
           rows: [
-            ['Web Developer', 'Research and summarize.', 'Research and cite.', 'Research.', 'Research.'],
-            ['Front-End Developer', 'Research and summarize.', 'Research and cite.', 'Research.', 'Research.'],
-            ['Software Developer or UI/UX Designer', 'Research and summarize.', 'Research and cite.', 'Research.', 'Research.']
+            ['Tuesday', 'Choose a career; create the Sandbox project; research the topic; create the homepage.'],
+            ['Wednesday', 'Add the overview, history, and industry leaders; begin CSS.'],
+            ['Thursday', 'Add salary information, future outlook, and related careers; complete CSS.'],
+            ['Friday', 'Review all required sections; check links and images; submit the project.']
           ]
-        }, tasks: ['Add a Career Exploration section to your portfolio page; it is required, not optional.', 'Research at least three careers (for example, Web Developer, Front-End Developer, Software Developer, or UI/UX Designer).', 'Complete the table with career, description, average salary, technical skills, and soft skills.', 'Use an ordered list (ol) to rank your careers from most to least interesting.', 'Use an unordered list (ul) for each career’s technical skills and soft skills.', 'Include one image per career with alt text and an AMA citation.', 'Add a working link (a href) to the source of each career and salary; use credible sources such as the U.S. Bureau of Labor Statistics and O*NET and record citation details.', 'Answer: Which career interests you most and why?'] }),
-      section('References and Build Workflow',
-        'Cite images, career sources, salary sources, and other research sources. Use the citation format required by your teacher and make each reference traceable.',
-        { tasks: ['Review previous learning and gather notes and resources.', 'Gather suitable images and record citations before adding them.', 'Plan the layout, build the HTML structure, then apply CSS styling.', 'Complete the career section and references section.', 'Test every link, image, table, and page section before submitting.'] }),
-      section('Ready for the Next Step? · CodeHS Unit 10',
-        'After the Build a Portfolio assignment is complete, properly styled, and includes the required tables, images, references, and career exploration content, you may begin CodeHS Unit 10: JavaScript and Graphics.',
-        { tasks: ['Portfolio completion check: title and required header are present.', 'Portfolio completion check: CSS styling and the eight-row learning table are complete.', 'Portfolio completion check: images are cited, career exploration is complete, and references are included.', 'Preview: variables store values; user input gathers information; events respond to actions; graphics draw visual elements; interactive programming combines these ideas.'] })
+        }, tasks: ['Tuesday: choose a career, create the Sandbox project, research the topic, and create the homepage.', 'Wednesday: add career overview, history, and industry leaders; begin CSS.', 'Thursday: add salary information, future outlook, and related careers; complete CSS.', 'Friday: review the project, test links and images, and submit it.'] }),
+      section('Early Finishers · CodeHS Unit 10',
+        'Begin CodeHS Unit 10 after the Career Exploration Website is complete, styled, reviewed, and submitted. Unit 10 topics include variables, user input, functions, graphics, and animations.',
+        { tasks: ['Confirm all nine website sections are complete and sources are cited.', 'Open CodeHS Unit 10 after the website is ready for submission.', 'Explore variables, user input, functions, graphics, and animations.', 'Use W3Schools, CSS-Tricks, CodePen, Google Fonts, Coolors, or Color Hunt as helpful references.'] })
     ],
-    checklist: ['Portfolio title: My first 8 weeks in Computer Science', 'Student name, course, school, year, and project description', 'HTML headings and readable paragraphs', 'CSS fonts, colors, and background styling', 'Learning table with at least eight rows', 'Images with descriptive alt text and AMA citations', 'Career Exploration section included in the portfolio page with at least three careers', 'Career table: description, salary, technical skills, and soft skills', 'Ordered list (ol) ranking careers and unordered lists (ul) for skills', 'Each career has an image with alt text and an AMA citation', 'Each career has a working link to its source', 'References and Canvas submission']
+    checklist: ['Career selected and career research planned', 'Career Overview, Career History, and Industry Leaders sections complete', 'Skills Needed and Education & Certifications sections complete', 'Salary Information and Future Outlook sections complete with sources', 'Related Careers and Sources sections complete', 'HTML structure and navigation are clear and working', 'CSS styling is consistent, readable, and responsive', 'Links and images checked; alt text and citations included', 'Project reviewed and submitted', 'CodeHS Unit 10 started if project is complete'],
+    journalName: 'Student Learning Journal'
   },
   {
     id: 'game-design',
@@ -383,7 +430,8 @@ function quickCheckMarkup(item, questionId) {
 }
 
 function sectionMarkup(course, item, sectionIndex) {
-  const sectionId = `${course.id}-section-${sectionIndex}`;
+  const version = course.progressVersion ? `v${course.progressVersion}-` : '';
+  const sectionId = `${course.id}-${version}section-${sectionIndex}`;
   const open = state.open[sectionId] === true;
   const lessonClasses = `lesson${item.bigIdea ? ' big-idea' : ''}${item.subtopic ? ' subtopic' : ''}`;
   const catalog = course.id === 'ap-csa' ? javaExercises : pythonExercises;
@@ -413,11 +461,13 @@ function journalMarkup(course) {
     ['reflection', 'Reflection paragraph', 'What challenged you? What did you try? What will you do next?']
   ];
   const textareas = fields.map(([key, label, hint]) => {
-    const id = `${course.id}-journal-${key}`;
+    const version = course.progressVersion ? `v${course.progressVersion}-` : '';
+    const id = `${course.id}-${version}journal-${key}`;
     const value = state.notes[id] || '';
     return `<div class="journal-field"><label for="${id}">${label}</label><textarea id="${id}" data-note="${id}" placeholder="${escapeHTML(hint)}">${escapeHTML(value)}</textarea></div>`;
   }).join('');
-  const understandingId = `${course.id}-journal-understanding`;
+  const journalVersion = course.progressVersion ? `v${course.progressVersion}-` : '';
+  const understandingId = `${course.id}-${journalVersion}journal-understanding`;
   const selected = state.notes[understandingId] || '';
   const radios = [1, 2, 3, 4, 5].map(value =>
     `<label><input type="radio" name="${understandingId}" value="${value}" data-note="${understandingId}"${selected === String(value) ? ' checked' : ''}> ${value}</label>`).join('');
@@ -427,7 +477,8 @@ function journalMarkup(course) {
 function courseMarkup(course) {
   const page = document.getElementById(`${course.id}-page`);
   const unitSections = course.sections.map((item, index) => sectionMarkup(course, item, index)).join('');
-  const checklist = course.checklist.map((item, index) => checkRow(`${course.id}-checklist-${index}`, item)).join('');
+  const checklistVersion = course.progressVersion ? `v${course.progressVersion}-` : '';
+  const checklist = course.checklist.map((item, index) => checkRow(`${course.id}-${checklistVersion}checklist-${index}`, item)).join('');
   const resourceLinks = course.resources.map(resourceAnchor).join('');
   page.innerHTML = `<div class="hero course-hero">
     <p class="eyebrow">${escapeHTML(course.short)} · Week 10 pathway</p>

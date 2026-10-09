@@ -107,7 +107,8 @@ body.adv-leaving main { opacity: 0; transform: scale(.98); transition: .25s; }
 .adv-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 10px 0; }
 .adv-flow .box { padding: 10px 14px; border-radius: 10px; border: 1px solid var(--line); background: #121a3a; transition: .3s; }
 .adv-flow .box.fn { border-color: var(--ac); } .adv-flow .box.glow { box-shadow: 0 0 16px var(--ac); border-color: var(--ac); }
-.adv-bits { display: flex; flex-wrap: wrap; gap: 6px; } .adv-bit { width: 44px; height: 44px; border-radius: 8px; border: 1px solid var(--line); background: #0a0f26; color: var(--ink); font-weight: 800; cursor: pointer; }
+.adv-bits { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: clamp(3px, 1.5vw, 6px); width: 100%; max-width: 100%; }
+.adv-bit { display: flex; min-width: 0; width: 100%; height: auto; aspect-ratio: 1; flex-direction: column; align-items: center; justify-content: center; padding: 2px 0; border-radius: 8px; border: 1px solid var(--line); background: #0a0f26; color: var(--ink); font-size: clamp(.75rem, 3vw, .9rem); font-weight: 800; line-height: 1.15; cursor: pointer; }
 .adv-bit.on, .adv-bit[aria-pressed=true] { background: var(--ac); color: #0b1230; }
 .adv-px { width: 32px; height: 32px; border: 1px solid var(--line); background: #0a0f26; padding: 0; cursor: pointer; } .adv-px.on { background: var(--ac); }
 .adv-prev { background: #fff; color: #111; border-radius: 8px; padding: 10px; min-height: 120px; overflow: auto; }

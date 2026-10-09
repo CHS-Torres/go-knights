@@ -71,32 +71,8 @@ window.CKSTools = (() => {
     },
     'ap-csp'(T, ctx) {
       const data = ctx.data;
-      const FN = { double: { p: ['x'], src: 'def double(x):\n    return x * 2', f: a => a[0] * 2 }, square: { p: ['x'], src: 'def square(x):\n    return x * x', f: a => a[0] * a[0] },
-        is_even: { p: ['n'], src: 'def is_even(n):\n    return n % 2 == 0', f: a => (a[0] % 2 === 0 ? 'True' : 'False') }, full_name: { p: ['first', 'last'], src: 'def full_name(first, last):\n    return first + " " + last', f: a => a[0] + ' ' + a[1] } };
-      T.innerHTML = card('⚙️ Function Simulator', `<label>Function <select id="adv-fsel">${Object.keys(FN).map(k => `<option>${k}</option>`).join('')}</select></label><div id="adv-fin"></div><pre class="adv-code" id="adv-fsrc"></pre>
-        <div class="adv-flow"><span class="box" id="adv-fi">input</span>→<span class="box fn" id="adv-ff">function</span>→<span class="box" id="adv-fo">output</span></div><button type="button" class="adv-btn sm" id="adv-frun">Run ▶</button> <span id="adv-fcount" class="adv-note"></span>`, 'Enter values and watch them flow through. Run it 3 times.') +
-        card('🔀 Parameter Explorer', `<pre class="adv-code">def make_message(name, times):
-    return (name + "! ") * times</pre><div class="adv-actions"><label>argument 1 <input id="adv-a1" value="Go Knights"></label><label>argument 2 <input id="adv-a2" type="number" value="2" style="width:80px"></label><button type="button" class="adv-btn sm" id="adv-pswap">🔁 Swap arguments</button></div>
-        <div class="adv-flow" id="adv-pflow"></div><p id="adv-pres" aria-live="polite"></p>`, 'Arguments flow into parameters by position. Press Swap to see why order matters.') +
-        card('🔬 Digital Information Lab', `<h4>1. Binary builder <span id="adv-bgoal"></span></h4><div class="adv-bits" id="adv-bits"></div><p>Decimal value: <b id="adv-dec">0</b></p><p class="adv-note" id="adv-bnote"></p>
+      T.innerHTML = card('🔬 Digital Information Lab', `<h4>1. Binary builder <span id="adv-bgoal"></span></h4><div class="adv-bits" id="adv-bits"></div><p>Decimal value: <b id="adv-dec">0</b></p><p class="adv-note" id="adv-bnote"></p>
         <h4>2. Bitmap image (1 = black pixel)</h4><div class="adv-split"><div class="adv-px" id="adv-px"></div><pre class="adv-code" id="adv-pxb"></pre></div><p class="adv-note" id="adv-pnote"></p>`, 'Hit all 3 binary targets and draw an image with at least 10 black pixels.');
-      let runs = 0; const fsel = $('#adv-fsel');
-      const mk = () => { const f = FN[fsel.value]; $('#adv-fin').innerHTML = f.p.map((x, i) => `<label>${x} <input data-a="${i}" value="${f.p.length > 1 ? (i ? 'Knight' : 'Sir') : 4}"></label>`).join(''); $('#adv-fsrc').textContent = f.src; $('#adv-fi').textContent = 'input'; $('#adv-fo').textContent = 'output'; };
-      fsel.onchange = mk; mk();
-      $('#adv-frun').onclick = () => {
-        const f = FN[fsel.value], a = [...document.querySelectorAll('[data-a]')].map(x => (x.value !== '' && !isNaN(x.value) ? +x.value : x.value));
-        $('#adv-fi').textContent = a.join(', '); $('#adv-ff').classList.add('glow'); $('#adv-fo').textContent = '…';
-        setTimeout(() => { $('#adv-ff').classList.remove('glow'); $('#adv-fo').textContent = String(f.f(a)); $('#adv-fo').classList.add('glow'); setTimeout(() => $('#adv-fo').classList.remove('glow'), 600); }, 500);
-        runs++; $('#adv-fcount').textContent = `Runs: ${Math.min(runs, 3)}/3`; if (runs >= 3) ctx.award('funcsim');
-      };
-      let swapped = false;
-      const pdraw = () => {
-        const a = swapped ? [$('#adv-a2').value, $('#adv-a1').value] : [$('#adv-a1').value, $('#adv-a2').value];
-        $('#adv-pflow').innerHTML = `<span class="box">make_message(${h(JSON.stringify(a[0]))}, ${h(a[1])})</span>→<span class="box fn">name = ${h(a[0])}<br>times = ${h(a[1])}</span>`;
-        const t = +a[1]; $('#adv-pres').innerHTML = isNaN(t) || a[1] === '' ? '<span class="adv-bad">times must be a number: Python raises a TypeError. Order matters!</span>' : 'Returns: <b>' + h((a[0] + '! ').repeat(Math.max(0, Math.min(t, 20)))) + '</b>';
-      };
-      ['a1', 'a2'].forEach(x => { $('#adv-' + x).oninput = pdraw; });
-      $('#adv-pswap').onclick = () => { swapped = !swapped; pdraw(); if (swapped) ctx.award('param'); }; pdraw();
       const goals = [5, 42, 200]; let g = data.goal || 0, bin = Array(8).fill(0);
       const lab = () => { if (g >= goals.length && data.img) ctx.award('lab'); };
       const bdraw = () => {
@@ -123,7 +99,7 @@ window.CKSTools = (() => {
         card('🌈 CSS Color Playground', `<div class="adv-actions"><label>Background <input type="color" id="adv-cb" value="#10213d"></label><label>Text <input type="color" id="adv-ct" value="#ffffff"></label><label>Accent <input type="color" id="adv-ca" value="#f2b705"></label></div><div id="adv-cprev" style="padding:20px;border-radius:12px;margin-top:8px"><h3 id="adv-ch">Centennial Knights</h3><p>Readable text matters.</p><button type="button" id="adv-cbtn" style="border:0;padding:8px 14px;border-radius:8px">Button</button></div><p class="adv-note" id="adv-cn"></p>`, 'Change all three colors to complete the challenge.') +
         card('📐 Layout Challenge Builder', `<div class="adv-actions"><label>Direction <select id="adv-lsel"><option value="row">Side by side (row)</option><option value="column">Stacked (column)</option><option value="row-reverse">Reverse row</option></select></label><label>Justify <select id="adv-ljc"><option>flex-start</option><option>center</option><option>space-between</option><option>space-around</option></select></label><button type="button" class="adv-btn sm" id="adv-llock">🔒 Lock layout</button></div>
         <pre class="adv-code" id="adv-lcss"></pre><div id="adv-lprev" style="display:flex;gap:8px;background:#fff;padding:10px;border-radius:10px;margin-top:6px"><div style="background:#5ab0ff;padding:16px;color:#000">Header</div><div style="background:#f2b705;padding:16px;color:#000">Main</div><div style="background:#3ddc97;padding:16px;color:#000">Sidebar</div></div>`, 'Try at least 2 different directions, then lock your layout.') +
-        card('🏙️ Live Website Builder Preview', `<div class="adv-split"><div id="adv-bf"></div><div><iframe class="adv-prev" id="adv-bp" sandbox title="Website preview"></iframe></div></div><ul class="adv-check" id="adv-bc"></ul>`, 'Fill in each field and watch your site appear. All 9 required elements checked completes the challenge. (This is a practice preview; build your real site in CodeHS.)');
+        card('🏙️ Career Exploration Website Builder', `<div class="adv-split"><div id="adv-bf"></div><div><iframe class="adv-prev" id="adv-bp" sandbox title="Career exploration website preview"></iframe></div></div><ul class="adv-check" id="adv-bc"></ul>`, 'Build a career research preview and check its core website elements. Complete the full nine-section project in CodeHS.');
       const hs = $('#adv-hs'); hs.value = data.html || '<h1>My Page</h1>\n<p>Edit me!</p>';
       const hr = () => { $('#adv-hp').srcdoc = hs.value; data.html = hs.value; ctx.save(); const v = hs.value.toLowerCase(); const ok = /<h1[\s>]/.test(v) && /<p[\s>]/.test(v) && /<a\s[^>]*href/.test(v); $('#adv-hn').textContent = ok ? '✅ h1, p, and link found!' : 'Goal: include <h1>, <p>, and an <a href="..."> link.'; if (ok) ctx.award('sandbox'); };
       hs.oninput = hr; hr();
@@ -135,22 +111,26 @@ window.CKSTools = (() => {
       const lr = () => { const d = $('#adv-lprev'); d.style.flexDirection = $('#adv-lsel').value; d.style.justifyContent = $('#adv-ljc').value; $('#adv-lcss').textContent = `display: flex;\nflex-direction: ${$('#adv-lsel').value};\njustify-content: ${$('#adv-ljc').value};`; };
       const lt = new Set(); $('#adv-lsel').onchange = () => { lt.add($('#adv-lsel').value); lr(); }; $('#adv-ljc').onchange = lr;
       $('#adv-llock').onclick = () => { if (lt.size >= 2) { ctx.award('layout'); ctx.toast('Layout locked 🔒'); } else ctx.toast('Try at least 2 different layouts first'); }; lr();
-      const F = [['title', 'Page title', 'My Portfolio'], ['h1', 'Heading', 'Welcome to My Site'], ['para', 'Paragraph', 'I am learning to build websites.'], ['img', 'Image URL (e.g. example-cyber-hygiene.svg)', ''], ['link', 'Link URL', 'https://www.bls.gov/ooh/'], ['list', 'List items (comma separated)', 'HTML, CSS, Python'], ['table', 'Table rows (one per line: Career, Salary)', 'Web Developer, $90,000'], ['color', 'CSS accent color', '#5ab0ff', 'color'], ['career', 'Career research text', 'Web developers build and maintain websites.']];
+      const F = [['title', 'Website title', 'Technology Career Exploration'], ['h1', 'Career heading', 'Explore a Technology Career'], ['para', 'Career introduction', 'Learn about this career, its skills, and its future.'], ['img', 'Career-related image URL', ''], ['link', 'Credible career source URL', 'https://www.bls.gov/ooh/'], ['list', 'Career skills (comma separated)', 'problem solving, communication, technical skills'], ['table', 'Career details (one per line: section, detail)', 'Career Overview, Research this career\nEducation, Research qualifications\nSalary Information, Add a cited salary range'], ['color', 'CSS accent color', '#5ab0ff', 'color'], ['career', 'Future outlook and related careers', 'Summarize a cited outlook and name related careers.']];
+      if (data.builderVersion !== 2) {
+        data.b = {};
+        data.builderVersion = 2;
+        ctx.save();
+      }
       const b = data.b = data.b || {};
-      $('#adv-bf').innerHTML = F.map(f => `<label>${f[1]}${['table', 'career', 'para'].includes(f[0]) ? `<textarea data-f="${f[0]}" style="min-height:60px"></textarea>` : `<input data-f="${f[0]}" ${f[3] ? 'type="color"' : ''} style="width:100%">`}</label>`).join('') + '<button type="button" class="adv-btn sm ghost" id="adv-bsample">Use sample image</button>';
+      $('#adv-bf').innerHTML = F.map(f => `<label>${f[1]}${['table', 'career', 'para'].includes(f[0]) ? `<textarea data-f="${f[0]}" style="min-height:60px"></textarea>` : `<input data-f="${f[0]}" ${f[3] ? 'type="color"' : ''} style="width:100%">`}</label>`).join('');
       const safeUrl = u => (/^(https?:\/\/|[\w\-./]+$)/i.test(u) ? u : '');
       function br() {
         const v = {}; $('#adv-bf').querySelectorAll('[data-f]').forEach(x => { v[x.dataset.f] = x.value.trim(); b[x.dataset.f] = x.value; }); ctx.save();
         const items = v.list.split(',').map(s => s.trim()).filter(Boolean), rows = v.table.split('\n').map(r => r.split(',').map(s => s.trim())).filter(r => r[0]);
-        $('#adv-bp').srcdoc = `<!doctype html><title>${h(v.title)}</title><style>body{font-family:sans-serif;margin:20px;color:#222}h1,th{color:${/^#[0-9a-f]{6}$/i.test(v.color) ? v.color : '#333'}}img{max-width:200px}table{border-collapse:collapse}td,th{border:1px solid #999;padding:4px 8px}</style>
-          <h1>${h(v.h1)}</h1><p>${h(v.para)}</p>${safeUrl(v.img) ? `<img src="${h(safeUrl(v.img))}" alt="Student image">` : ''}${safeUrl(v.link) ? `<p><a href="${h(safeUrl(v.link))}">Visit link</a></p>` : ''}<ul>${items.map(i => `<li>${h(i)}</li>`).join('')}</ul>
-          <table>${rows.map(r => `<tr>${r.map(c => `<td>${h(c)}</td>`).join('')}</tr>`).join('')}</table><h2>Career Research</h2><p>${h(v.career)}</p>`;
-        const chk = [['Title', v.title], ['Heading', v.h1], ['Paragraph', v.para], ['Image', safeUrl(v.img)], ['Hyperlink', safeUrl(v.link)], ['List', items.length], ['Table', rows.length], ['CSS styling', v.color], ['Career section', v.career]];
+        $('#adv-bp').srcdoc = `<!doctype html><title>${h(v.title)}</title><style>body{font-family:sans-serif;line-height:1.6;margin:20px;color:#222}main{max-width:760px;margin:auto}h1,h2,th{color:${/^#[0-9a-f]{6}$/i.test(v.color) ? v.color : '#333'}}img{max-width:100%;height:auto}table{border-collapse:collapse}td,th{border:1px solid #999;padding:4px 8px;text-align:left}</style>
+          <main><h1>${h(v.h1)}</h1><p>${h(v.para)}</p>${safeUrl(v.img) ? `<img src="${h(safeUrl(v.img))}" alt="Image related to the selected technology career">` : ''}${safeUrl(v.link) ? `<p><a href="${h(safeUrl(v.link))}">View career research source</a></p>` : ''}<h2>Skills Needed</h2><ul>${items.map(i => `<li>${h(i)}</li>`).join('')}</ul>
+          <h2>Career Research</h2><table>${rows.map(r => `<tr>${r.map(c => `<td>${h(c)}</td>`).join('')}</tr>`).join('')}</table><h2>Future Outlook and Related Careers</h2><p>${h(v.career)}</p><h2>Sources</h2><p>Add complete citations and working source links.</p></main>`;
+        const chk = [['Website title', v.title], ['Career heading', v.h1], ['Career introduction', v.para], ['Career image', safeUrl(v.img)], ['Credible source link', safeUrl(v.link)], ['Skills list', items.length], ['Career details', rows.length], ['CSS styling', v.color], ['Career outlook', v.career]];
         $('#adv-bc').innerHTML = chk.map(c => `<li class="${c[1] ? 'ok' : ''}">${c[0]}</li>`).join('');
         if (chk.every(c => c[1])) ctx.award('builder');
       }
       $('#adv-bf').querySelectorAll('[data-f]').forEach(x => { const k = x.dataset.f; x.value = b[k] ?? (F.find(f => f[0] === k)[3] ? '#5ab0ff' : ''); x.oninput = br; });
-      $('#adv-bsample').onclick = () => { $('#adv-bf [data-f=img]').value = 'example-cyber-hygiene.svg'; br(); };
       br();
     },
     'game-design'(T, ctx) {

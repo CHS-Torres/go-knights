@@ -28,28 +28,28 @@
       done: ['Congratulations Knight', 'You have completed this week’s Java training.']
     },
     'ap-csp': {
-      icon: '🐍', short: 'AP CSP Python Expedition', file: 'week10APCSP.html', accent: '#4fd1a5', accent2: '#2b8a6e', scene: '🗺️ 🧭 ⛰️ 🌲',
-      academy: 'Python Expedition', homeLine: 'Explore Python territory from Base Camp to the summit.',
-      quest: 'Travel the Python trail: CodeHS Unit 5 functions and parameters, Big Idea 2 digital information, CodingBat Python practice, MCQ review, and your reflection.',
-      why: 'Functions, parameters, and data representation are core AP CSP ideas.',
-      ranks: ['Explorer', 'Analyst', 'Researcher', 'Innovator', 'Python Pathfinder'],
+      icon: '📊', short: 'AP CSP Data Expedition', file: 'week10APCSP.html', accent: '#4fd1a5', accent2: '#2b8a6e', scene: '🗺️ 📊 🔐 💡',
+      academy: 'Data Technology Expedition', homeLine: 'Investigate data technologies and prepare your symposium presentation.',
+      quest: 'Complete CodeHS Unit 5: Functions and Parameters by 10/24. Also research your assigned Big Idea 2 data technology, complete the AP Classroom MCQs, and prepare a cited team presentation.',
+      why: 'Functions and parameters make programs reusable, while understanding data technologies helps explain modern computing and its impact on society.',
+      ranks: ['Data Scout', 'Researcher', 'Analyst', 'Data Innovator', 'Symposium Scholar'],
       boardName: 'Mission Map',
-      zones: [{ name: '⛺ Base Camp', items: [0] }, { name: '🌲 Function Forest', items: [1, 2, 3, 'tool:funcsim'] }, { name: '🎒 Parameter Pass', items: [4, 5, 6, 'tool:param'] }, { name: '🕳️ Digital Information Cavern', items: [7, 8, 9, 10, 11, 12, 'tool:lab'] }, { name: '🏔️ Assessment Summit', items: ['checklist', 'journal'] }],
-      tools: { funcsim: 'Function Simulator: run it 3 times', param: 'Parameter Explorer: swap the arguments', lab: 'Digital Information Lab: binary targets and a bitmap' },
-      ach: [['Function Finder', '🔎', 'Finish the first function lesson', { l: [0] }], ['Parameter Pro', '🎛️', 'Explore parameters', { l: [1], t: ['param'] }], ['Data Explorer', '🧭', 'Finish the Digital Information Lab', { t: ['lab'] }], ['Information Analyst', '📈', 'Finish all Big Idea 2 lessons', { l: [7, 8, 9, 10, 11, 12] }], ['Python Expedition Graduate', '🎓', 'Complete every task', 'all']],
-      done: ['Expedition Complete', 'You successfully reached the summit.']
+      zones: [{ name: '⛺ Symposium Base Camp', items: [0] }, { name: '🔢 Binary Trail', items: [1, 'tool:lab'] }, { name: '📦 Compression Crossing', items: [2] }, { name: '📈 Data Insights Ridge', items: [3, 4] }, { name: '🧩 CodeHS Unit 5 · Functions & Parameters (Due 10/24)', items: [5, 6, 7, 8] }, { name: '🏔️ Presentation Summit', items: ['checklist', 'journal'] }],
+      tools: { lab: 'Digital Information Lab: reach the binary targets and create a bitmap' },
+      ach: [['Symposium Researcher', '🔎', 'Complete the assigned topic outline', { l: [0] }], ['Binary Analyst', '🔢', 'Complete the binary lesson and lab', { l: [1], t: ['lab'] }], ['Data Investigator', '📈', 'Finish the data analysis topics', { l: [2, 3, 4] }], ['Function Builder', '🧩', 'Complete the Unit 5 functions and parameters lessons by 10/24', { l: [5, 6, 7, 8] }], ['Symposium Scholar', '🎓', 'Complete every research and presentation task', 'all']],
+      done: ['Symposium Ready', 'Your data research and presentation pathway is complete.']
     },
     'ist-csp': {
       icon: '🌐', short: 'IST Web Architect Studio', file: 'week10IST.html', accent: '#5ab0ff', accent2: '#1f6fd1', scene: '🏙️ 📐 🏗️ 💡',
-      academy: 'Web Architect Studio', homeLine: 'Build a digital city while constructing a professional website.',
-      quest: 'Build your complete website one district at a time: structure, styling, images, tables, career research, references, and your journal.',
+      academy: 'Web Architect Studio', homeLine: 'Build a professional career website, one district at a time.',
+      quest: 'Build a technology Career Exploration Website: research one career, create all nine required website sections, apply CSS, cite sources, review, and submit your work.',
       why: 'A real website shows colleges and employers what you can build.',
       ranks: ['Builder', 'Designer', 'Developer', 'Architect', 'Chief Technology Officer'],
       boardName: 'City Districts',
-      zones: [{ name: '🧱 District 1: HTML Foundations', items: [0, 1, 3, 'tool:sandbox'] }, { name: '🖼️ District 2: Images and Multimedia', items: [2] }, { name: '📋 District 3: Lists and Tables', items: [4] }, { name: '🎨 District 4: CSS Design', items: [6, 'tool:color', 'tool:layout'] }, { name: '🔍 District 5: Career Research', items: [5] }, { name: '🏆 District 6: Portfolio Showcase', items: [7, 'tool:builder', 'checklist', 'journal'] }],
-      tools: { sandbox: 'HTML Sandbox: add an h1, p, and link', color: 'CSS Color Playground: change all 3 colors', layout: 'Layout Challenge Builder: try 2 layouts and lock', builder: 'Live Website Builder: all 9 elements' },
-      ach: [['HTML Builder', '🧱', 'Finish the HTML foundations', { l: [0, 1] }], ['Table Master', '📋', 'Finish the Learning Journey table', { l: [4] }], ['CSS Artist', '🎨', 'Finish the styling lesson', { l: [2] }], ['Career Explorer', '🔍', 'Finish Career Exploration', { l: [5] }], ['Portfolio Creator', '🏆', 'Complete every task', 'all']],
-      done: ['Digital City Completed', 'Your website is ready for launch.']
+      zones: [{ name: '🧱 District 1: Project and HTML Foundations', items: [0, 2, 'tool:sandbox'] }, { name: '🔍 District 2: Career Research', items: [1] }, { name: '📋 District 3: Required Career Sections', items: [3] }, { name: '🎨 District 4: CSS Design', items: [3, 'tool:color', 'tool:layout'] }, { name: '🏗️ District 5: Build and Review', items: [4, 'tool:builder'] }, { name: '🚀 District 6: Launch', items: [5, 'checklist', 'journal'] }],
+      tools: { sandbox: 'HTML Sandbox: add an h1, p, and link', color: 'CSS Color Playground: change all 3 colors', layout: 'Layout Challenge Builder: try 2 layouts and lock', builder: 'Career website preview: complete all 9 preview checks' },
+      ach: [['HTML Builder', '🧱', 'Finish the project brief and HTML structure', { l: [0, 2] }], ['Career Researcher', '🔍', 'Finish the career research lesson', { l: [1] }], ['CSS Artist', '🎨', 'Finish the required sections and styling lesson', { l: [3] }], ['Website Builder', '🏗️', 'Complete the website builder challenge', { t: ['builder'] }], ['Career Site Launch', '🚀', 'Complete every project task', 'all']],
+      done: ['Career Website Published', 'Your career exploration website is ready for launch.']
     },
     'game-design': {
       icon: '🎮', short: 'Game Design Indie Studio', file: 'week10GD.html', accent: '#c77dff', accent2: '#7b2cbf', scene: '🎮 👾 🕹️ 🚀',
