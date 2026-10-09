@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b19">
+  <meta name="description" content="An interactive AP Computer Science A Unit 1 training camp for Centennial High School students.">
+  <title>AP CSA Unit 1 Survival Training Camp</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to training</a>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="U1bootcamp.html" aria-label="AP CSA Survival Camp home">
+        <span class="brand-mark" aria-hidden="true">JAVA<span>+</span></span>
+        <span class="brand-copy"><strong>KNIGHT TRAINING</strong><small>Centennial High School · AP CSA</small></span>
+      </a>
+      <div class="top-status" id="top-status" aria-live="polite">
+        <span class="status-pill"><span class="status-dot"></span><span id="header-rank">RECRUIT</span></span>
+        <span class="xp-readout"><span aria-hidden="true">✦</span> <span id="header-xp">0</span> XP</span>
+      </div>
+    </header>
+
+    <main id="main">
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+
+      <section id="home-screen" class="screen">
+        <section class="hero panel">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="pulse"></span> FIELD BRIEFING · UNIT 01</p>
+            <h1>AP CSA UNIT 1<br><span>SURVIVAL TRAINING CAMP</span></h1>
+            <p class="hero-subtitle">Objects and Methods Rescue Mission</p>
+            <div class="warning-box">
+              <strong>⚠ WARNING, RECRUIT</strong>
+              <p>You have entered Java Survival Training Camp. Recent evaluations indicate weaknesses in objects, classes, constructors, methods, parameters, return values, and strings.</p>
+              <p>Complete every training mission to survive. Failure is expected. Giving up is not.</p>
+              <p class="mission-orders">SURVIVE. <span>LEARN.</span> LEVEL UP. <span>MASTER JAVA.</span></p>
+              <p class="commander">Commander Torres is counting on you.</p>
+            </div>
+            <div class="hero-actions">
+              <button type="button" class="button button-primary button-large" id="start-training">START TRAINING <span aria-hidden="true">→</span></button>
+              <span class="small-note" id="welcome-back" hidden>Progress saved. Pick up where you left off.</span>
+            </div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="radar"><div class="radar-sweep"></div><span class="radar-crosshair">+</span><span class="radar-label radar-label-one">OBJECTS</span><span class="radar-label radar-label-two">METHODS</span><span class="radar-label radar-label-three">STRINGS</span><span class="radar-center">JAVA<br>UNIT 1</span></div>
+            <div class="visual-tag">TRAINING ZONE 01<br><strong>MISSION READY</strong></div>
+          </div>
+        </section>
+
+        <section class="player-grid" aria-label="Player status">
+          <article class="panel player-card">
+            <div class="section-heading"><div><p class="eyebrow">RECRUIT DOSSIER</p><h2>Player Card</h2></div><span class="heading-icon" aria-hidden="true">◈</span></div>
+            <label class="field-label" for="student-name">Student name</label>
+            <div class="name-entry"><input id="student-name" type="text" maxlength="60" autocomplete="name" placeholder="Enter your name"><button type="button" class="button button-secondary" id="save-name">SAVE</button></div>
+            <p class="small-note">Your name and training progress stay on this device.</p>
+            <div class="rank-row"><span class="rank-insignia" aria-hidden="true">✦</span><div><span class="field-label">CURRENT RANK</span><strong id="current-rank">Recruit</strong></div><span class="rank-xp"><b id="current-xp">0</b> XP</span></div>
+            <div class="progress-meta"><span>RANK PROGRESS</span><span id="rank-progress-label">0 / 100 XP</span></div>
+            <div class="progress-track" role="progressbar" aria-label="Progress to next rank" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="rank-progress"><span id="rank-progress-fill"></span></div>
+            <div class="stats-strip"><div><strong id="level-value">1</strong><span>LEVEL</span></div><div><strong id="missions-value">0/7</strong><span>MISSIONS</span></div><div><strong id="assessment-value">—</strong><span>ASSESSMENT</span></div></div>
+          </article>
+          <article class="panel badge-card">
+            <div class="section-heading"><div><p class="eyebrow">FIELD DECORATIONS</p><h2>Badges Earned</h2></div><span class="heading-icon" aria-hidden="true">⬡</span></div>
+            <div id="badge-shelf" class="badge-shelf"></div>
+            <p id="badge-empty" class="empty-note">Your first badge is waiting out there. Complete a mission to earn it.</p>
+          </article>
+        </section>
+
+        <section id="mission-map" class="panel mission-map">
+          <div class="section-heading map-heading"><div><p class="eyebrow">ROUTE TO JAVA MASTERY</p><h2>Mission Map</h2><p class="section-intro">Choose a mission, build your skills, and earn your way through the ranks.</p></div><span class="map-counter"><strong id="map-completed">0</strong> / 7<br><small>MISSIONS CLEARED</small></span></div>
+          <div id="mission-list" class="mission-list"></div>
+        </section>
+
+        <section class="assessment-banner panel">
+          <div class="assessment-emblem" aria-hidden="true">⚑</div>
+          <div><p class="eyebrow">FINAL CHECKPOINT</p><h2>Final Survival Assessment</h2><p>25 randomized questions to prove your Unit 1 readiness. Retake it whenever you want to improve your score.</p></div>
+          <button type="button" class="button button-secondary" id="open-assessment">BEGIN ASSESSMENT <span aria-hidden="true">→</span></button>
+        </section>
+      </section>
+
+      <section id="mission-screen" class="screen" hidden>
+        <div class="screen-toolbar"><button type="button" class="button button-quiet" id="back-home">← MISSION MAP</button><span id="mission-breadcrumb" class="toolbar-label"></span></div>
+        <div id="mission-content"></div>
+      </section>
+
+      <section id="assessment-screen" class="screen" hidden>
+        <div class="screen-toolbar"><button type="button" class="button button-quiet" id="assessment-home">← RETURN TO CAMP</button><span class="toolbar-label">FINAL SURVIVAL ASSESSMENT</span></div>
+        <div id="assessment-content"></div>
+      </section>
+
+      <section id="teacher-screen" class="screen" hidden>
+        <div class="screen-toolbar"><a class="button button-quiet" href="U1bootcamp.html">← RETURN TO CAMP</a><span class="toolbar-label">STAFF VIEW</span></div>
+        <div id="teacher-content"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>AP Computer Science A · Unit 1 · Centennial High School</p>
+      <p>Training progress is saved on this device.</p>
+    </footer>
+  </div>
+  <div id="level-up" class="level-overlay" role="dialog" aria-modal="true" aria-labelledby="level-title" hidden>
+    <div class="level-dialog"><div class="level-burst" aria-hidden="true">✦</div><p class="eyebrow">PROMOTION CONFIRMED</p><h2 id="level-title">LEVEL UP!</h2>    <p id="level-description">New rank achieved</p><strong id="level-new-rank"></strong><button type="button" class="button button-primary" id="close-level">CONTINUE TRAINING</button></div>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
