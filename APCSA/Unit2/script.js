@@ -4,10 +4,13 @@
   const STORAGE_KEY = 'centennial-apcsa-unit2-xp-academy-v1';
   const MAX_XP = 300;
   const MISSION_PASS_SCORE = 2;
+  const FRQ_VERSION = 2;
   const FRQ_LEVELS = [
-    { id: 'bead', title: 'Level 1 · Bead Sequence Analyzer', threshold: 144 },
-    { id: 'operations', title: 'Level 2 · Algorithm Operations', threshold: 204 },
-    { id: 'simulation', title: 'Level 3 · Full Unit 2 Simulation', threshold: 252 }
+    { id: 'bead', title: 'Level 1 · Bead Sequence Analyzer', threshold: 72 },
+    { id: 'formatting', title: 'Level 2 · String Formatting Challenge', threshold: 120 },
+    { id: 'prefix', title: 'Level 3 · Prefix Search Challenge', threshold: 168 },
+    { id: 'digits', title: 'Level 4 · Digit Analyzer', threshold: 216 },
+    { id: 'parser', title: 'Level 5 · String Parser', threshold: 252 }
   ];
   const RANKS = [
     { name: 'Novice Coder', min: 0 },
@@ -24,7 +27,7 @@
     { id: 'loop', name: 'Loop Legend', icon: '↻', detail: 'Clear the while-loop and for-loop missions.' },
     { id: 'string', name: 'String Strategist', icon: 'Aa', detail: 'Clear the String Algorithm Lab.' },
     { id: 'debug', name: 'Debugging Detective', icon: '⌕', detail: 'Clear the Debugging Detective mission.' },
-    { id: 'frq', name: 'FRQ Finisher', icon: '✎', detail: 'Complete all three FRQ command levels.' },
+    { id: 'frq', name: 'FRQ Finisher', icon: '✎', detail: 'Complete all five FRQ command levels.' },
     { id: 'champion', name: 'AP CSA Champion', icon: '★', detail: 'Pass the Unit 2 Final Challenge.' }
   ];
   const MOTIVATION = [
@@ -167,94 +170,314 @@
     { id: 'debug', name: 'Fix the Bug', description: 'Find the smallest change that repairs the logic.', icon: '⌕' },
     { id: 'build', name: 'Build the Algorithm', description: 'Combine conditions, loops, and Strings to solve a problem.', icon: '⌘' }
   ];
+  const FRQ_PLANNING_FIELDS = [
+    { id: 'variables', label: 'Variables', prompt: 'Which values or accumulators should your solution track?' },
+    { id: 'conditions', label: 'Conditions', prompt: 'What conditions determine how the algorithm makes its decision?' },
+    { id: 'loops', label: 'Loops', prompt: 'What needs to repeat, and what bounds or stopping rule should it use?' },
+    { id: 'output', label: 'Expected output', prompt: 'What exact result should the sample input produce?' }
+  ];
+  const FRQ_RUBRIC_CATEGORIES = ['Selection Logic', 'Iteration Logic', 'String Processing', 'Variable Usage', 'Program Correctness'];
+  const makeFRQRubric = criteria => FRQ_RUBRIC_CATEGORIES.map((category, index) => ({ category, criterion: criteria[index] }));
   const FRQ_TASKS = {
-    bead: [
-      {
-        title: 'Part A · Inspect the sequence',
-        prompt: 'Write a method that returns true when a bead sequence contains at least one adjacent pair of matching colors. Check each valid pair without reading past the end of the String.',
-        starter: 'public boolean hasMatchingNeighbors(String beads) {\\n    // Return true if adjacent characters match.\\n}',
-        hint1: 'Compare neighboring characters at indexes i and i + 1.',
-        hint2: 'The last valid starting index for a pair is beads.length() - 2.',
-        sample: 'A loop can continue while i < beads.length() - 1. Return true as soon as beads.charAt(i) equals beads.charAt(i + 1); return false after the loop.',
-        rubric: ['Uses a loop over valid adjacent pairs', 'Compares charAt(i) with charAt(i + 1)', 'Returns true when a pair matches', 'Returns false when no pair matches']
-      },
-      {
-        title: 'Part B · Apply the sequence rule',
-        prompt: 'Write a method that counts how many beads match a target color. Use a counter, inspect each character, and return the final count.',
-        starter: 'public int countColor(String beads, char target) {\\n    // Count and return matching beads.\\n}',
-        hint1: 'Initialize the count before traversing the String.',
-        hint2: 'Increment only when the current character equals target.',
-        sample: 'Set count to zero, loop from index 0 while the index is less than beads.length(), compare each charAt(i) to target, and increment count on a match.',
-        rubric: ['Initializes a counter before the loop', 'Visits each valid String index', 'Compares each character with target', 'Returns the accumulated count']
-      },
-      {
-        title: 'Part C · Validate a sequence',
-        prompt: 'Write a method that returns true when every bead is one of the allowed colors in allowedColors. Use String traversal and a Boolean decision.',
-        starter: 'public boolean allColorsAllowed(String beads, String allowedColors) {\\n    // Return false for any disallowed color.\\n}',
-        hint1: 'Search for each bead in allowedColors.',
-        hint2: 'indexOf returns -1 when the character is absent.',
-        sample: 'For each character, test allowedColors.indexOf(beads.charAt(i)) == -1. Return false on the first invalid color; return true after all characters pass.',
-        rubric: ['Traverses the beads String', 'Uses indexOf or an equivalent membership check', 'Returns false when a bead is not allowed', 'Returns true after all beads pass']
-      }
-    ],
-    operations: [
-      {
-        title: 'Challenge 1 · String formatting',
-        prompt: 'Write a method that returns a label made from a name and a score in the format name + ": " + score. Do not change either input.',
-        starter: 'public String formatScore(String name, int score) {\\n    // Return the formatted label.\\n}',
-        hint1: 'String concatenation with + can combine text and a number.',
-        hint2: 'The returned value must include a colon followed by one space.',
-        sample: 'Return name + ": " + score. The int is converted to text as part of concatenation.',
-        rubric: ['Returns a String value', 'Includes the original name', 'Includes colon and following space', 'Includes the score in the requested order']
-      },
-      {
-        title: 'Challenge 2 · Prefix searching',
-        prompt: 'Write a method that returns true when word begins with prefix. Assume both Strings are non-null. Use a bounds-safe String method.',
-        starter: 'public boolean startsWithPrefix(String word, String prefix) {\\n    // Return whether word starts with prefix.\\n}',
-        hint1: 'First ensure the prefix is not longer than the word.',
-        hint2: 'Compare the substring from index 0 to prefix.length() with prefix.',
-        sample: 'Check word.length() >= prefix.length() before calling substring(0, prefix.length()). Compare the result using equals.',
-        rubric: ['Checks the prefix length before taking a substring', 'Uses the correct start and exclusive end indexes', 'Compares String contents with equals', 'Returns the Boolean result']
-      },
-      {
-        title: 'Challenge 3 · Digit processing',
-        prompt: 'Write a method that counts the digit characters in text. Examine each character and count only characters from "0" through "9".',
-        starter: 'public int countDigits(String text) {\\n    // Return the number of digit characters.\\n}',
-        hint1: 'Traverse the String with charAt(i).',
-        hint2: 'A character is a digit if it is at least \'0\' and at most \'9\'.',
-        sample: 'Initialize a counter, loop over valid indexes, store charAt(i), and increment when the character is between \'0\' and \'9\', inclusive.',
-        rubric: ['Initializes a counter', 'Traverses each valid character index', 'Checks both inclusive digit boundaries', 'Returns the final count']
-      },
-      {
-        title: 'Challenge 4 · String parsing',
-        prompt: 'Write a method that returns the part of record before the first colon. If there is no colon, return the whole record.',
-        starter: 'public String getLabel(String record) {\\n    // Return the text before the first colon.\\n}',
-        hint1: 'Use indexOf(":") to locate the delimiter.',
-        hint2: 'If the index is -1, there is no delimiter; otherwise use substring.',
-        sample: 'Save record.indexOf(":"). Return record when the result is -1; otherwise return record.substring(0, delimiterIndex).',
-        rubric: ['Finds the delimiter with indexOf', 'Handles the -1 case', 'Uses substring with the delimiter as exclusive end', 'Returns the required String']
-      }
-    ],
-    simulation: [
-      {
-        title: 'Part A · Selection and iteration',
-        prompt: 'Write a method that counts values in an int array that are greater than a given threshold. Assume the array contains at least one element.',
-        starter: 'public int countAbove(int[] values, int threshold) {\\n    // Count values greater than threshold.\\n}',
-        hint1: 'Use an accumulator initialized to zero.',
-        hint2: 'Traverse the array and increment only for values strictly greater than threshold.',
-        sample: 'Loop through every array index, test values[i] > threshold, increment the count when true, and return count.',
-        rubric: ['Initializes the count', 'Traverses all array elements', 'Uses a strict greater-than comparison', 'Returns the count']
-      },
-      {
-        title: 'Part B · String algorithm',
-        prompt: 'Write a method that returns the index of the first character in text that appears in targets. Return -1 if no character matches.',
-        starter: 'public int firstTargetIndex(String text, String targets) {\\n    // Return the first matching index or -1.\\n}',
-        hint1: 'Traverse text from left to right.',
-        hint2: 'For each character, indexOf(charAt(i)) in targets tells whether it is present.',
-        sample: 'Return i as soon as targets.indexOf(text.charAt(i)) is not -1. If the loop ends, return -1.',
-        rubric: ['Traverses text from the first index', 'Uses charAt and a membership search', 'Returns the earliest matching index', 'Returns -1 when no character matches']
-      }
-    ]
+    bead: [{
+      overview: 'A jewelry manufacturer stores bead patterns in Strings, with R for red, B for blue, G for green, and Y for yellow. Approve a design only when it contains red and green, contains the pattern RGB, starts with red, ends with blue, and has at least five beads.',
+      title: 'Analyze and approve a bead sequence',
+      prompt: 'Write isApproved so it checks every quality rule and returns one Boolean result. Use a length check before any substring indexes.',
+      objectives: ['Analyze a String with length(), substring(), and indexOf()', 'Check for a pattern and start/end values', 'Store intermediate results in Boolean variables', 'Combine conditions with && and a nested if'],
+      sampleInput: 'beads = "RGBRGB"',
+      sampleOutput: 'Sequence Analysis\\nSequence: RGBRGB\\nContains Red: true\\nContains Green: true\\nContains Pattern RGB: true\\nStarts with Red: true\\nEnds with Blue: true\\nLength >= 5: true\\n\\nFinal Result:\\nDESIGN APPROVED',
+      starter: `public static boolean isApproved(String beads) {
+    // TODO: Check for red, green, and a length of at least five.
+    return false;
+}`,
+      hint1: 'Break the approval rule into separate Boolean questions, and check the length before taking substrings.',
+      hint2: 'Use indexOf for colors and RGB, then compare substring(0, 1) and substring(length - 1) with R and B using equals().',
+      commonMistakes: ['Treating indexOf(...) as a Boolean instead of comparing it with -1.', 'Calling substring on a sequence before confirming it is long enough.', 'Using == to compare Strings instead of equals().', 'Using || when every quality rule must pass.'],
+      walkthrough: ['Check the minimum length first; if it fails, do not take any substring.', 'Use indexOf to check for red, green, and the pattern RGB.', 'Compare the first character substring with R and the last character substring with B using equals().', 'Combine all five checks with && and return the result.'],
+      rubric: makeFRQRubric([
+        'Combines all required conditions with && and guards substring work with a length check.',
+        'Uses no unnecessary loop; each requirement can be checked directly.',
+        'Uses indexOf and substring with correct String boundaries.',
+        'Stores meaningful Boolean results or forms the same clear decision.',
+        'Approves only sequences meeting every color, pattern, boundary, and length rule.'
+      ]),
+      solution: `public class BeadSequenceAnalyzer {
+    // Returns whether the sequence meets every quality-control rule.
+    public static boolean isApproved(String beads) {
+        // Check the length before using substring indexes.
+        if (beads.length() >= 5) {
+            boolean containsRed = beads.indexOf('R') != -1;
+            boolean containsGreen = beads.indexOf('G') != -1;
+            boolean containsPattern = beads.indexOf("RGB") != -1;
+            boolean startsWithRed = beads.substring(0, 1).equals("R");
+            boolean endsWithBlue = beads.substring(beads.length() - 1).equals("B");
+
+            // Every design requirement must be satisfied.
+            return containsRed && containsGreen && containsPattern
+                    && startsWithRed && endsWithBlue;
+        }
+
+        return false;
+    }
+
+    public static void main(String[] args) {
+        String beads = "RGBRGB";
+        boolean containsRed = beads.indexOf('R') != -1;
+        boolean containsGreen = beads.indexOf('G') != -1;
+        boolean containsPattern = beads.indexOf("RGB") != -1;
+        boolean startsWithRed = beads.substring(0, 1).equals("R");
+        boolean endsWithBlue = beads.substring(beads.length() - 1).equals("B");
+        boolean longEnough = beads.length() >= 5;
+
+        System.out.println("Sequence Analysis");
+        System.out.println("Sequence: " + beads);
+        System.out.println("Contains Red: " + containsRed);
+        System.out.println("Contains Green: " + containsGreen);
+        System.out.println("Contains Pattern RGB: " + containsPattern);
+        System.out.println("Starts with Red: " + startsWithRed);
+        System.out.println("Ends with Blue: " + endsWithBlue);
+        System.out.println("Length >= 5: " + longEnough);
+        System.out.println();
+        System.out.println("Final Result:");
+        System.out.println(isApproved(beads) ? "DESIGN APPROVED" : "DESIGN REJECTED");
+    }
+}`
+    }],
+    formatting: [{
+      overview: 'A company receives product identifiers containing letters and digits, but the letter case is inconsistent. Format each identifier with uppercase letters while keeping digits unchanged; ignore any other characters.',
+      title: 'Format a product identifier',
+      prompt: 'Write formatIdentifier to visit every character and return a new String containing uppercase letters and the original digits.',
+      objectives: ['Traverse a String with charAt()', 'Use length() and a for loop with valid bounds', 'Identify letters and digits', 'Build a result with a StringBuilder'],
+      sampleInput: 'identifier = "abc123"',
+      sampleOutput: 'Original Value:\\nabc123\\n\\nFormatted Value:\\nABC123',
+      starter: `public static String formatIdentifier(String identifier) {
+    StringBuilder result = new StringBuilder();
+    // TODO: Visit each character and append its formatted value.
+    return result.toString();
+}`,
+      hint1: 'Use a loop to examine one character at a time and append accepted characters to a StringBuilder.',
+      hint2: 'For a letter, append Character.toUpperCase(current). For a digit, append current unchanged; do not append other characters.',
+      commonMistakes: ['Using i <= identifier.length(), which reads one past the end.', 'Appending to the original String instead of building a separate result.', 'Converting digits as though they were letters.', 'Forgetting to return result.toString().'],
+      walkthrough: ['Create a StringBuilder to collect the formatted identifier.', 'Loop from index 0 while the index is less than identifier.length().', 'Read the current character with charAt(i).', 'Append its uppercase form if it is a letter, or append it unchanged if it is a digit.', 'Return the completed String.'],
+      rubric: makeFRQRubric([
+        'Uses conditional branches to handle letters, digits, and other characters as specified.',
+        'Visits every character exactly once with valid loop bounds.',
+        'Uses charAt, character classification, and uppercase conversion correctly.',
+        'Builds the result in an accumulator and returns its String value.',
+        'Produces ABC123 for the sample and preserves all digits.'
+      ]),
+      solution: `public class StringFormattingChallenge {
+    // Returns uppercase letters and keeps digits, ignoring other characters.
+    public static String formatIdentifier(String identifier) {
+        StringBuilder result = new StringBuilder();
+
+        // The condition keeps i within the valid String indexes.
+        for (int i = 0; i < identifier.length(); i++) {
+            char current = identifier.charAt(i);
+
+            if (Character.isLetter(current)) {
+                // Convert letters to uppercase before adding them.
+                result.append(Character.toUpperCase(current));
+            } else if (Character.isDigit(current)) {
+                // Digits are already in the desired form.
+                result.append(current);
+            }
+        }
+
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        String identifier = "abc123";
+        System.out.println("Original Value:");
+        System.out.println(identifier);
+        System.out.println();
+        System.out.println("Formatted Value:");
+        System.out.println(formatIdentifier(identifier));
+    }
+}`
+    }],
+    prefix: [{
+      overview: 'A search system needs to count how many words in a list begin with a requested prefix. A word shorter than the prefix cannot match.',
+      title: 'Count words with a prefix',
+      prompt: 'Write countPrefixMatches to count the words that begin with prefix. Match case exactly and avoid taking a substring longer than its word.',
+      objectives: ['Traverse an array with a loop', 'Use a counter', 'Use substring() and equals() for prefix comparison', 'Check bounds before taking a substring'],
+      sampleInput: 'prefix = "pre"\\nwords = {"preview", "present", "prepare", "tree"}',
+      sampleOutput: 'Prefix Search Results\\n\\nPrefix: pre\\n\\nMatches Found:\\npreview\\npresent\\nprepare\\n\\nTotal Matches: 3',
+      starter: `public static int countPrefixMatches(String[] words, String prefix) {
+    int matches = 0;
+    // TODO: Check each word and count prefix matches.
+    return matches;
+}`,
+      hint1: 'Visit each word and compare only its first prefix.length() characters.',
+      hint2: 'First require word.length() >= prefix.length(); then compare word.substring(0, prefix.length()) to prefix with equals().',
+      commonMistakes: ['Taking a substring before checking whether the word is long enough.', 'Using prefix.length() - 1 as the exclusive substring endpoint.', 'Comparing Strings with == instead of equals().', 'Incrementing the counter when the word does not match.'],
+      walkthrough: ['Initialize matches to zero before the loop.', 'Visit each word in the array.', 'Check that the word is at least as long as the prefix before calling substring.', 'Compare the leading substring with prefix using equals().', 'Increment matches for each match and return the total after the loop.'],
+      rubric: makeFRQRubric([
+        'Checks word length before performing a prefix comparison.',
+        'Visits each word and updates the count only for matching words.',
+        'Uses the correct substring bounds and compares contents with equals().',
+        'Initializes and increments a counter, then returns its final value.',
+        'Counts all and only the words that start with the prefix.'
+      ]),
+      solution: `public class PrefixSearchChallenge {
+    // Counts words whose first characters match the requested prefix.
+    public static int countPrefixMatches(String[] words, String prefix) {
+        int matches = 0;
+
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+
+            // Check the length first so substring stays within bounds.
+            if (word.length() >= prefix.length()
+                    && word.substring(0, prefix.length()).equals(prefix)) {
+                matches++;
+            }
+        }
+
+        return matches;
+    }
+
+    public static void main(String[] args) {
+        String prefix = "pre";
+        String[] words = {"preview", "present", "prepare", "tree"};
+
+        System.out.println("Prefix Search Results");
+        System.out.println();
+        System.out.println("Prefix: " + prefix);
+        System.out.println();
+        System.out.println("Matches Found:");
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].length() >= prefix.length()
+                    && words[i].substring(0, prefix.length()).equals(prefix)) {
+                System.out.println(words[i]);
+            }
+        }
+        System.out.println();
+        System.out.println("Total Matches: " + countPrefixMatches(words, prefix));
+    }
+}`
+    }],
+    digits: [{
+      overview: 'A quality-control tool analyzes a nonnegative integer one digit at a time. It must report how many digits it contains, their sum, and the largest digit.',
+      title: 'Analyze the digits of a number',
+      prompt: 'Write analyzeDigits to return an int array containing digit count, digit sum, and largest digit in that order. Treat 0 as a one-digit number.',
+      objectives: ['Use a while loop to process digits', 'Extract a digit with % 10', 'Remove a digit with / 10', 'Update counters and accumulators'],
+      sampleInput: 'number = 52342',
+      sampleOutput: 'Digit Analysis\\n\\nNumber: 52342\\n\\nDigit Count: 5\\n\\nSum of Digits: 16\\n\\nLargest Digit: 5',
+      starter: `public static int[] analyzeDigits(int number) {
+    int count = 0;
+    int sum = 0;
+    int largest = 0;
+    int remaining = number;
+    // TODO: Extract and process each digit.
+    return new int[] {count, sum, largest};
+}`,
+      hint1: 'The remainder after division by 10 is the last digit; integer division by 10 removes it.',
+      hint2: 'Use a do-while loop so that 0 is processed once. For each digit, update count, sum, and largest before dividing remaining by 10.',
+      commonMistakes: ['Using / 10 before saving the current last digit.', 'Forgetting integer division removes the final digit.', 'Not updating remaining, which can create an infinite loop.', 'Using while (remaining > 0) without a special case for zero.'],
+      walkthrough: ['Initialize count, sum, and largest, and copy number into remaining.', 'A do-while loop processes at least one digit, including when number is zero.', 'Use remaining % 10 to get the last digit.', 'Update the count, sum, and maximum; then remove the processed digit with remaining / 10.', 'Return the three results in the requested order.'],
+      rubric: makeFRQRubric([
+        'Updates the largest digit only when the current digit is greater.',
+        'Processes each digit and terminates after the remaining number reaches zero.',
+        'Uses integer digit operations (% 10 and / 10) correctly.',
+        'Initializes and updates the count, sum, maximum, and remaining value.',
+        'Returns count, sum, and largest digit in order, including for input zero.'
+      ]),
+      solution: `public class DigitAnalyzer {
+    // Returns {digit count, digit sum, largest digit} for a nonnegative number.
+    public static int[] analyzeDigits(int number) {
+        int count = 0;
+        int sum = 0;
+        int largest = 0;
+        int remaining = number;
+
+        // A do-while loop counts zero as a one-digit number.
+        do {
+            int digit = remaining % 10;
+            count++;
+            sum += digit;
+
+            if (digit > largest) {
+                largest = digit;
+            }
+
+            // Integer division removes the digit just processed.
+            remaining /= 10;
+        } while (remaining > 0);
+
+        return new int[] {count, sum, largest};
+    }
+
+    public static void main(String[] args) {
+        int number = 52342;
+        int[] analysis = analyzeDigits(number);
+
+        System.out.println("Digit Analysis");
+        System.out.println();
+        System.out.println("Number: " + number);
+        System.out.println();
+        System.out.println("Digit Count: " + analysis[0]);
+        System.out.println();
+        System.out.println("Sum of Digits: " + analysis[1]);
+        System.out.println();
+        System.out.println("Largest Digit: " + analysis[2]);
+    }
+}`
+    }],
+    parser: [{
+      overview: 'A database stores a first name, last name, and occupation as three comma-separated fields. Each valid record has exactly two commas.',
+      title: 'Parse a comma-separated record',
+      prompt: 'Write parseRecord to locate both commas and return the three fields in a String array: first name, last name, and occupation.',
+      objectives: ['Locate delimiters with indexOf()', 'Extract fields with substring()', 'Use indexes carefully with exclusive end positions', 'Assign parsed values to the correct fields'],
+      sampleInput: 'record = "Aldrin,Torres,Teacher"',
+      sampleOutput: 'Parsed Record\\n\\nFirst Name:\\nAldrin\\n\\nLast Name:\\nTorres\\n\\nOccupation:\\nTeacher',
+      starter: `public static String[] parseRecord(String record) {
+    // TODO: Find the comma indexes and extract all three fields.
+    return new String[] {"", "", ""};
+}`,
+      hint1: 'Find the first comma, then search for the second comma starting just after the first.',
+      hint2: 'The first field ends at the first comma; the second starts after it and ends at the second comma; the last starts after the second comma.',
+      commonMistakes: ['Including a comma in one of the returned fields.', 'Using the second comma as the start of the final field.', 'Forgetting substring end indexes are exclusive.', 'Searching for both commas from index 0 and finding the first comma twice.'],
+      walkthrough: ['Call indexOf(\',\') to locate the first delimiter.', 'Call indexOf(\',\', firstComma + 1) to locate the second delimiter.', 'Extract the first field from index 0 up to firstComma.', 'Extract the middle field between firstComma + 1 and secondComma.', 'Extract the final field from secondComma + 1 to the end and return all three in order.'],
+      rubric: makeFRQRubric([
+        'Uses the stated valid-record assumption and assigns each field to the right position.',
+        'Uses direct delimiter searches without unnecessary iteration for three fixed fields.',
+        'Locates both commas and uses correct substring boundaries.',
+        'Stores delimiter indexes and returns the three extracted fields in order.',
+        'Returns Aldrin, Torres, and Teacher for the sample record.'
+      ]),
+      solution: `public class StringParser {
+    // Parses a valid record containing exactly two commas.
+    public static String[] parseRecord(String record) {
+        int firstComma = record.indexOf(',');
+        int secondComma = record.indexOf(',', firstComma + 1);
+
+        // substring's end index is exclusive, so commas are not included.
+        String firstName = record.substring(0, firstComma);
+        String lastName = record.substring(firstComma + 1, secondComma);
+        String occupation = record.substring(secondComma + 1);
+
+        return new String[] {firstName, lastName, occupation};
+    }
+
+    public static void main(String[] args) {
+        String record = "Aldrin,Torres,Teacher";
+        String[] fields = parseRecord(record);
+
+        System.out.println("Parsed Record");
+        System.out.println();
+        System.out.println("First Name:");
+        System.out.println(fields[0]);
+        System.out.println();
+        System.out.println("Last Name:");
+        System.out.println(fields[1]);
+        System.out.println();
+        System.out.println("Occupation:");
+        System.out.println(fields[2]);
+    }
+}`
+    }]
   };
 
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -284,6 +507,7 @@
     completedMissions: [],
     badges: [],
     arenaBonuses: [],
+    frqVersion: FRQ_VERSION,
     frqCompleted: [],
     unlockedFRQ: [],
     frqRuns: {},
@@ -319,9 +543,20 @@
       merged.completedMissions = Array.isArray(merged.completedMissions) ? merged.completedMissions : [];
       merged.badges = Array.isArray(merged.badges) ? merged.badges : [];
       merged.arenaBonuses = Array.isArray(merged.arenaBonuses) ? merged.arenaBonuses : [];
-      merged.frqCompleted = Array.isArray(merged.frqCompleted) ? merged.frqCompleted : [];
-      merged.unlockedFRQ = Array.isArray(merged.unlockedFRQ) ? merged.unlockedFRQ : [];
-      merged.frqRuns = merged.frqRuns && typeof merged.frqRuns === 'object' ? merged.frqRuns : {};
+      if (saved.frqVersion !== FRQ_VERSION) {
+        merged.frqVersion = FRQ_VERSION;
+        merged.frqCompleted = [];
+        merged.unlockedFRQ = [];
+        merged.frqRuns = {};
+        merged.badges = merged.badges.filter(badge => badge !== 'frq');
+      } else {
+        const frqIds = new Set(FRQ_LEVELS.map(level => level.id));
+        merged.frqCompleted = Array.isArray(merged.frqCompleted) ? merged.frqCompleted.filter(id => frqIds.has(id)) : [];
+        merged.unlockedFRQ = Array.isArray(merged.unlockedFRQ) ? merged.unlockedFRQ.filter(id => frqIds.has(id)) : [];
+        merged.frqRuns = merged.frqRuns && typeof merged.frqRuns === 'object' && !Array.isArray(merged.frqRuns)
+          ? Object.fromEntries(Object.entries(merged.frqRuns).filter(([id]) => frqIds.has(id)))
+          : {};
+      }
       merged.xp = Number.isFinite(Number(merged.xp)) ? Math.min(MAX_XP, Math.max(0, Number(merged.xp))) : 0;
       merged.timeSpent = Number.isFinite(Number(merged.timeSpent)) ? Math.max(0, Number(merged.timeSpent)) : 0;
       return merged;
@@ -439,14 +674,17 @@
     toastTimer = window.setTimeout(() => toast.classList.remove('show'), 3000);
   }
 
-  function showScreen(id) {
+  function showScreen(id, scrollTargetId = null) {
     $$('.screen').forEach(screen => { screen.hidden = screen.id !== id; });
     $$('.nav-button').forEach(button => button.classList.toggle('active', button.dataset.screen === id));
     if (id === 'home-screen') updateProgress();
     if (id === 'arena-screen') renderArena();
     if (id === 'frq-screen') renderFRQHome();
     if (id === 'teacher-screen') renderTeacher();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const scrollTarget = scrollTargetId ? document.getElementById(scrollTargetId) : null;
+    if (scrollTargetId && !scrollTarget) throw new Error(`Unknown scroll target: ${scrollTargetId}`);
+    if (scrollTarget) scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    else window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function recordAnswer(question, correct) {
@@ -475,6 +713,7 @@
     state.badges.push(id);
     showToast(`Badge earned: ${badge.name}`);
     persist();
+    updateProgress();
   }
 
   function checkMissionBadges() {
@@ -545,7 +784,9 @@
         questions.push({
           id: `out-${index + 1}`, kind: 'output', topic: mission, mission,
           prompt: 'What value is printed?',
-          code: `int sum = 0;\\nfor (int i = 1; i <= ${limit}; i++) {\\n    sum += i;\\n}\\nSystem.out.println(sum);`,
+          code: mission === 'while'
+            ? `int sum = 0;\\nint i = 1;\\nwhile (i <= ${limit}) {\\n    sum += i;\\n    i++;\\n}\\nSystem.out.println(sum);`
+            : `int sum = 0;\\nfor (int i = 1; i <= ${limit}; i++) {\\n    sum += i;\\n}\\nSystem.out.println(sum);`,
           answer: String(answer),
           explanation: `The loop adds every integer from 1 through ${limit}, giving a total of ${answer}.`,
           hints: ['The <= includes the final value.', 'List the values added to sum, then add them.']
@@ -585,7 +826,9 @@
       questions.push({
         id: `trace-${index + 1}`, kind: 'trace', topic: mission, mission,
         prompt: 'What is the final value of value?',
-        code: `int value = ${start};\\nfor (int step = 0; step < ${iterations}; step++) {\\n    value += ${increment};\\n}`,
+        code: mission === 'while'
+          ? `int value = ${start};\\nint step = 0;\\nwhile (step < ${iterations}) {\\n    value += ${increment};\\n    step++;\\n}`
+          : `int value = ${start};\\nfor (int step = 0; step < ${iterations}; step++) {\\n    value += ${increment};\\n}`,
         answer: String(start + iterations * increment),
         explanation: `The loop body runs ${iterations} times. Starting at ${start}, adding ${increment} each time gives ${start + iterations * increment}.`,
         hints: ['Make a row for value before the first iteration.', `Add ${increment} once per iteration.`]
@@ -939,7 +1182,7 @@
     $('#mission-breadcrumb').textContent = `${mission.icon} · ${mission.title.toUpperCase()}`;
     if (run.finished) {
       const cleared = state.completedMissions.includes(mission.id);
-      $('#mission-content').innerHTML = `<section class="panel completion-panel"><div class="completion-mark">${cleared ? '✓' : '↻'}</div><p class="eyebrow">${cleared ? 'MISSION CLEARED' : 'KEEP TRAINING'}</p><h1>${cleared ? 'Excellent work.' : 'One more round.'}</h1><p>${cleared ? `You answered ${run.score} of ${run.questions.length} correctly and earned this mission’s XP reward.` : `You answered ${run.score} of ${run.questions.length} correctly. Review the lesson, then try a fresh randomized set.`}</p><div class="completion-actions"><button type="button" class="button button-primary" id="mission-replay">${cleared ? 'PRACTICE AGAIN' : 'RETRY MISSION'}</button><button type="button" class="button button-quiet" data-screen="home-screen">RETURN TO QUEST MAP</button></div></section>`;
+      $('#mission-content').innerHTML = `<section class="panel completion-panel"><div class="completion-mark">${cleared ? '✓' : '↻'}</div><p class="eyebrow">${cleared ? 'MISSION CLEARED' : 'KEEP TRAINING'}</p><h1>${cleared ? 'Excellent work.' : 'One more round.'}</h1><p>${cleared ? `You answered ${run.score} of ${run.questions.length} correctly and earned this mission’s XP reward.` : `You answered ${run.score} of ${run.questions.length} correctly. Review the lesson, then try a fresh randomized set.`}</p><div class="completion-actions"><button type="button" class="button button-primary" id="mission-replay">${cleared ? 'PRACTICE AGAIN' : 'RETRY MISSION'}</button><button type="button" class="button button-quiet" data-screen="home-screen" data-scroll-target="mission-map">RETURN TO QUEST MAP</button></div></section>`;
       $('#mission-replay').addEventListener('click', () => {
         state.currentMissionRun = null;
         openMission(mission.id);
@@ -1078,8 +1321,9 @@
   function renderFRQHome() {
     const target = $('#frq-content');
     const completeCount = state.frqCompleted.length;
-    target.innerHTML = `<section class="panel frq-intro"><p class="eyebrow">AP-STYLE FREE RESPONSE · GUIDED CODING</p><h1>FRQ Command Center</h1><p>Each level includes coding prompts, progressive hints, sample reasoning, and a transparent rubric. Rubric checklists are self-assessed in this offline practice tool; your teacher evaluates official work.</p>
-      <div class="frq-progress"><span>${completeCount} / 3 LEVELS COMPLETE</span><div class="progress-track"><span style="width:${(completeCount / 3) * 100}%"></span></div></div></section>
+    target.innerHTML = `<section class="panel frq-intro"><p class="eyebrow">AP-STYLE FREE RESPONSE · GUIDED CODING</p><h1>FRQ Command Center</h1><p>Work through five Unit 2 challenges with a plan, then reveal hints, a starter, walkthrough, and complete solution as needed. Submit your work for AP-style rubric feedback. Rubrics are self-assessed practice, not official AP scoring or automatic Java compilation.</p>
+      <div class="frq-test-tools"><button type="button" class="button button-quiet" id="frq-test-unlock">TESTING ONLY · ADD 300 XP &amp; UNLOCK ALL FRQs</button><span>Local browser progress only; this bypasses normal XP and level requirements.</span></div>
+      <div class="frq-progress"><span>${completeCount} / ${FRQ_LEVELS.length} LEVELS COMPLETE · +12 XP PER LEVEL ON FIRST COMPLETION</span><div class="progress-track"><span style="width:${(completeCount / FRQ_LEVELS.length) * 100}%"></span></div></div></section>
       <div class="frq-level-list">${FRQ_LEVELS.map((level, index) => {
         const unlocked = state.unlockedFRQ.includes(level.id);
         const complete = state.frqCompleted.includes(level.id);
@@ -1091,12 +1335,21 @@
         </article>`;
       }).join('')}</div>`;
     $$('.frq-start', target).forEach(button => button.addEventListener('click', () => startFRQ(button.dataset.level)));
+    $('#frq-test-unlock', target).addEventListener('click', enableFRQTesting);
+  }
+
+  function enableFRQTesting() {
+    state.xp = Math.min(MAX_XP, state.xp + 300);
+    state.unlockedFRQ = Array.from(new Set([...state.unlockedFRQ, ...FRQ_LEVELS.map(level => level.id)]));
+    persist();
+    updateProgress();
+    renderFRQHome();
+    showToast('Testing enabled: +300 XP and all five FRQ levels unlocked.');
   }
 
   function frqDescription(id) {
-    if (id === 'bead') return 'Analyze String sequences using conditions, traversal, and careful decomposition.';
-    if (id === 'operations') return 'Practice formatting, prefix search, digit processing, and String parsing.';
-    return 'Complete a two-part Unit 2 simulation with selection, iteration, and String algorithms.';
+    const task = FRQ_TASKS[id]?.[0];
+    return task ? task.overview : 'Guided AP CSA Unit 2 free-response practice.';
   }
 
   function startFRQ(levelId, retry = false) {
@@ -1120,55 +1373,85 @@
     const run = state.frqRuns[levelId];
     if (!level || !tasks || !run) return renderFRQHome();
     if (run.taskIndex >= tasks.length) {
-      target.innerHTML = `<section class="panel completion-panel"><div class="completion-mark">✎</div><p class="eyebrow">FRQ LEVEL COMPLETE</p><h1>${escapeHTML(level.title)}</h1><p>You completed ${tasks.length} guided segments. Review the rubric notes, then use the next level when it unlocks.</p><div class="completion-actions"><button type="button" class="button button-primary" id="frq-home">RETURN TO FRQ COMMAND</button><button type="button" class="button button-secondary" id="frq-retry">PRACTICE AGAIN</button></div></section>`;
+      const allComplete = FRQ_LEVELS.every(item => state.frqCompleted.includes(item.id));
+      target.innerHTML = `<section class="panel completion-panel"><div class="completion-mark">✎</div><p class="eyebrow">${allComplete ? 'FRQ TRAINING COMPLETE' : 'FRQ LEVEL COMPLETE'}</p><h1>${allComplete ? 'FRQ Finisher!' : escapeHTML(level.title)}</h1>
+        <p>${allComplete ? 'Congratulations! You have completed AP CSA Unit 2 FRQ Training.' : `You completed ${escapeHTML(level.title)}. Continue to the next level when it unlocks, or revisit this challenge for more practice.`}</p>
+        <p class="frq-completion-progress">${state.frqCompleted.length} / ${FRQ_LEVELS.length} levels complete · ${allComplete ? 'FRQ Finisher Badge earned.' : 'First completion awards +12 XP.'}</p>
+        <div class="completion-actions"><button type="button" class="button button-primary" id="frq-home">RETURN TO FRQ COMMAND</button><button type="button" class="button button-secondary" id="frq-retry">PRACTICE AGAIN</button></div></section>`;
       $('#frq-home').addEventListener('click', renderFRQHome);
       $('#frq-retry').addEventListener('click', () => startFRQ(levelId, true));
       return;
     }
     const index = run.taskIndex;
     const task = tasks[index];
-    const saved = run.responses[index] || { text: '', checks: [] };
+    const saved = run.responses[index] || { text: '', checks: [], planning: {} };
     const help = run.help[index] || {};
     target.innerHTML = `<section class="panel frq-task-panel">
       <div class="section-heading"><div><p class="eyebrow">${escapeHTML(level.title.toUpperCase())}</p><h1>${escapeHTML(task.title)}</h1></div><span class="question-count">${index + 1} / ${tasks.length}</span></div>
       <div class="challenge-progress"><span style="width:${((index + 1) / tasks.length) * 100}%"></span></div>
-      <p class="frq-prompt">${escapeHTML(task.prompt)}</p>
+      <section class="frq-content-section"><p class="eyebrow">PROBLEM OVERVIEW</p><p class="frq-prompt">${escapeHTML(task.overview)}</p><p class="frq-prompt"><strong>Your task:</strong> ${escapeHTML(task.prompt)}</p></section>
+      <section class="frq-content-section"><p class="eyebrow">LEARNING OBJECTIVES</p><ul class="frq-objectives">${task.objectives.map(objective => `<li>${escapeHTML(objective)}</li>`).join('')}</ul></section>
+      <section class="frq-samples">
+        <div class="frq-content-section"><p class="eyebrow">SAMPLE INPUT</p><pre class="code-block"><code>${displayCode(task.sampleInput)}</code></pre></div>
+        <div class="frq-content-section"><p class="eyebrow">SAMPLE OUTPUT</p><pre class="code-block"><code>${displayCode(task.sampleOutput)}</code></pre></div>
+      </section>
+      <section class="frq-content-section"><p class="eyebrow">PLAN BEFORE YOU CODE</p><h2>Planning section</h2><p class="micro-copy">Record your approach. Your notes save automatically on this device.</p>
+        <div class="frq-planning-grid">${FRQ_PLANNING_FIELDS.map(field => `<label class="frq-planning-field" for="frq-plan-${field.id}"><strong>${escapeHTML(field.label)}</strong><span>${escapeHTML(field.prompt)}</span><textarea id="frq-plan-${field.id}" data-frq-planning="${field.id}" rows="2">${escapeHTML(saved.planning?.[field.id] || '')}</textarea></label>`).join('')}</div>
+      </section>
+      <details class="frq-reveal"><summary>Reveal partial solution · starter code with missing logic</summary><pre class="code-block"><code>${displayCode(task.starter)}</code></pre><button type="button" class="button button-quiet" id="insert-frq-starter">INSERT STARTER INTO RESPONSE</button></details>
+      <section class="frq-content-section"><p class="eyebrow">GUIDED HINTS</p><div class="frq-help-row">
+        <div class="help-item"><button type="button" class="help-button ${help.hint1 ? 'help-open' : ''}" data-frq-help="hint1">HINT 1 · CONCEPT</button>${help.hint1 ? `<p class="help-copy">${escapeHTML(task.hint1)}</p>` : ''}</div>
+        <div class="help-item"><button type="button" class="help-button ${help.hint2 ? 'help-open' : ''}" data-frq-help="hint2" ${help.hint1 ? '' : 'disabled'}>HINT 2 · NEXT STEP</button>${help.hint2 ? `<p class="help-copy">${escapeHTML(task.hint2)}</p>` : ''}</div>
+      </div></section>
+      <details class="frq-reveal"><summary>Reveal common mistakes</summary><ul class="frq-objectives">${task.commonMistakes.map(mistake => `<li>${escapeHTML(mistake)}</li>`).join('')}</ul></details>
+      <details class="frq-reveal"><summary>Reveal solution walkthrough</summary><ol class="frq-objectives">${task.walkthrough.map(step => `<li>${escapeHTML(step)}</li>`).join('')}</ol></details>
       <label class="answer-label" for="frq-response">Your Java response</label>
-      <textarea id="frq-response" class="frq-response" rows="9" spellcheck="false" placeholder="Write your method or algorithm here…">${saved.text === undefined ? displayCode(task.starter) : escapeHTML(saved.text)}</textarea>
-      <div class="frq-help-row">
-        ${[['hint1', 'HINT 1', task.hint1], ['hint2', 'HINT 2', task.hint2], ['sample', 'SAMPLE REASONING', task.sample]].map(([key, label, content]) => `<div class="help-item"><button type="button" class="help-button ${help[key] ? 'help-open' : ''}" data-frq-help="${key}">${label}</button>${help[key] ? `<p class="help-copy">${escapeHTML(content)}</p>` : ''}</div>`).join('')}
-      </div>
+      <textarea id="frq-response" class="frq-response" rows="9" spellcheck="false" placeholder="Write your method or algorithm here. Reveal the starter code above if you need a scaffold.">${escapeHTML(saved.text || '')}</textarea>
+      <details class="frq-reveal"><summary>Reveal complete Java solution</summary><pre class="code-block"><code>${displayCode(task.solution)}</code></pre></details>
       <div class="rubric-box"><div class="section-heading"><div><p class="eyebrow">SELF-ASSESSMENT</p><h2>Rubric checklist</h2></div><span class="micro-copy">1 point each</span></div>
-        <p class="micro-copy">Compare your response to each criterion and select the points you believe you earned.</p>
-        <div class="rubric-list">${task.rubric.map((criterion, criterionIndex) => `<label class="rubric-item"><input type="checkbox" class="rubric-check" data-criterion="${criterionIndex}" ${saved.checks.includes(criterionIndex) ? 'checked' : ''} ${saved.submitted ? 'disabled' : ''}><span>${escapeHTML(criterion)}</span></label>`).join('')}</div>
+        <p class="micro-copy">Evaluate your work in each AP-style category before submitting for feedback.</p>
+        <div class="rubric-list">${task.rubric.map((criterion, criterionIndex) => `<label class="rubric-item"><input type="checkbox" class="rubric-check" data-criterion="${criterionIndex}" ${saved.checks.includes(criterionIndex) ? 'checked' : ''} ${saved.submitted ? 'disabled' : ''}><span><strong>${escapeHTML(criterion.category)}:</strong> ${escapeHTML(criterion.criterion)}</span></label>`).join('')}</div>
       </div>
-      ${saved.submitted ? `<div class="answer-feedback ${saved.score === task.rubric.length ? 'correct' : 'review'}"><strong>Self-assessed rubric: ${saved.score} / ${task.rubric.length} points.</strong> ${escapeHTML(saved.feedback)}</div>` : ''}
+      ${saved.submitted ? `<div class="answer-feedback ${saved.score === task.rubric.length ? 'correct' : 'review'}"><strong>Self-assessed rubric: ${saved.score} / ${task.rubric.length} points.</strong> ${escapeHTML(saved.feedback)}<ul class="frq-feedback-list">${task.rubric.map((criterion, criterionIndex) => `<li><strong>${escapeHTML(criterion.category)}:</strong> ${saved.checks.includes(criterionIndex) ? 'Criterion self-assessed as met.' : 'Review this criterion and revise your response.'}</li>`).join('')}</ul></div>` : ''}
       <div class="challenge-actions">${saved.submitted
-        ? `<button type="button" class="button button-primary" id="frq-next">${index === tasks.length - 1 ? 'COMPLETE LEVEL' : 'NEXT SEGMENT →'}</button>`
+        ? `<button type="button" class="button button-primary" id="frq-next">COMPLETE LEVEL</button>`
         : `<button type="button" class="button button-primary" id="submit-frq">SUBMIT FOR RUBRIC FEEDBACK</button>`}
         <button type="button" class="button button-quiet" id="exit-frq">SAVE &amp; RETURN</button>
       </div>
-      <p class="micro-copy">This offline tool does not compile or automatically grade Java code. The rubric is a guided self-review, not an official AP score.</p>
+      <p class="micro-copy">This offline tool does not compile or automatically grade Java code. Rubric feedback is guided self-review, not an official AP score.</p>
     </section>`;
     const response = $('#frq-response', target);
     response.addEventListener('input', () => {
-      const current = run.responses[index] || { checks: [] };
+      const current = run.responses[index] || { checks: [], planning: {} };
       run.responses[index] = { ...current, text: response.value };
       persist();
     });
+    $$('[data-frq-planning]', target).forEach(input => input.addEventListener('input', () => {
+      const current = run.responses[index] || { text: response.value, checks: [], planning: {} };
+      current.planning = current.planning || {};
+      current.planning[input.dataset.frqPlanning] = input.value;
+      run.responses[index] = current;
+      persist();
+    }));
     $$('.rubric-check', target).forEach(input => input.addEventListener('change', () => {
-      const current = run.responses[index] || { text: response.value, checks: [] };
+      const current = run.responses[index] || { text: response.value, checks: [], planning: {} };
       current.text = response.value;
       current.checks = $$('.rubric-check:checked', target).map(box => Number(box.dataset.criterion));
       run.responses[index] = current;
       persist();
     }));
     $$('[data-frq-help]', target).forEach(button => button.addEventListener('click', () => {
+      if (button.dataset.frqHelp === 'hint2' && !run.help[index]?.hint1) return;
       run.help[index] = run.help[index] || {};
       run.help[index][button.dataset.frqHelp] = !run.help[index][button.dataset.frqHelp];
       persist();
       renderFRQRun(levelId);
     }));
+    $('#insert-frq-starter').addEventListener('click', () => {
+      response.value = task.starter;
+      response.dispatchEvent(new Event('input', { bubbles: true }));
+      response.focus();
+    });
     $('#submit-frq')?.addEventListener('click', () => submitFRQTask(levelId, task));
     $('#frq-next')?.addEventListener('click', () => advanceFRQ(levelId, tasks.length));
     $('#exit-frq').addEventListener('click', () => {
@@ -1189,11 +1472,12 @@
     const checks = $$('.rubric-check:checked').map(input => Number(input.dataset.criterion));
     const score = checks.length;
     const feedback = score === task.rubric.length
-      ? 'Your checklist covers every listed requirement. Compare your reasoning with the sample and check edge cases.'
+      ? 'Strong self-assessment: every rubric category is covered. Compare your result with the sample and test a boundary case.'
       : score >= Math.ceil(task.rubric.length / 2)
-        ? 'Good progress. Revisit unchecked criteria and test your algorithm with a small and a boundary example.'
-        : 'Review the hints and sample reasoning, then revise your response against each unchecked criterion.';
-    run.responses[index] = { text: response, checks, score, submitted: true, feedback };
+        ? 'Good progress. Revisit unchecked categories, then trace your algorithm with the sample and a boundary case.'
+        : 'Revisit the planning notes and revealed guidance. Revise your algorithm against each unchecked rubric category.';
+    const current = run.responses[index] || { planning: {} };
+    run.responses[index] = { ...current, text: response, checks, score, submitted: true, feedback };
     persist();
     renderFRQRun(levelId);
   }
@@ -1206,11 +1490,13 @@
       renderFRQRun(levelId);
       return;
     }
-    if (!state.frqCompleted.includes(levelId)) state.frqCompleted.push(levelId);
+    const firstCompletion = !state.frqCompleted.includes(levelId);
+    if (firstCompletion) state.frqCompleted.push(levelId);
     run.taskIndex = taskCount;
-    if (state.frqCompleted.length === FRQ_LEVELS.length) awardBadge('frq');
     persist();
-    updateUnlocks(true);
+    if (firstCompletion) awardXP(12, `${FRQ_LEVELS.find(item => item.id === levelId).title} completion`);
+    else updateUnlocks(false);
+    if (FRQ_LEVELS.every(item => state.frqCompleted.includes(item.id))) awardBadge('frq');
     renderFRQRun(levelId);
   }
 
@@ -1325,7 +1611,7 @@
       <div class="result-score">${result.percent}%</div><p class="result-rank">${result.correct} / ${result.total} correct · ${result.passed ? 'PASSED' : '80% needed to pass'}</p>
       ${result.passed ? '<p>You earned the AP CSA Champion badge. Your progress is saved on this device.</p>' : `<p>${escapeHTML(weakTopics.length ? `Review these topics: ${weakTopics.join(', ')}.` : 'Review the explanations below and try another randomized set.')}</p>`}
       <div class="topic-result-grid">${topicRows}</div>
-      <div class="completion-actions"><button type="button" class="button button-primary" id="retake-final">NEW RANDOM CHALLENGE</button><button type="button" class="button button-quiet" data-screen="home-screen">RETURN TO QUEST</button></div>
+      <div class="completion-actions"><button type="button" class="button button-primary" id="retake-final">NEW RANDOM CHALLENGE</button><button type="button" class="button button-quiet" data-screen="home-screen" data-scroll-target="mission-map">RETURN TO QUEST</button></div>
     </section><section class="panel review-panel"><div class="section-heading"><div><p class="eyebrow">LEARN FROM THE TRACE</p><h2>Answer review</h2></div></div>${review}</section>`;
     $('#retake-final').addEventListener('click', startFinalChallenge);
   }
@@ -1393,7 +1679,7 @@
       const button = event.target.closest('[data-screen]');
       if (!button) return;
       if (button.dataset.screen === 'mission-screen') return;
-      showScreen(button.dataset.screen);
+      showScreen(button.dataset.screen, button.dataset.scrollTarget);
     });
     $('#begin-quest').addEventListener('click', () => {
       const incomplete = MISSIONS.find(mission => !state.completedMissions.includes(mission.id));

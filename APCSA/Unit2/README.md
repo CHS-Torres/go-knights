@@ -10,17 +10,19 @@ Open [`U2bootcamp.html`](./U2bootcamp.html) in a browser. Keep `style.css` and `
 
 - Eleven guided missions covering prerequisites, Boolean logic, selection, loops, Strings, debugging, and algorithm design.
 - XP, ranks, mission completion, badges, FRQ unlocks, and a 25-question final challenge.
+- Five progressive FRQ tutoring challenges: bead-sequence analysis, identifier formatting, prefix search, digit analysis, and comma-separated record parsing. Each includes planning prompts, sample I/O, staged hints, a partial starter, common mistakes, a solution walkthrough, a complete commented Java solution, and a five-category self-assessed rubric.
 - An open practice arena with five modes: predict output, trace variables, complete code, fix a bug, and build an algorithm.
 - An offline question bank of 164 questions: 40 multiple choice, 40 output prediction, 20 variable tracing, 20 Boolean evaluation, 15 loop algorithms, 15 String algorithms, 10 algorithm-completion questions, and 4 String-method matching questions.
 - Progressive hints, explanations, responsive layouts, and a local-only teacher dashboard.
 
-Question choices and question sets are randomized. XP awards are capped at 300 and use increments divisible by 12. FRQ rubrics are self-assessed practice, not official AP scoring or automatic Java compilation.
+Question choices and question sets are randomized. XP awards are capped at 300 and use increments divisible by 12. FRQ levels unlock in sequence, award +12 XP once on completion, and award the FRQ Finisher badge after all five levels. FRQ rubrics are self-assessed practice, not official AP scoring or automatic Java compilation.
 
 ## Implementation notes
 
 - [`script.js`](./script.js) contains the curriculum, question bank, scoring, rendering, local-storage state, FRQ activities, and teacher summary.
 - [`style.css`](./style.css) contains the dark responsive visual design and component styles.
 - [`U2bootcamp.html`](./U2bootcamp.html) provides the page structure and loads the stylesheet and script.
+- Mission and quest-result return buttons navigate directly to the mission map; dynamically rendered controls use the delegated screen-navigation handler.
 - The local-storage key is `centennial-apcsa-unit2-xp-academy-v1`. Clearing this site's browser storage resets saved progress.
 - Mission and final-challenge results are readiness indicators only; teachers make PBIS and grade-recovery decisions.
 

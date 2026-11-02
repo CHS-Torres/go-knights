@@ -242,6 +242,9 @@ h3 { font-size: 18px; line-height: 1.2; }
 .arena-activity > h1 { margin: 0 0 16px; font-size: 40px; }
 
 .frq-intro { margin-bottom: 14px; }
+.frq-test-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 16px; }
+.frq-test-tools .button { border-color: #f3c76a55; color: var(--amber); }
+.frq-test-tools > span { color: var(--faint); font-size: 9px; line-height: 1.5; }
 .frq-progress { max-width: 400px; margin-top: 20px; color: var(--faint); font: 9px "Consolas", monospace; letter-spacing: .08em; }
 .frq-progress .progress-track { margin-top: 7px; }
 .frq-progress .progress-track span { background: linear-gradient(90deg, #45855c, var(--green)); }
@@ -260,6 +263,25 @@ h3 { font-size: 18px; line-height: 1.2; }
 .frq-task-panel .section-heading { align-items: center; }
 .frq-task-panel h1 { margin: 0; font-size: clamp(26px, 4vw, 38px); }
 .frq-prompt { margin: 13px 0; color: #cad5e1; font-size: 13px; line-height: 1.65; }
+.frq-content-section { margin: 20px 0; }
+.frq-content-section > h2 { margin: 0 0 8px; font-size: 19px; }
+.frq-content-section .eyebrow { margin-bottom: 7px; }
+.frq-objectives { display: grid; gap: 7px; margin: 8px 0 0; padding-left: 20px; color: #c5d0dc; font-size: 11px; line-height: 1.55; }
+.frq-samples { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.frq-samples .frq-content-section { min-width: 0; margin: 9px 0; }
+.frq-samples .code-block { min-height: 76px; margin: 0; }
+.frq-planning-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.frq-planning-field { display: grid; gap: 5px; color: var(--muted); font-size: 10px; line-height: 1.45; }
+.frq-planning-field strong { color: var(--blue); font: 9px "Consolas", monospace; letter-spacing: .07em; text-transform: uppercase; }
+.frq-planning-field textarea { width: 100%; min-height: 58px; padding: 8px; border: 1px solid #344962; border-radius: 2px; background: #0a121e; color: var(--text); font-size: 11px; resize: vertical; }
+.frq-reveal { margin: 12px 0; padding: 12px 14px; border: 1px solid #2a3a50; background: #0f1825; }
+.frq-reveal summary { color: var(--blue); cursor: pointer; font-size: 11px; font-weight: 650; }
+.frq-reveal[open] summary { margin-bottom: 10px; }
+.frq-reveal .code-block { max-height: 420px; }
+.frq-reveal > .button { margin-bottom: 2px; }
+.frq-help-row .help-button:disabled { opacity: .48; cursor: not-allowed; }
+.frq-feedback-list { display: grid; gap: 5px; margin: 10px 0 0; padding-left: 18px; font-size: 10px; }
+.frq-completion-progress { color: var(--amber) !important; font: 10px "Consolas", monospace !important; }
 .frq-response { min-height: 180px; padding: 12px; resize: vertical; font: 11px/1.6 "Consolas", monospace; tab-size: 4; }
 .frq-help-row .help-item { flex-basis: 150px; }
 .rubric-box { margin-top: 18px; padding: 16px; border: 1px solid #2b3c52; background: #101927; }
@@ -384,6 +406,7 @@ h3 { font-size: 18px; line-height: 1.2; }
   .frq-level h2 { font-size: 16px; }
   .frq-level .button { grid-column: 1 / -1; justify-self: start; }
   .frq-task-panel h1 { font-size: 25px; }
+  .frq-samples, .frq-planning-grid { grid-template-columns: 1fr; gap: 6px; }
   .frq-response { min-height: 150px; }
   .assessment-head { flex-direction: column; }
   .assessment-meter { text-align: left; }
