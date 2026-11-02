@@ -1389,10 +1389,12 @@
   }
 
   function bindGlobalEvents() {
-    $$('.nav-button, [data-screen]').forEach(button => button.addEventListener('click', () => {
+    document.addEventListener('click', event => {
+      const button = event.target.closest('[data-screen]');
+      if (!button) return;
       if (button.dataset.screen === 'mission-screen') return;
       showScreen(button.dataset.screen);
-    }));
+    });
     $('#begin-quest').addEventListener('click', () => {
       const incomplete = MISSIONS.find(mission => !state.completedMissions.includes(mission.id));
       openMission(incomplete?.id || MISSIONS[0].id);
