@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101522">
+  <meta name="description" content="An interactive AP Computer Science A Unit 2 quest covering selection, iteration, Boolean logic, strings, and AP-style free response.">
+  <title>AP CSA XP Academy: Unit 2 Selection &amp; Iteration Quest</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to quest</a>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="U2bootcamp.html" aria-label="AP CSA XP Academy home">
+        <span class="brand-mark" aria-hidden="true">XP<span>+</span></span>
+        <span class="brand-copy"><strong>AP CSA XP ACADEMY</strong><small>Centennial High School · Unit 2</small></span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button type="button" class="nav-button active" data-screen="home-screen">Quest</button>
+        <button type="button" class="nav-button" data-screen="arena-screen">Practice arena</button>
+        <button type="button" class="nav-button" data-screen="frq-screen">FRQ command</button>
+      </nav>
+      <div class="top-status" aria-live="polite">
+        <span class="status-pill"><span class="status-dot"></span><span id="header-rank">NOVICE CODER</span></span>
+        <span class="xp-readout"><span aria-hidden="true">✦</span> <span id="header-xp">0</span> XP</span>
+      </div>
+    </header>
+
+    <main id="main">
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+      <section id="home-screen" class="screen">
+        <section class="hero panel">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="pulse"></span> QUEST BRIEFING · UNIT 02</p>
+            <h1>AP CSA XP<br><span>ACADEMY</span></h1>
+            <p class="hero-subtitle">Unit 2: Selection &amp; Iteration Quest</p>
+            <p class="hero-intro">Welcome to AP CSA XP Academy. Complete missions, earn XP, unlock badges, and prepare for AP-style assessments. Think like a programmer: trace first, reason carefully, then code.</p>
+            <div class="skill-chips" aria-label="Quest skills">
+              <span>Boolean logic</span><span>Selection</span><span>Iteration</span><span>Strings</span><span>Debugging</span><span>FRQs</span>
+            </div>
+            <div class="hero-actions">
+              <button type="button" class="button button-primary button-large" id="begin-quest">BEGIN QUEST <span aria-hidden="true">→</span></button>
+              <p id="motivation" class="motivation" aria-live="polite"></p>
+            </div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <div class="hero-emblem"><span>U2</span><strong>QUEST<br>READY</strong></div>
+            <span class="orbit-label label-top">BOOLEAN</span><span class="orbit-label label-right">LOOPS</span><span class="orbit-label label-bottom">STRINGS</span>
+          </div>
+        </section>
+
+        <section class="dashboard-grid" aria-label="Player progress">
+          <article class="panel player-card">
+            <div class="section-heading"><div><p class="eyebrow">PLAYER STATUS</p><h2>Your progress</h2></div><span class="heading-icon" aria-hidden="true">◈</span></div>
+            <div class="stat-grid">
+              <div class="stat-tile"><span>CURRENT XP</span><strong><b id="current-xp">0</b><small> / 300</small></strong></div>
+              <div class="stat-tile"><span>CURRENT RANK</span><strong class="rank-name" id="current-rank">Novice Coder</strong></div>
+              <div class="stat-tile"><span>MISSIONS</span><strong id="missions-value">0 / 11</strong></div>
+              <div class="stat-tile"><span>BADGES</span><strong id="badges-value">0 / 7</strong></div>
+            </div>
+            <div class="progress-meta"><span>QUEST PROGRESS</span><span id="xp-progress-label">0 / 300 XP</span></div>
+            <div class="progress-track" id="xp-progress" role="progressbar" aria-label="XP progress" aria-valuemin="0" aria-valuemax="300" aria-valuenow="0"><span id="xp-progress-fill"></span></div>
+            <div class="progress-meta rank-progress-meta"><span>RANK PROGRESS</span><span id="rank-progress-label">0 / 48 XP</span></div>
+            <div class="progress-track rank-track" id="rank-progress" role="progressbar" aria-label="Progress to next rank" aria-valuemin="0" aria-valuemax="48" aria-valuenow="0"><span id="rank-progress-fill"></span></div>
+            <div class="eligibility-row"><span><span class="status-dot"></span> PBIS REVIEW STATUS</span><strong id="pbis-status">In progress</strong></div>
+            <p class="micro-copy">Local progress is a readiness indicator only. Your teacher determines PBIS and grade-recovery eligibility.</p>
+          </article>
+          <article class="panel badge-card">
+            <div class="section-heading"><div><p class="eyebrow">ACHIEVEMENTS</p><h2>Badge collection</h2></div><span class="heading-icon" aria-hidden="true">⬡</span></div>
+            <div id="badge-shelf" class="badge-shelf"></div>
+            <p id="badge-empty" class="empty-note">Complete missions and challenges to earn your first badge.</p>
+          </article>
+        </section>
+
+        <section id="mission-map" class="panel mission-map">
+          <div class="section-heading map-heading"><div><p class="eyebrow">YOUR ROUTE TO UNIT 2 MASTERY</p><h2>Mission map</h2><p class="section-intro">Study each concept, then answer a randomized challenge to clear the mission.</p></div><span class="map-counter"><strong id="map-completed">0</strong><small> / 11<br>MISSIONS CLEARED</small></span></div>
+          <div id="mission-list" class="mission-list"></div>
+        </section>
+
+        <section class="panel arena-banner">
+          <div class="banner-icon" aria-hidden="true">⌘</div>
+          <div><p class="eyebrow">OPEN PRACTICE · REPLAY ANYTIME</p><h2>Algorithm Training Arena</h2><p>Choose a practice mode, get a fresh question, and earn each mode's XP bonus once.</p></div>
+          <button type="button" class="button button-secondary" data-screen="arena-screen">ENTER ARENA <span aria-hidden="true">→</span></button>
+        </section>
+
+        <section class="panel frq-banner">
+          <div class="banner-icon frq-icon" aria-hidden="true">⌁</div>
+          <div><p class="eyebrow">AP-STYLE PRACTICE</p><h2>FRQ Command Center</h2><p>Guided coding segments, transparent rubrics, and sample reasoning unlock as you earn XP.</p></div>
+          <button type="button" class="button button-secondary" data-screen="frq-screen">VIEW FRQ LEVELS <span aria-hidden="true">→</span></button>
+        </section>
+
+        <section class="panel final-banner">
+          <div class="banner-icon final-icon" aria-hidden="true">★</div>
+          <div><p class="eyebrow">FINAL CHECKPOINT · 25 QUESTIONS</p><h2>Unit 2 Final Challenge</h2><p>Pass with 80% or higher to earn the AP CSA Champion badge.</p></div>
+          <button type="button" class="button button-primary" id="open-final">START FINAL CHALLENGE <span aria-hidden="true">→</span></button>
+        </section>
+      </section>
+
+      <section id="mission-screen" class="screen" hidden>
+        <div class="screen-toolbar"><button type="button" class="button button-quiet" data-screen="home-screen">← MISSION MAP</button><span id="mission-breadcrumb" class="toolbar-label">MISSION TRAINING</span></div>
+        <div id="mission-content"></div>
+      </section>
+
+      <section id="arena-screen" class="screen" hidden>
+        <div class="screen-toolbar"><button type="button" class="button button-quiet" data-screen="home-screen">← QUEST MAP</button><span class="toolbar-label">ALGORITHM TRAINING ARENA</span></div>
+        <div id="arena-content"></div>
+      </section>
+
+      <section id="frq-screen" class="screen" hidden>
+        <div class="screen-toolbar"><button type="button" class="button button-quiet" data-screen="home-screen">← QUEST MAP</button><span class="toolbar-label">FRQ COMMAND CENTER</span></div>
+        <div id="frq-content"></div>
+      </section>
+
+      <section id="final-screen" class="screen" hidden>
+        <div class="screen-toolbar"><button type="button" class="button button-quiet" data-screen="home-screen">← QUEST MAP</button><span class="toolbar-label">FINAL UNIT 2 CHALLENGE</span></div>
+        <div id="final-content"></div>
+      </section>
+
+      <section id="teacher-screen" class="screen" hidden>
+        <div class="screen-toolbar"><button type="button" class="button button-quiet" data-screen="home-screen">← QUEST MAP</button><span class="toolbar-label">TEACHER DASHBOARD · THIS DEVICE</span></div>
+        <div id="teacher-content"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>AP Computer Science A · Unit 2 · Centennial High School</p>
+      <p>Progress saves automatically on this device. No account or network connection is used.</p>
+      <button type="button" class="teacher-link" id="open-teacher">◈ Teacher dashboard</button>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="unlock-overlay" class="unlock-overlay" role="dialog" aria-modal="true" aria-labelledby="unlock-title" hidden>
+    <div class="unlock-dialog"><div class="unlock-sigil" aria-hidden="true">⌁</div><p class="eyebrow">NEW TRAINING ACCESS</p><h2 id="unlock-title">FRQ LEVEL UNLOCKED</h2><p id="unlock-description"></p><button type="button" class="button button-primary" id="close-unlock">CONTINUE QUEST</button></div>
+  </div>
+</body>
+</html>
