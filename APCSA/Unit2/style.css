@@ -29,7 +29,7 @@ body {
     radial-gradient(ellipse at -10% 62%, #24553a33 0, transparent 38rem),
     var(--bg);
 }
-button, input, textarea { font: inherit; }
+button, input, select, textarea { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 button { color: inherit; }
 a { color: var(--blue); }
