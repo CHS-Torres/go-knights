@@ -1,37 +1,29 @@
-# AP CSA Unit 2 XP Academy
+# AP CSA Unit 2 Bootcamp
 
-An offline practice quest for AP Computer Science A Unit 2: Selection and Iteration. The site uses plain HTML, CSS, and JavaScript; it has no build step, external libraries, APIs, or account system.
+A focused, offline AP Computer Science A Unit 2 bootcamp for selection, iteration, Boolean logic, Strings, debugging, and AP-style free response. The site uses plain HTML, CSS, and JavaScript with no build step, external libraries, APIs, or account system.
 
 ## Run locally
 
-Open [`U2bootcamp.html`](./U2bootcamp.html) in a browser. Keep `style.css` and `script.js` beside the HTML file so its linked styles and behavior load correctly. Progress is stored in this browser's local storage and is not shared with a teacher or other devices.
+Open [`U2bootcamp.html`](./U2bootcamp.html) in a browser. Keep `style.css` and `script.js` beside the HTML file. Progress is saved in this browser's local storage and is not shared with a teacher or other devices.
 
-## What's included
+## Student areas
 
-- Eleven guided missions covering prerequisites, Boolean logic, selection, loops, Strings, debugging, and algorithm design.
-- XP, ranks, mission completion, badges, FRQ unlocks, and a 25-question final challenge.
-- Five progressive FRQ tutoring challenges: bead-sequence analysis, identifier formatting, prefix search, digit analysis, and comma-separated record parsing. Each includes planning prompts, sample I/O, staged hints, a partial starter, common mistakes, a solution walkthrough, a complete commented Java solution, and a five-category self-assessed rubric.
-- An open practice arena with five modes: predict output, trace variables, complete code, fix a bug, and build an algorithm.
-- An offline question bank of 164 questions: 40 multiple choice, 40 output prediction, 20 variable tracing, 20 Boolean evaluation, 15 loop algorithms, 15 String algorithms, 10 algorithm-completion questions, and 4 String-method matching questions.
-- Progressive hints, explanations, responsive layouts, and a local-only teacher dashboard.
+- **Home dashboard** — XP, badges, mission progress, FRQ entry, and the final challenge.
+- **Missions** — eleven lessons, each following Lesson Content → Guided Examples → Guided Practice → Independent Practice → one fixed Mission Challenge → Mission Reflection. The challenge is a mission-specific scenario, not randomized.
+- **FRQ Commander Center** — five increasingly demanding levels from guided algorithm analysis through a final String-parser simulation. Students may access every level; difficulty is communicated by the ordered progression, not unlock requirements.
+- **Final Challenge** — a 50-question bank with 15 Easy, 15 Moderate, 10 Advanced, and 10 AP Style questions. Each attempt draws 8, 8, 6, and 3 questions from those groups, respectively. The 25 selected questions remain fixed for that attempt.
+- **Teacher Dashboard** — a local-only summary of this browser's mission, FRQ, final-challenge, XP, and practice progress.
 
-Question choices and question sets are randomized. XP awards are capped at 300 and use increments divisible by 12. FRQ levels unlock in sequence, award +12 XP once on completion, and award the FRQ Finisher badge after all five levels. FRQ rubrics are self-assessed practice, not official AP scoring or automatic Java compilation.
+Final Challenge results include percent correct, score, difficulty and topic breakdowns, strongest and weakest topics, and a suggested mission review. The review provides the correct answer, explanation, related mission, FRQ skill, and step-by-step reasoning for every question.
+
+After each FRQ submission, the Canonical Solution Center shows the student's self-assessed rubric score, rubric breakdown, side-by-side student/model solutions, common mistakes, walkthrough, AP Reader Notes, and a reflection. Color indicators describe the student's rubric self-assessment; the site does not semantically grade or compile Java.
 
 ## Implementation notes
 
-- [`script.js`](./script.js) contains the curriculum, question bank, scoring, rendering, local-storage state, FRQ activities, and teacher summary.
-- [`style.css`](./style.css) contains the dark responsive visual design and component styles.
+- [`script.js`](./script.js) contains the curriculum, question banks, scoring, rendering, local-storage state, FRQ activities, and teacher summary.
+- [`style.css`](./style.css) contains the responsive design and component styles.
 - [`U2bootcamp.html`](./U2bootcamp.html) provides the page structure and loads the stylesheet and script.
-- Mission and quest-result return buttons navigate directly to the mission map; dynamically rendered controls use the delegated screen-navigation handler.
 - The local-storage key is `centennial-apcsa-unit2-xp-academy-v1`. Clearing this site's browser storage resets saved progress.
-- Mission and final-challenge results are readiness indicators only; teachers make PBIS and grade-recovery decisions.
+- Mission and final-challenge results are readiness indicators only. Teachers make PBIS and grade-recovery decisions.
 
-## Validation and review log
-
-- **2026-11-02** — Added the Unit 2 quest page and interactive learning features. Verified the script with `node --check APCSA/Unit2/script.js`.
-- **2026-11-02** — Added prerequisite String-method matching and a dedicated algorithm-building question set; formatted escaped code newlines for display and saved practice answers during entry.
-- **2026-11-02** — Validated the 164-question bank and required category counts, all five arena modes, matching grading, the final challenge flow, and local-storage persistence using a temporary mocked browser runtime.
-- **2026-11-02** — Fixed navigation buttons rendered after page initialization by delegating screen navigation clicks from the document. This includes mission completion and final-result return buttons.
-- **2026-11-02** — Added this README to support future review and maintenance.
-
-For a quick syntax check after editing JavaScript, run `node --check APCSA/Unit2/script.js` from the repository root.
+For a JavaScript syntax check, run `node --check APCSA/Unit2/script.js` from the repository root.
