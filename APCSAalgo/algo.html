@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AP CSA Algorithm Survival Camp</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="brand">⛺ Algorithm Survival Camp</span>
+    <div class="links" id="navLinks"></div>
+    <div class="progress"><small id="progText">0 / 0 complete</small><div class="bar"><div id="progBar"></div></div></div>
+  </div>
+</nav>
+
+<header class="hero">
+  <h1>AP CSA Algorithm Survival Camp</h1>
+  <p>Arrays, loops, searching and sorting — the mental models behind AP CSA free-response questions. Step through each algorithm, then prove your skills in the Ultimate Challenge.</p>
+</header>
+
+<main>
+
+<!-- ============ 1. TRAVERSAL ============ -->
+<section id="traversal" data-title="Traversal"><div class="card">
+  <span class="tag">Section 1</span>
+  <h2>What is Traversal?</h2>
+  <p>Traversal means <b>visiting every item, one at a time</b>. In AP CSA you do it with a loop and an index.</p>
+  <div class="note analogy"><b>Real-life analogy</b>Taking attendance in a classroom. You must visit every student — skip one and your roll call is wrong.</div>
+  <div class="viz" id="viz-traversal"></div>
+  <div class="tabs" data-for="code-trav"></div>
+  <div id="code-trav">
+<pre data-lang="Java">int[] scores = {88, 92, 75, 98, 84};
+// Standard for loop: start at index 0, stop before length
+for (int i = 0; i &lt; scores.length; i++) {
+    System.out.println("Index " + i + " = " + scores[i]);
+}
+// Enhanced for loop: use when you don't need the index
+for (int s : scores) {
+    System.out.println(s);
+}</pre>
+<pre data-lang="JavaScript">const scores = [88, 92, 75, 98, 84];
+// Same idea: visit index 0 up to length - 1
+for (let i = 0; i &lt; scores.length; i++) {
+  console.log(`Index ${i} = ${scores[i]}`);
+}</pre>
+  </div>
+  <details class="reflect"><summary>🤔 Why is traversal needed before solving most problems?</summary>
+    <textarea placeholder="Write your thoughts..."></textarea>
+    <div class="ans note">Almost every array problem (max, min, search, count, sort) needs to <b>look at the data</b>. Traversal is how you look at every element, so it is the foundation the other algorithms are built on.</div>
+  </details>
+  <div class="foot"></div>
+</div></section>
+
+<!-- ============ 2. SELECTION ============ -->
+<section id="selection" data-title="Selection"><div class="card">
+  <span class="tag">Section 2</span>
+  <h2>What is Selection?</h2>
+  <p>Selection means <b>choosing a value that satisfies a rule</b> while you traverse, such as "the biggest one so far".</p>
+  <div class="note analogy"><b>Real-life analogy</b>Finding the tallest basketball player. Walk down the line and remember the tallest you've seen so far.</div>
+  <div class="viz" id="viz-selection"></div>
+  <div id="code-sel">
+<pre data-lang="Java">// Keep a "best so far" and challenge it with each new value
+int best = heights[0];
+for (int i = 1; i &lt; heights.length; i++) {
+    if (heights[i] &gt; best) {   // the rule: taller wins
+        best = heights[i];
+    }
+}</pre></div>
+  <details class="reflect"><summary>🤔 What happens when a larger value is found?</summary>
+    <textarea placeholder="Write your thoughts..."></textarea>
+    <div class="ans note">The "best so far" variable is <b>replaced</b> by the larger value. If nothing larger shows up, the best stays the same.</div>
+  </details>
+  <div class="foot"></div>
+</div></section>
+
+<!-- ============ 3. MAX ============ -->
+<section id="max" data-title="Maximum"><div class="card">
+  <span class="tag">Section 3</span>
+  <h2>Find the Maximum</h2>
+  <p>Start by assuming the first element is the max, then compare it with every other element.</p>
+  <div class="note analogy"><b>Real-life analogy</b>Student of the Month: the student with the highest grade wins.</div>
+  <div class="viz" id="viz-max"></div>
+  <div class="tabs" data-for="code-max"></div>
+  <div id="code-max">
+<pre data-lang="Java">public static int findMax(int[] arr) {
+    int max = arr[0];                 // assume first is biggest
+    for (int i = 1; i &lt; arr.length; i++) {
+        if (arr[i] &gt; max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}</pre>
+<pre data-lang="JavaScript">function findMax(arr) {
+  let max = arr[0];
+  for (let i = 1; i &lt; arr.length; i++) {
+    if (arr[i] &gt; max) max = arr[i];
+  }
+  return max;
+}</pre>
+  </div>
+  <div class="foot"></div>
+</div></section>
+
+<!-- ============ 4. MIN ============ -->
+<section id="min" data-title="Minimum"><div class="card">
+  <span class="tag">Section 4</span>
+  <h2>Find the Minimum</h2>
+  <p>Same model as maximum — just flip the comparison from <code>&gt;</code> to <code>&lt;</code>.</p>
+  <div class="note analogy"><b>Real-life analogy</b>Finding the cheapest item in a store.</div>
+  <div class="viz" id="viz-min"></div>
+  <div id="code-min">
+<pre data-lang="Java">int min = prices[0];
+for (int i = 1; i &lt; prices.length; i++) {
+    if (prices[i] &lt; min) {   // only this symbol changed!
+        min = prices[i];
+    }
+}</pre></div>
+  <div class="foot"></div>
+</div></section>
+
+<!-- ============ 5. LINEAR SEARCH ============ -->
+<section id="linear" data-title="Linear Search"><div class="card">
+  <span class="tag">Section 5</span>
+  <h2>Linear Search</h2>
+  <p>Linear Search checks every item <b>one by one</b> until it finds the target or runs out of items. The array does not need to be sorted.</p>
+  <div class="note analogy"><b>Real-life analogy</b>Searching for earbuds inside a backpack — pull things out one at a time.</div>
+  <div class="viz" id="viz-linear"></div>
+  <div class="tabs" data-for="code-lin"></div>
+  <div id="code-lin">
+<pre data-lang="Java">public static int linearSearch(int[] arr, int target) {
+    for (int i = 0; i &lt; arr.length; i++) {
+        if (arr[i] == target) {
+            return i;      // found: return the index
+        }
+    }
+    return -1;             // not found
+}</pre>
+<pre data-lang="JavaScript">function linearSearch(arr, target) {
+  for (let i = 0; i &lt; arr.length; i++) {
+    if (arr[i] === target) return i;
+  }
+  return -1;
+}</pre>
+  </div>
+  <div class="foot"></div>
+</div></section>
+
+<!-- ============ 6. BINARY SEARCH ============ -->
+<section id="binary" data-title="Binary Search"><div class="card">
+  <span class="tag">Section 6</span>
+  <h2>Binary Search</h2>
+  <p>Binary Search <b>cuts the search space in half</b> each step by checking the middle element.</p>
+  <div class="note analogy"><b>Real-life analogy</b>Finding a word in a dictionary: open the middle, decide which half the word is in, repeat.</div>
+  <div class="viz" id="viz-binary"></div>
+  <div class="tabs" data-for="code-bin"></div>
+  <div id="code-bin">
+<pre data-lang="Java">public static int binarySearch(int[] arr, int target) {
+    int low = 0, high = arr.length - 1;
+    while (low &lt;= high) {
+        int mid = (low + high) / 2;   // integer division
+        if (arr[mid] == target) return mid;
+        else if (arr[mid] &lt; target) low = mid + 1;   // go right
+        else high = mid - 1;                          // go left
+    }
+    return -1;
+}</pre>
+<pre data-lang="JavaScript">function binarySearch(arr, target) {
+  let low = 0, high = arr.length - 1;
+  while (low &lt;= high) {
+    const mid = Math.floor((low + high) / 2);
+    if (arr[mid] === target) return mid;
+    if (arr[mid] &lt; target) low = mid + 1;
+    else high = mid - 1;
+  }
+  return -1;
+}</pre>
+  </div>
+  <details class="reflect"><summary>🤔 Why must the array already be sorted?</summary>
+    <textarea placeholder="Write your thoughts..."></textarea>
+    <div class="ans note">Binary Search throws away half the array based on one comparison. That only works if every value on one side is guaranteed to be smaller and every value on the other side larger — i.e. sorted order.</div>
+  </details>
+  <div class="foot"></div>
+</div></section>
+
+<!-- ============ 7. SELECTION SORT ============ -->
+<section id="sort" data-title="Selection Sort"><div class="card">
+  <span class="tag">Section 7</span>
+  <h2>Selection Sort &amp; Nested Loops</h2>
+  <p>Selection Sort repeatedly <b>finds the smallest value in the unsorted part</b> and swaps it into its correct location. The outer loop picks the position; the inner loop searches for the minimum — that's a <b>nested loop</b>.</p>
+  <div class="note analogy"><b>Real-life analogy</b>Organizing playing cards in your hand: find the lowest card, put it first, repeat with the rest.</div>
+  <div class="viz" id="viz-sort"></div>
+  <div class="tabs" data-for="code-sort"></div>
+  <div id="code-sort">
+<pre data-lang="Java">public static void selectionSort(int[] arr) {
+    for (int i = 0; i &lt; arr.length - 1; i++) {        // outer: which position to fill
+        int minIndex = i;
+        for (int j = i + 1; j &lt; arr.length; j++) {    // inner: find the smallest
+            if (arr[j] &lt; arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        int temp = arr[i];                              // swap into place
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+    }
+}</pre>
+<pre data-lang="JavaScript">function selectionSort(arr) {
+  for (let i = 0; i &lt; arr.length - 1; i++) {
+    let minIndex = i;
+    for (let j = i + 1; j &lt; arr.length; j++) {
+      if (arr[j] &lt; arr[minIndex]) minIndex = j;
+    }
+    [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+  }
+}</pre>
+  </div>
+  <div class="foot"></div>
+</div></section>
+
+<!-- ============ 8. FRQ ============ -->
+<section id="frq" data-title="FRQ Connection"><div class="card">
+  <span class="tag">Section 8</span>
+  <h2>AP CSA FRQ Connection</h2>
+  <div class="flow">
+    <div class="node">Traversal<small>loop through the array</small></div><div class="arrow">↓</div>
+    <div class="node">Selection<small>choose by a rule</small></div><div class="arrow">↓</div>
+    <div class="node">Searching<small>find a target</small></div><div class="arrow">↓</div>
+    <div class="node">Sorting<small>put in order</small></div><div class="arrow">↓</div>
+    <div class="node">FRQ Solution 🎯<small>combine the skills</small></div>
+  </div>
+  <p>Most AP CSA free-response questions require <b>combinations</b> of these skills. For example: traverse an <code>ArrayList</code>, select the item with the highest score, and return it — or sort first so a binary search can run.</p>
+  <div class="foot"></div>
+</div></section>
+
+<!-- ============ ULTIMATE CHALLENGE ============ -->
+<section id="challenge" data-title="Challenge"><div class="card">
+  <span class="tag">Ultimate Challenge</span>
+  <h2>Student Data Analyzer</h2>
+  <p>Data: <code id="gradesCode"></code> Click each task to run it, or run them all.</p>
+  <div class="controls" style="justify-content:flex-start">
+    <button data-task="display">Display all</button>
+    <button data-task="max">Highest</button>
+    <button data-task="min">Lowest</button>
+    <button data-task="avg">Average</button>
+    <button data-task="above90">Count &gt; 90</button>
+    <button data-task="sort">Sort</button>
+    <button id="runAll">▶ Run all</button>
+    <button class="ghost" id="clearAll">Clear</button>
+  </div>
+  <div class="controls" style="justify-content:flex-start">
+    <input type="number" id="anTarget" placeholder="Grade to find">
+    <button data-task="search">Search</button>
+  </div>
+  <div class="results" id="results"></div>
+  <pre style="margin-top:14px" data-lang="Java">int[] grades = {88, 92, 75, 98, 84, 71, 95};
+int sum = 0, above90 = 0;
+for (int g : grades) {          // ONE traversal can do several jobs
+    sum += g;
+    if (g &gt; 90) above90++;
+}
+double average = (double) sum / grades.length;   // cast avoids integer division</pre>
+  <div class="foot"></div>
+</div></section>
+
+<!-- ============ CHEAT SHEET ============ -->
+<section id="cheat" data-title="Cheat Sheet"><div class="card">
+  <span class="tag">Reference</span>
+  <h2>AP CSA Cheat Sheet</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Algorithm</th><th>Description</th><th>Real Life Example</th></tr></thead>
+    <tbody>
+      <tr><td>Traversal</td><td>Visit every item</td><td>Attendance</td></tr>
+      <tr><td>Selection</td><td>Choose something based on a rule</td><td>Tallest player</td></tr>
+      <tr><td>Maximum</td><td>Biggest value found</td><td>Highest grade</td></tr>
+      <tr><td>Minimum</td><td>Smallest value found</td><td>Cheapest item</td></tr>
+      <tr><td>Linear Search</td><td>Check one at a time</td><td>Backpack search</td></tr>
+      <tr><td>Binary Search</td><td>Cut possibilities in half</td><td>Dictionary lookup</td></tr>
+      <tr><td>Selection Sort</td><td>Move smallest values into place</td><td>Sorting cards</td></tr>
+    </tbody>
+  </table></div>
+  <div class="foot"></div>
+</div></section>
+
+<!-- ============ BANNER ============ -->
+<section id="takeaway" data-title="Takeaway">
+  <div class="banner">
+    <h2>Traversal visits everything.</h2>
+    <h2>Selection chooses something.</h2>
+    <h2>Searching finds something.</h2>
+    <h2>Sorting organizes everything.</h2>
+    <p>Master these four ideas and you can solve most AP CSA array algorithms.</p>
+  </div>
+</section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
